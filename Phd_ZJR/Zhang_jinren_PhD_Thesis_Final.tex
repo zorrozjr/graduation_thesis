@@ -1,0 +1,289 @@
+%\documentclass[a4paper,11pt]{book}
+%\documentclass[hyperref,UTF8]{ctexbook}
+\documentclass[a4paper,UTF8,12pt]{ctexbook}
+%\usepackage{mathbbold}
+%\usepackage[UTF8]{ctex}
+\usepackage{pifont}                                      
+\usepackage{float,amssymb, textcase,mathtools} 
+\usepackage{mathrsfs}%调用该包就可以用\mathscr{}来产生花体字母了
+%允许跨页公式
+\allowdisplaybreaks
+\usepackage[all]{xy}
+\usepackage{emptypage}
+\usepackage{graphicx} 
+\usepackage{epstopdf}
+\usepackage{cases}
+\usepackage{amsfonts}
+\usepackage[centerlast]{caption}
+\usepackage{bm}
+\usepackage{setspace} % 设置行距
+\usepackage{colortbl}
+\usepackage{color}
+
+%新添加~~~~~~
+\usepackage{eqlist}
+\usepackage{changepage}
+\usepackage{multirow}
+
+ %~~~~~~~~~~
+    
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{pifont}
+\usepackage{cite}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\setlist[enumerate,1]{label=\arabic*).,font=\textup,
+	leftmargin=15mm,labelsep=1.5mm,topsep=0mm,itemsep=-0.8mm}
+%\setlist[enumerate,2]{label=(\alph*).,font=\textup, %二级环境
+%	leftmargin=7mm,labelsep=1.5mm,topsep=-0.8mm,itemsep=-0.8mm}
+%\usepackage[colorlinks, linkcolor=red, anchorcolor=blue, citecolor=green]{hyperref}%去除边框
+\usepackage[colorlinks, linkcolor=black, anchorcolor=black, citecolor=black]{hyperref}
+
+
+%\renewcommand\theenumi{(\arabic{enumi})}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\setcounter{secnumdepth}{3}
+
+%公式标号关联章节
+%\numberwithin{figure}{section}
+
+
+\makeatother
+\renewcommand{\baselinestretch}{1.0} \normalsize
+
+
+\usepackage{geometry}
+%\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+\geometry{left=2.6cm,right=2.6cm,top=3.1cm,bottom=2.8cm}
+
+
+\ctexset{
+	chapter = {
+		beforeskip = {-2bp}, afterskip = {18bp plus 0.2ex},
+		nameformat = {}, titleformat = {}
+	}
+	%, section =
+	%	{beforeskip = {20bp plus 1ex minus 0.2ex}, afterskip = {6bp plus 0.2ex}},
+	%	subsection =
+	%	{beforeskip = {12bp plus 1ex minus 0.2ex}, afterskip = {6bp plus 0.2ex}},
+	%	subsubsection =
+	%	{beforeskip = {12bp plus 1ex minus 0.2ex}, afterskip = {6bp plus 0.2ex}}
+}
+
+
+\newtheorem{theorem}{\heiti\textbf{\ \ \quad 定理}}[section]
+\newtheorem{example}{\heiti\textbf{\ \ \quad 例}}[section]
+\newtheorem{lemma}{\heiti\textbf{\ \ \quad 引理}}[section]
+\newtheorem{remark}{\heiti\textbf{\ \ \quad 注}}[section]
+\newtheorem{corollary}{\heiti\textbf{\ \ \quad 推论}}[section]
+\newtheorem{prop}{\heiti\textbf{\ \ \quad 命题}}[section]
+\newtheorem{definition}{\heiti\textbf{\ \ \quad 定义}}[section]
+\newtheorem{algo}{\heiti\textbf{\ \ \quad 算法}}[section]
+\newtheorem{assumption}{\heiti\textbf{\ \ \quad 假设}}[section]
+%\newtheorem{example}{\heiti\textbf{\ \ \quad 例子}}[section]
+
+%\newtheorem{proof}{\heiti\textbf{\ \ \quad 证明}}[section]
+\newtheorem{case}{\heiti\textbf{\ \ \quad 场景}}[section]
+\floatname{algorithm}{算法}
+
+\def\proof{\par{ \heiti\textbf{证明.}} \ignorespaces}
+\def\endproof{\hfill$\Box$}
+
+\newcommand{\reff}[1]{\textup{\ref{#1}}}
+\newcommand{\ccite}[1]{\textup{\cite{#1}}}
+
+\newcommand{\lbl}[1]{\label{#1}}
+\newcommand{\bib}[1]{\bibitem{#1} \qquad\framebox{\scriptsize #1}}
+\newcommand{\mi}[1]{#1 \index{#1}}
+
+
+\definecolor{mygray}{rgb}{0.89,0.89,0.89}
+\definecolor{webbrown}{rgb}{.6,0,0}
+\definecolor{blue}{rgb}{0.00,0.00,1.00}
+\definecolor{gray}{rgb}{0.76,0.76,0.76}
+\definecolor{red}{rgb}{0.98,0.00,0.00}
+\definecolor{greenblue}{rgb}{0.14,0.17,0.53}
+
+%\numberwithin{equation}{section}
+
+
+%\graphicspath{{figures}}
+% 导言区使用中文，必须引入一个CJK环境
+
+%\usepackage[unicode,dvipdfm]{hyperref}	%dvipdfm
+
+%\usepackage[dvipdfm,%需要使用dvipdfm或dvipdfmx进行pdf生成
+%            pdfstartview=FitH,
+%            CJKbookmarks=true,
+%            unicode=true,%不要让latex自动转换unicode字符会出现各种问题
+%            bookmarksnumbered=true,
+%            bookmarksopen=true,
+%            colorlinks=true, %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder 同时注释掉)
+%            pdfborder=001,   %注释掉此项则交叉引用为彩色边框
+%            citecolor=magenta,% magenta , cyan
+%            linkcolor=blue,
+%            linktocpage=true,
+%            ]{hyperref}       % hyperref 宏包通常要求放在导言区的最后!!!
+
+
+\begin{document}
+	\setlength{\baselineskip}{22pt}
+	\ProvidesFile{seuthesis.cfg} \makeatletter
+	\newcommand{\universityname}{东南大学}
+	\newcommand{\universitynameeng}{Southeast University}
+	\newcommand{\schoolcodepre}{学校代码}
+	\newcommand{\schoolcode}{10286}
+	\newcommand{\secretlevelpre}{密级} 
+	\newcommand{\categorynumberpre}{分类号}
+	\newcommand{\studentidpre}{学号}
+	\newcommand{\authorpre}{研究生姓名：}
+	\newcommand{\advisorpre}{导~~师~~姓~~名：}
+	\newcommand{\appdegreepre}{申请学位类别}
+	\newcommand{\majorpre}{一级学科名称}
+	\newcommand{\submajorpre}{二级学科名称}
+	\newcommand{\defenddatepre}{论文答辩日期}
+	\newcommand{\authorizeorganizationpre}{学位授予单位}
+	\newcommand{\@authorizeorganization}{~~东~南~大~学~~}
+	\newcommand{\authorizedatepre}{学位授予日期}
+	\newcommand{\committeechairpre}{答辩委员会主席}
+	\newcommand{\readerpre}{评~~~~~~~~~阅~~~~~~~~~人}
+	\newcommand{\@abstracttitle}{摘\quad 要}
+	\newcommand{\@abstracttitletoc}{摘要}
+	\newcommand{\@terminologytitle}{本论文专用术语的注释表}
+	\renewcommand{\bibname}{参考文献}
+	
+	\pagenumbering{roman}
+	\thispagestyle{empty}
+	\medskip\medskip % 空行
+	\vskip 12cm
+	
+	\begin{picture}(0,0)(-120,10)
+	{\includegraphics[width=\textwidth,bb=-40 0 1683 986]{seu/seu-text-logo.png}}
+	\end{picture}
+	
+	
+\medskip
+\vskip 0.6cm
+\begin{center}
+    {\heiti\zihao{-0}博士学位论文}
+\end{center}　
+\medskip
+\vskip 2cm
+\begin{center}{\zihao{2}{\textbf{基于传递熵的非线性时间序列因果推断及其在路面时序建模的应用}
+            \footnote{\zihao{5}
+                {}}}}
+\end{center}　
+
+\medskip
+\vskip 3cm
+
+\begin{center}
+    {\zihao{3}
+        专~~业~~名~~称：\underline{\quad ~~~~~~~~~数~~学~~~~~~~~~~~~~\quad}\\
+        \medskip
+        \vskip 1cm
+         研~究~生~姓~名：\underline{\quad\quad~~张~~金~~壬\qquad\quad}\\
+        \medskip
+        \vskip 1cm
+        导~~师~~姓~~名：\underline{\quad~~~曹~进~德~~~教授\qquad}
+    }
+\end{center}
+\medskip
+
+\newpage % 增加一个空白页
+\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
+
+\newpage
+\thispagestyle{empty}
+\vskip 3cm
+\begin{center}
+    {\Huge\bf \MakeUppercase{Nonlinear time series casual detection based on transfer entropy and its application on pavement time series modeling }}
+\end{center}
+
+\vskip 2cm
+\begin{center}
+    {\Large A Dissertation Submitted to \\
+        Southeast University\\
+        For the Academic Degree of Doctor of Science}
+\end{center}
+
+\vskip 2.5cm
+\begin{center}{\Large By\\ ZHANG Jinren
+}\end{center}
+
+\vskip 1.5cm
+\begin{center}{\Large Supervised by\\ Professor CAO Jinde 
+}\end{center}
+
+\vskip 4cm
+\begin{center}
+    {\Large School of Mathematics\\
+        Southeast University \\
+        October 2023}
+\end{center}
+
+	\newpage
+	\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
+%	
+\newpage
+\thispagestyle{empty}
+\begin{center}
+    {\heiti\zihao{3}\qquad\ \ \
+        东\  南\  大\  学 \ 学 \ 位\  论\  文\  独\  创\  性\  声\  明 \ \ \ }
+\end{center}
+
+\vskip 1cm
+本人声明所呈交的学位论文是我个人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得东南大学或其它教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。
+
+\vskip 2cm \qquad \qquad\qquad \ 研究生签名：\underline{\ \ \ \ \ \
+    \ \ \ \ \ \ \ \ \ \ } \qquad \qquad\qquad \  日  期：\underline{\ \
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+
+\vskip3cm
+\begin{center}{\heiti\zihao{3}\qquad\ \ \
+        东\  南\  大\  学 \ 学 \ 位\  论\  文\  使 \ 用\ 授\  权\  声\  明
+        \ \ \ } \end{center}
+
+\vskip 1cm
+  \vskip 2cm \
+研究生签名：\underline{\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\quad\quad \   导师签名：\underline{\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\quad\quad 日  期：\underline{\ \ \ \ \ \ \ \ \ \ \ \ \ }
+
+	\newpage % 增加一个空白页
+	\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
+%%%%%%%%%%%%%%%%%%%% 摘要部分单独 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% 摘要部分单独 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% 摘要部分单独 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\input ./ch0Abst/Abstract.tex 
+%%%%%%%%%%%%%%%%%%%% 生成目录 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+%\newpage % 增加一个空白页
+%\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
+%\newpage
+%\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%% 正文部分 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% 正文部分 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% 正文部分 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
+\input ./ch1Intro/Introduction.tex
+\input ./ch2/ch2.tex
+\input ./ch3/ch3.tex
+\input ./ch4/ch4.tex
+\input ./ch5Conclu/Conclusion.tex
+\input ./Reference/Refs.tex     
+\input ./Zappendix/appendix0.tex
+
+
+\end{document}

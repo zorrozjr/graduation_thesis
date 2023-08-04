@@ -1,0 +1,1089 @@
+\begin{thebibliography}{100}
+
+\bibitem{bondy1976graph}
+J.~A. Bondy and U.~S.~R. Murty.
+\newblock {\em Graph Theory with Applications}.
+\newblock Amsterdam: North-Holland, 1976.
+
+\bibitem{gilbert1959random1141}
+E.~N. Gilbert.
+\newblock Random graphs.
+\newblock {\em The Annals of Mathematical Statistics}, 30(4):1141--1144, 1959.
+
+\bibitem{watts1998collective440}
+D.~J. Watts and S.~H. Strogatz.
+\newblock Collective dynamics of ‘small-world’networks.
+\newblock {\em Nature}, 393(6684):440--442, 1998.
+
+\bibitem{barabasi1999emergence509}
+A.-L. Barab{\'a}si and R.~Albert.
+\newblock Emergence of scaling in random networks.
+\newblock {\em Science}, 286(5439):509--512, 1999.
+
+\bibitem{dehmer2009analysis}
+M.~Dehmer and F.~Emmert-Streib.
+\newblock {\em Analysis of Complex Networks: From Biology to Linguistics}.
+\newblock Hoboken, New Jersey, USA: Wiley-Blackwell, 2009.
+
+\bibitem{costa2011analyzing329}
+L.~Costa, O.~Oliveira, G.~Travieso, F.~Rodrigues, P.~Boas, L.~Antiqueira,
+  M.~Viana, and L.~Rocha.
+\newblock Analyzing and modeling real-world phenomena with complex networks: a
+  survey of applications.
+\newblock {\em Advances in Physics}, 60(3):329--412, 2011.
+
+\bibitem{estrada2012structure}
+E.~Estrada.
+\newblock {\em The Structure of Complex Networks: Theory and Applications}.
+\newblock Oxford, U.K.: Oxford University Press, 2012.
+
+\bibitem{xu2006epidemic525}
+X.-J. Xu, H.-O. Peng, X.-M. Wang, and Y.-H. Wang.
+\newblock Epidemic spreading with time delay in complex networks.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  367:525--530, 2006.
+
+\bibitem{liu2009structure1799}
+H.~Liu, J.-A. Lu, J.~L{\"u}, and D.~J. Hill.
+\newblock Structure identification of uncertain general complex dynamical
+  networks with time delay.
+\newblock {\em Automatica}, 45(8):1799--1807, 2009.
+
+\bibitem{wang2015event2497}
+L.~Wang, Z.~Wang, T.~Huang, and G.~Wei.
+\newblock An event-triggered approach to state estimation for a class of
+  complex networks with mixed time delays and nonlinearities.
+\newblock {\em IEEE Transactions on Cybernetics}, 46(11):2497--2508, 2015.
+
+\bibitem{Lu2008Local}
+J.~Lu and D.~W.~C. Ho.
+\newblock Local and global synchronization in general complex dynamical
+  networks with delay coupling.
+\newblock {\em Chaos, Solitons and Fractals}, 37(5):1497--1510, 2008.
+
+\bibitem{Fei2009New}
+Z.~Fei, H.~Gao, and W.~Zheng.
+\newblock New synchronization stability of complex networks with an interval
+  time-varying coupling delay.
+\newblock {\em IEEE Transactions on Circuits and Systems II: Express Briefs},
+  56(6):499--503, 2009.
+
+\bibitem{Wang2010Chaos}
+B.~Wang and Z.~H. Guan.
+\newblock Chaos synchronization in general complex dynamical networks with
+  coupling delays.
+\newblock {\em Nonlinear Analysis: Real World Applications}, 11(3):1925--1932,
+  2010.
+
+\bibitem{Wu2013Sampled}
+Z.-G. Wu, P.~Shi, H.~Su, and J.~Chu.
+\newblock Sampled-data exponential synchronization of complex dynamical
+  networks with time-varying coupling delay.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  24(8):1177--1187, 2013.
+
+\bibitem{Park2018Closeness}
+M.~Park, S.-H. Lee, K.~Oh-Min, and S.~Alexandre.
+\newblock Closeness-centrality-based synchronization criteria for complex
+  dynamical networks with interval time-varying coupling delays.
+\newblock {\em IEEE Transactions on Cybernetics}, 48(7):2192--2202, 2018.
+
+\bibitem{wang2011mixed}
+J.-W. Wang, Q.~Ma, L.~Zeng, and M.~S. Abd-Elouahab.
+\newblock Mixed outer synchronization of coupled complex networks with
+  time-varying coupling delay.
+\newblock {\em Chaos: An Interdisciplinary Journal of Nonlinear Science},
+  21(1):013121, 2011.
+
+\bibitem{syed2019synchronisation585}
+M.~S.~Ali, M.~Usha, J.~Cao, and G.~Lu.
+\newblock Synchronisation analysis for stochastic {T}--{S} fuzzy complex
+  networks with coupling delay.
+\newblock {\em International Journal of Systems Science}, 50(3):585--598, 2019.
+
+\bibitem{liu2017partial3906}
+Y.~Liu, Z.~Wang, Y.~Yuan, and F.~E. Alsaadi.
+\newblock Partial-nodes-based state estimation for complex networks with
+  unbounded distributed delays.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  29(8):3906--3912, 2017.
+
+\bibitem{zou2015event2804}
+L.~Zou, Z.~Wang, H.~Gao, and X.~Liu.
+\newblock Event-triggered state estimation for complex networks with mixed time
+  delays via sampled data information: The continuous-time case.
+\newblock {\em IEEE Transactions on Cybernetics}, 45(12):2804--2815, 2015.
+
+\bibitem{gu2003stability}
+K.~Gu, J.~Chen, and V.~L. Kharitonov.
+\newblock {\em Stability of time-delay systems}.
+\newblock Boston: Birkh{\"a}user, 2003.
+
+\bibitem{fridman2014introduction}
+E.~Fridman.
+\newblock {\em Introduction to time-delay systems: Analysis and control}.
+\newblock Birkh{\"a}user Basel, 2014.
+
+\bibitem{sun2012timedelaystability}
+孙健，陈杰，刘国平.
+\newblock {\em 时滞系统稳定性分析与应用}.
+\newblock 科学出版社, 2012.
+
+\bibitem{wang2002complex885}
+X.~F. Wang.
+\newblock Complex networks: topology, dynamics and synchronization.
+\newblock {\em International Journal of Bifurcation and Chaos},
+  12(05):885--916, 2002.
+
+\bibitem{cheng2013mean261}
+L.~Cheng, Z.-G. Hou, and M.~Tan.
+\newblock A mean square consensus protocol for linear multi-agent systems with
+  communication noises and fixed topologies.
+\newblock {\em IEEE Transactions on Automatic Control}, 59(1):261--267, 2013.
+
+\bibitem{camacho2002robust}
+J.~Camacho, R.~Guimer{\`a}, and L.~A.~N. Amaral.
+\newblock Robust patterns in food web structure.
+\newblock {\em Physical Review Letters}, 88(22):228102, 2002.
+
+\bibitem{yu2009second881}
+W.~Yu, G.~Chen, M.~Cao, and J.~Kurths.
+\newblock Second-order consensus for multiagent systems with directed
+  topologies and nonlinear dynamics.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics:
+  Cybernetics}, 40(3):881--891, 2009.
+
+\bibitem{gu2019pidDOI}
+H.~Gu, P.~Liu, J.~L{\"u}, and Z.~Lin.
+\newblock {PID} control for synchronization of complex dynamical networks with
+  directed topologies.
+\newblock {\em IEEE Transactions on Cybernetics}, 51(3):1334--1346, 2021.
+
+\bibitem{wang2011synchronization3070}
+L.~Wang and Q.~Wang.
+\newblock Synchronization in complex networks with switching topology.
+\newblock {\em Physics Letters A}, 375(34):3070--3074, 2011.
+
+\bibitem{jin2015function730}
+Y.~Jin and S.~Zhong.
+\newblock Function projective synchronization in complex networks with
+  switching topology and stochastic effects.
+\newblock {\em Applied Mathematics and Computation}, 259:730--740, 2015.
+
+\bibitem{chen2016synchronizing189}
+Y.~Chen, W.~Yu, S.~Tan, and H.~Zhu.
+\newblock Synchronizing nonlinear complex networks via switching disconnected
+  topology.
+\newblock {\em Automatica}, 70:189--194, 2016.
+
+\bibitem{li2017state6377}
+W.~Li, Y.~Jia, and J.~Du.
+\newblock State estimation for stochastic complex networks with switching
+  topology.
+\newblock {\em IEEE Transactions on Automatic Control}, 62(12):6377--6384,
+  2017.
+
+\bibitem{mirollo1990synchronization1645}
+R.~E. Mirollo and S.~H. Strogatz.
+\newblock Synchronization of pulse-coupled biological oscillators.
+\newblock {\em SIAM Journal on Applied Mathematics}, 50(6):1645--1662, 1990.
+
+\bibitem{fries2001modulation1560}
+P.~Fries, J.~H. Reynolds, A.~E. Rorie, and R.~Desimone.
+\newblock Modulation of oscillatory neuronal synchronization by selective
+  visual attention.
+\newblock {\em Science}, 291(5508):1560--1563, 2001.
+
+\bibitem{steinmetz2000attention187}
+P.~N. Steinmetz, A.~Roy, P.~Fitzgerald, S.~Hsiao, K.~Johnson, and E.~Niebur.
+\newblock Attention modulates synchronized neuronal firing in primate
+  somatosensory cortex.
+\newblock {\em Nature}, 404(6774):187--190, 2000.
+
+\bibitem{2018dynamicstimedelays}
+卢文联.
+\newblock {\em 时滞复杂系统动力学: 从神经网络到复杂网络}.
+\newblock 复旦大学出版社有限公司, 2018.
+
+\bibitem{liang2008exponential153}
+J.~Liang, Z.~Wang, and X.~Liu.
+\newblock Exponential synchronization of stochastic delayed discrete-time
+  complex networks.
+\newblock {\em Nonlinear Dynamics}, 53(1):153--165, 2008.
+
+\bibitem{song2012global2389}
+B.~Song, J.~H. Park, Z.-G. Wu, and Y.~Zhang.
+\newblock Global synchronization of stochastic delayed complex networks.
+\newblock {\em Nonlinear Dynamics}, 70(4):2389--2399, 2012.
+
+\bibitem{shi2016synchronization178}
+L.~Shi, H.~Zhu, S.~Zhong, Y.~Zeng, and J.~Cheng.
+\newblock Synchronization for time-varying complex networks based on control.
+\newblock {\em Journal of Computational and Applied Mathematics}, 301:178--187,
+  2016.
+
+\bibitem{zhang2008adaptive183}
+Q.~Zhang, J.~Lu, J.~Lu, and K.~T. Chi.
+\newblock Adaptive feedback synchronization of a general complex dynamical
+  network with delayed nodes.
+\newblock {\em IEEE Transactions on Circuits and Systems II: Express Briefs},
+  55(2):183--187, 2008.
+
+\bibitem{stilwell2006sufficient140}
+D.~J. Stilwell, E.~M. Bollt, and D.~G. Roberson.
+\newblock Sufficient conditions for fast switching synchronization in
+  time-varying network topologies.
+\newblock {\em SIAM Journal on Applied Dynamical Systems}, 5(1):140--156, 2006.
+
+\bibitem{hu2021sampled3071811}
+T.~Hu, J.~H. Park, X.~Liu, Z.~He, and S.~Zhong.
+\newblock Sampled-data-based event-triggered synchronization strategy for
+  fractional and impulsive complex networks with switching topologies and
+  time-varying delay.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  2021, DOI: 10.1109/TSMC.2021.3071811.
+
+\bibitem{2019Adaptively2943621}
+Z.~Tang, J.~H. Park, Y.~Wang, and J.~Feng.
+\newblock Adaptively synchronize the derivative coupled complex networks with
+  proportional delay.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  51(8):4969--4979, 2021.
+
+\bibitem{liu2007exponential82}
+X.~Liu and T.~Chen.
+\newblock Exponential synchronization of nonlinear coupled dynamical networks
+  with a delayed coupling.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  381:82--92, 2007.
+
+\bibitem{yang2015robust1077}
+S.~Yang, Z.~Guo, and J.~Wang.
+\newblock Robust synchronization of multiple memristive neural networks with
+  uncertain parameters via nonlinear coupling.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  45(7):1077--1086, 2015.
+
+\bibitem{wu2015exponential3097}
+Y.~Wu and L.~Liu.
+\newblock Exponential outer synchronization between two uncertain time-varying
+  complex networks with nonlinear coupling.
+\newblock {\em Entropy}, 17(5):3097--3109, 2015.
+
+\bibitem{popov2012robust2343}
+A.~Popov and H.~Werner.
+\newblock Robust stability of a multi-agent system under arbitrary and
+  time-varying communication topologies and communication delays.
+\newblock {\em IEEE Transactions on Automatic Control}, 57(9):2343--2347, 2012.
+
+\bibitem{wang2013robust2097}
+T.~Wang, W.~Zhou, and S.~Zhao.
+\newblock Robust synchronization for stochastic delayed complex networks with
+  switching topology and unmodeled dynamics via adaptive control approach.
+\newblock {\em Communications in Nonlinear Science and Numerical Simulation},
+  18(8):2097--2106, 2013.
+
+\bibitem{2009The1276}
+X.~Yu, Q.~Ren, J.~Hou, and J.~Zhao.
+\newblock The chaotic phase synchronization in adaptively coupled-delayed
+  complex networks.
+\newblock {\em Physics Letters A}, 373(14):1276--1282, 2009.
+
+\bibitem{2013Function1182}
+H.~Du, S.~Peng, and L.~Ning.
+\newblock Function projective synchronization in complex dynamical networks
+  with time delay via hybrid feedback control.
+\newblock {\em Nonlinear Analysis Real World Applications}, 14(2):1182--1190,
+  2013.
+
+\bibitem{Zhi2017Cluster585}
+Z.-H. Guan, D.~Yue, B.~Hu, T.~Li, and F.~Liu.
+\newblock Cluster synchronization of coupled genetic regulatory networks with
+  delays via aperiodically adaptive intermittent control.
+\newblock {\em IEEE Transactions on Nanobioscience}, 16(7):585--599, 2017.
+
+\bibitem{wang2018generalized6597}
+Q.~Wang, J.-L. Wang, Y.-L. Huang, and S.-Y. Ren.
+\newblock Generalized lag synchronization of multiple weighted complex networks
+  with and without time delay.
+\newblock {\em Journal of the Franklin Institute}, 355(14):6597--6616, 2018.
+
+\bibitem{chen2021quasi3103597}
+T.~Chen, W.~Wang, and Y.~Wu.
+\newblock Quasi-synchronization of fuzzy heterogeneous complex networks via
+  intermittent discrete-time state observations control.
+\newblock {\em IEEE Transactions on Fuzzy Systems}, 2021, DOI:
+  10.1109/TFUZZ.2021.3103597.
+
+\bibitem{lu2019phase122419}
+L.~Lu, M.~Ge, Y.~Xu, and Y.~Jia.
+\newblock Phase synchronization and mode transition induced by multiple time
+  delays and noises in coupled fitzhugh--nagumo model.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  535:122419, 2019.
+
+\bibitem{han2016modified1650126}
+M.~Han, Y.~Zhang, and M.~Zhang.
+\newblock Modified function projective synchronization between two different
+  complex networks with delayed couplings and delayed nodes of different
+  dimensions.
+\newblock {\em International Journal of Modern Physics C}, 27(11):1650126,
+  2016.
+
+\bibitem{2011DistributedLondon}
+R.~Wei and Y.~Cao.
+\newblock {\em Distributed Coordination of Multi-agent Networks: Emergent
+  Problems, Models, and Issues}.
+\newblock Springer London, 2011.
+
+\bibitem{2013An427}
+Y.~Cao, W.~Yu, W.~Ren, and G.~Chen.
+\newblock An overview of recent progress in the study of distributed
+  multi-agent coordination.
+\newblock {\em IEEE Transactions on Industrial Informatics}, 9(1):427--438,
+  2013.
+
+\bibitem{2018Multi345}
+K.~Sakurama, S.~I. Azuma, and T.~Sugie.
+\newblock Multi-agent coordination to high-dimensional target subspaces.
+\newblock {\em IEEE Transactions on Control of Network Systems}, 5(1):345--358,
+  2018.
+
+\bibitem{gao2018xuconsensus}
+高利新，徐晓乐.
+\newblock {\em 多智能体系统基于观察器的一致性控制}.
+\newblock 上海交通大学出版社, 2018.
+
+\bibitem{2015Sampled369}
+D.~Lei and G.~Ge.
+\newblock Sampled-data leader-following consensus for nonlinear multi-agent
+  systems with {M}arkovian switching topologies and communication delay.
+\newblock {\em Journal of the Franklin Institute}, 352(1):369--383, 2015.
+
+\bibitem{2016Consensus3311}
+H.~Meng, Z.~Chen, L.~Zhu, and R.~Middleton.
+\newblock Consensus of a class of second‐order nonlinear heterogeneous
+  multi‐agent systems with uncertainty and communication delay.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  26:3311--3329, 2016.
+
+\bibitem{2014Adaptive1217}
+C.~L.~P. Chen, G.-X. Wen, Y.-J. Liu, and F.-Y. Wang.
+\newblock Adaptive consensus control for a class of nonlinear multiagent
+  time-delay systems using neural networks.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  25(6):1217--1226, 2014.
+
+\bibitem{2020Quasi2964826}
+L.~Liu, H.~Sun, L.~Ma, J.~Zhang, and Y.~Bo.
+\newblock Quasi-consensus control for a class of time-varying stochastic
+  nonlinear time-delay multiagent systems subject to deception attacks.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  51(11):6863--6873, 2021.
+
+\bibitem{2015Event1998}
+H.~Li, X.~Liao, T.~Huang, and W.~Zhu.
+\newblock Event-triggering sampling based leader-following consensus in
+  second-order multi-agent systems.
+\newblock {\em IEEE Transactions on Automatic Control}, 60(7):1998--2003, 2015.
+
+\bibitem{2011Output200}
+H.~Kim, H.~Shim, and J.~H. Seo.
+\newblock Output consensus of heterogeneous uncertain linear multi-agent
+  systems.
+\newblock {\em IEEE Transactions on Automatic Control}, 56(1):200--206, 2011.
+
+\bibitem{2017A1625}
+H.~Du, G.~Wen, G.~Chen, J.~Cao, and F.~E. Alsaadi.
+\newblock A distributed finite-time consensus algorithm for higher-order
+  leaderless and leader-following multiagent systems.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  47(7):1625--1634, 2017.
+
+\bibitem{2021Leader109444}
+H.~Li, Q.~Liu, G.~Feng, and X.~Zhang.
+\newblock Leader–follower consensus of nonlinear time-delay multiagent
+  systems: A time-varying gain approach.
+\newblock {\em Automatica}, 126(11):109444, 2021.
+
+\bibitem{wang2022leader127031}
+K.-P. Wang, D.~Ding, Z.~Tang, and J.~Feng.
+\newblock Leader-following consensus of nonlinear multi-agent systems with
+  hybrid delays: Distributed impulsive pinning strategy.
+\newblock {\em Applied Mathematics and Computation}, 424:127031, 2022.
+
+\bibitem{yue2019neuro230}
+D.~Yue, J.~Cao, Q.~Li, and X.~Shi.
+\newblock Neuro-adaptive consensus strategy for a class of nonlinear time-delay
+  multi-agent systems with an unmeasurable high-dimensional leader.
+\newblock {\em IET Control Theory and Applications}, 13(2):230--238, 2019.
+
+\bibitem{li2021distributed109545}
+Y.~Li, J.~H. Park, C.~Hua, and G.~Liu.
+\newblock Distributed adaptive output feedback containment control for
+  time-delay nonlinear multiagent systems.
+\newblock {\em Automatica}, 127:109545, 2021.
+
+\bibitem{wen2020fault}
+G.~Wen, X.~Zhai, Z.~Peng, and A.~Rahmani.
+\newblock Fault-tolerant secure consensus tracking of delayed nonlinear
+  multi-agent systems with deception attacks and uncertain parameters via
+  impulsive control.
+\newblock {\em Communications in nonlinear science and numerical simulation},
+  82:105043, 2020.
+
+\bibitem{jiang2020non210}
+X.~Jiang, G.~Xia, Z.~Feng, and T.~Li.
+\newblock Non-fragile {H}$_\infty$ consensus tracking of nonlinear multi-agent
+  systems with switching topologies and transmission delay via sampled-data
+  control.
+\newblock {\em Information Sciences}, 509:210--226, 2020.
+
+\bibitem{li2018data1773}
+C.-J. Li and G.-P. Liu.
+\newblock Data-driven consensus for non-linear networked multi-agent systems
+  with switching topology and time-varying delays.
+\newblock {\em IET Control Theory and Applications}, 12(12):1773--1779, 2018.
+
+\bibitem{yaghoubi2020cluster1685}
+Z.~Yaghoubi and H.~A. Talebi.
+\newblock Cluster consensus of fractional-order non-linear multi-agent systems
+  with switching topology and time-delays via impulsive control.
+\newblock {\em International Journal of Systems Science}, 51(10):1685--1698,
+  2020.
+
+\bibitem{jiang2021h280}
+X.~Jiang, G.~Xia, Z.~Feng, and Z.~Jiang.
+\newblock H$_\infty$ delayed tracking protocol design of nonlinear singular
+  multi-agent systems under {M}arkovian switching topology.
+\newblock {\em Information Sciences}, 545:280--297, 2021.
+
+\bibitem{li2013second1595}
+H.~Li, X.~Liao, X.~Lei, T.~Huang, and W.~Zhu.
+\newblock Second-order consensus seeking in multi-agent systems with nonlinear
+  dynamics over random switching directed networks.
+\newblock {\em IEEE Transactions on Circuits and Systems I: Regular Papers},
+  60(6):1595--1607, 2013.
+
+\bibitem{sharifi2020finite10}
+M.~Sharifi and M.~J. Yazdanpanah.
+\newblock Finite time consensus of nonlinear multi-agent systems in the
+  presence of communication time delays.
+\newblock {\em European Journal of Control}, 53:10--19, 2020.
+
+\bibitem{2019Leader}
+K.~Subramanian, P.~Muthukumar, and Y.~H. Joo.
+\newblock Leader-following consensus of nonlinear multi-agent systems via
+  reliable control with time-varying communication delay.
+\newblock {\em International Journal of Control, Automation and Systems},
+  17(2):298--306, 2019.
+
+\bibitem{2021Consensus126}
+X.~Jiang, G.~Xia, Z.~Feng, and Z.~Jiang.
+\newblock Consensus tracking of data-sampled nonlinear multi-agent systems with
+  packet loss and communication delay.
+\newblock {\em IEEE Transactions on Network Science and Engineering},
+  8(1):126--137, 2021.
+
+\bibitem{lu2019consensus153}
+J.~Lu, X.~Guo, T.~Huang, and Z.~Wang.
+\newblock Consensus of signed networked multi-agent systems with nonlinear
+  coupling and communication delays.
+\newblock {\em Applied Mathematics and Computation}, 350:153--162, 2019.
+
+\bibitem{wang2016distributed918}
+D.~Wang, H.~Ma, and D.~Liu.
+\newblock Distributed control algorithm for bipartite consensus of the
+  nonlinear time-delayed multi-agent systems with neural networks.
+\newblock {\em Neurocomputing}, 174:928--936, 2016.
+
+\bibitem{qian2017local2462}
+W.~Qian, L.~Wang, and M.~Z. Chen.
+\newblock Local consensus of nonlinear multiagent systems with varying delay
+  coupling.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  48(12):2462--2469, 2018.
+
+\bibitem{2019dynamic1699}
+X.~Liu, J.-W. Xiao, D.~Chen, and Y.-W. Wang.
+\newblock Dynamic consensus of nonlinear time-delay multi-agent systems with
+  input saturation: an impulsive control algorithm.
+\newblock {\em Nonlinear Dynamics}, 97(2):1699--1710, 2019.
+
+\bibitem{lakshmikantham1989theory}
+V.~Lakshmikantham, D.~D. Bainov, and P.~S. Simeonov.
+\newblock {\em Theory of Impulsive Differential Equations}, volume~6.
+\newblock Singapore: World Scientific, 1989.
+
+\bibitem{yang2001impulsive}
+T.~Yang.
+\newblock {\em Impulsive control theory}.
+\newblock New York: Nova Science, 2001.
+
+\bibitem{yang2017synchronization115}
+S.~Yang, C.~Li, and T.~Huang.
+\newblock Synchronization of coupled memristive chaotic circuits via
+  state-dependent impulsive control.
+\newblock {\em Nonlinear Dynamics}, 88(1):115--129, 2017.
+
+\bibitem{goedel2012hybrid}
+R.~Goedel, R.~G. Sanfelice, and A.~R. Teel.
+\newblock {\em Hybrid Dynamical Systems: Modeling Stability, and Robustness}.
+\newblock Princeton University Press Princeton, New Jersey, 2012.
+
+\bibitem{2020Synchronization38}
+Y.~Wang, J.~Lu, X.~Li, and J.~Liang.
+\newblock Synchronization of coupled neural networks under mixed impulsive
+  effects: a novel delay inequality approach.
+\newblock {\em Neural Networks}, 127:38--46, 2020.
+
+\bibitem{tang2015leader346}
+Y.~Tang, H.~Gao, W.~Zhang, and J.~Kurths.
+\newblock Leader-following consensus of a class of stochastic delayed
+  multi-agent systems with partial mixed impulses.
+\newblock {\em Automatica}, 53:346--354, 2015.
+
+\bibitem{haddad2006impulsive}
+W.~M. Haddad, V.~Chellaboina, and S.~G. Nersesov.
+\newblock {\em Impulsive and Hybrid Dynamcial Systems: Stability, Dissipativity
+  and Control}.
+\newblock Princeton University Press Princeton, New Jersey, 2006.
+
+\bibitem{yang1997impulsive645}
+T.~Yang and L.~O. Chua.
+\newblock Impulsive control and synchronization of nonlinear dynamical systems
+  and application to secure communication.
+\newblock {\em International Journal of Bifurcation and Chaos}, 7(03):645--664,
+  1997.
+
+\bibitem{lu2010unified1215}
+J.~Lu, D.~W. Ho, and J.~Cao.
+\newblock A unified synchronization criterion for impulsive dynamical networks.
+\newblock {\em Automatica}, 46(7):1215--1221, 2010.
+
+\bibitem{wang2018unified25}
+N.~Wang, X.~Li, J.~Lu, and F.~E. Alsaadi.
+\newblock Unified synchronization criteria in an array of coupled neural
+  networks with hybrid impulses.
+\newblock {\em Neural Networks}, 101:25--32, 2018.
+
+\bibitem{lu2012pinning1250176}
+J.~Lu, Z.~Wang, J.~Cao, D.~W. Ho, and J.~Kurths.
+\newblock Pinning impulsive stabilization of nonlinear dynamical networks with
+  time-varying delay.
+\newblock {\em International Journal of Bifurcation and Chaos}, 22(07):1250176,
+  2012.
+
+\bibitem{sun2012outer1751}
+W.~Sun, Z.~Chen, J.~L{\"u}, and S.~Chen.
+\newblock Outer synchronization of complex networks with delay via impulse.
+\newblock {\em Nonlinear Dynamics}, 69(4):1751--1764, 2012.
+
+\bibitem{feng2016exponential621}
+J.~Feng, F.~Yu, and Y.~Zhao.
+\newblock Exponential synchronization of nonlinearly coupled complex networks
+  with hybrid time-varying delays via impulsive control.
+\newblock {\em Nonlinear Dynamics}, 85(1):621--632, 2016.
+
+\bibitem{liu2018consensus134}
+X.~Liu, K.~Zhang, and W.-C. Xie.
+\newblock Consensus of multi-agent systems via hybrid impulsive protocols with
+  time-delay.
+\newblock {\em Nonlinear Analysis: Hybrid Systems}, 30:134--146, 2018.
+
+\bibitem{Li2016Stabilization}
+X.~Li and S.~Song.
+\newblock Stabilization of delay systems: Delay-dependent impulsive control.
+\newblock {\em IEEE Transactions on Automatic Control}, 62(1):406--411, 2016.
+
+\bibitem{Zhang2015Synchronizationof}
+W.~Zhang, C.~Li, T.~Huang, and X.~He.
+\newblock Synchronization of memristor-based coupling recurrent neural networks
+  with time-varying delays and impulses.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  26(12):3308--3313, 2015.
+
+\bibitem{Li2016Stability}
+X.~Li and J.~Wu.
+\newblock Stability of nonlinear differential systems with state-dependent
+  delayed impulses.
+\newblock {\em Automatica}, 64:63--69, 2016.
+
+\bibitem{He2017Network}
+W.~He, G.~Chen, Q.~L. Han, and F.~Qian.
+\newblock Network-based leader-following consensus of nonlinear multi-agent
+  systems via distributed impulsive control.
+\newblock {\em Information Sciences}, 380:145--158, 2017.
+
+\bibitem{Yang2018Review}
+X.~Yang, X.~Li, Q.~Xi, and P.~Duan.
+\newblock Review of stability and stabilization for impulsive delayed systems.
+\newblock {\em Mathematical Biosciences and Engineering}, 15(6):1495--1515,
+  2018.
+
+\bibitem{he2020synchronization}
+X.~He, D.~Peng, and X.~Li.
+\newblock Synchronization of complex networks with impulsive control involving
+  stabilizing delay.
+\newblock {\em Journal of the Franklin Institute}, 357(8):4869--4886, 2020.
+
+\bibitem{2012Synchronization285}
+J.~Lu, J.~Kurths, J.~Cao, N.~Mahdavi, and C.~Huang.
+\newblock Synchronization control for nonlinear stochastic dynamical networks:
+  Pinning impulsive strategy.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  23(2):285--292, 2012.
+
+\bibitem{2013Synchronization3486}
+X.~Yang, J.~Cao, and Z.~Yang.
+\newblock Synchronization of coupled reaction-diffusion neural networks with
+  time-varying delays via pinning-impulsive controller.
+\newblock {\em SIAM Journal on Control and Optimization}, 51(5):3486--3510,
+  2013.
+
+\bibitem{2019An2561}
+X.~Wang, J.~H. Park, H.~Yang, and S.~Zhong.
+\newblock An improved impulsive control approach for cluster synchronization of
+  complex networks with parameter mismatches.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  51(4):2561--2570, 2021.
+
+\bibitem{zhou2011pinning2882}
+J.~Zhou, Q.~Wu, and L.~Xiang.
+\newblock Pinning complex delayed dynamical networks by a single impulsive
+  controller.
+\newblock {\em IEEE Transactions on Circuits and Systems I: Regular Papers},
+  58(12):2882--2893, 2011.
+
+\bibitem{liu2020intralayer3006032}
+H.~Liu, J.~Li, Z.~Li, Z.~Zeng, and J.~L{\"u}.
+\newblock Intralayer synchronization of multiplex dynamical networks via
+  pinning impulsive control.
+\newblock {\em IEEE Transactions on Cybernetics}, 52(4):2110--2122, 2022.
+
+\bibitem{yang2014hybrid480}
+X.~Yang and J.~Cao.
+\newblock Hybrid adaptive and impulsive synchronization of uncertain complex
+  networks with delays and general uncertain perturbations.
+\newblock {\em Applied Mathematics and Computation}, 227:480--493, 2014.
+
+\bibitem{2020Synchronization4043}
+X.~Yang, X.~Li, J.~Lu, and Z.~Cheng.
+\newblock Synchronization of time-delayed complex networks with switching
+  topology via hybrid actuator fault and impulsive effects control.
+\newblock {\em IEEE Transactions on Cybernetics}, 50(9):4043--4052, 2020.
+
+\bibitem{li2019global31}
+H.-L. Li, J.~Cao, C.~Hu, L.~Zhang, and Z.~Wang.
+\newblock Global synchronization between two fractional-order complex networks
+  with non-delayed and delayed coupling via hybrid impulsive control.
+\newblock {\em Neurocomputing}, 356:31--39, 2019.
+
+\bibitem{2019Consensus792}
+X.~Tan, J.~Cao, and X.~Li.
+\newblock Consensus of leader-following multiagent systems: A distributed
+  event-triggered impulsive control strategy.
+\newblock {\em IEEE Transactions on Cybernetics}, 49(3):792--801, 2019.
+
+\bibitem{Zhu2018Event}
+W.~Zhu, D.~Wang, L.~Liu, and G.~Feng.
+\newblock Event-based impulsive control of continuous-time dynamic systems and
+  its application to synchronization of memristive neural networks.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  29(8):3599--3609, 2018.
+
+\bibitem{2020Leader1}
+D.~Peng and X.~Li.
+\newblock Leader-following synchronization of complex dynamic networks via
+  event-triggered impulsive control.
+\newblock {\em Neurocomputing}, 412:1--10, 2020.
+
+\bibitem{2021Synchronization2491}
+J.~Chen, B.~Chen, and Z.~Zeng.
+\newblock Synchronization in multiple neural networks with delay and
+  disconnected switching topology via event-triggered impulsive control
+  strategy.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 68(3):2491--2500,
+  2021.
+
+\bibitem{Xudong2020Pinning105017}
+X.~Hai, G.~Ren, Y.~Yu, C.~Xu, and Y.~Zeng.
+\newblock Pinning synchronization of fractional and impulsive complex networks
+  via event-triggered strategy.
+\newblock {\em Communications in Nonlinear Science and Numerical Simulation},
+  82:105017, 2020.
+
+\bibitem{brieger2009flight92}
+O.~Brieger, M.~Kerr, D.~Lei{\ss}ling, I.~Postlethwaite, J.~Sofrony, and
+  M.~Turner.
+\newblock Flight testing of a rate saturation compensation scheme on the
+  {ATTAS} aircraft.
+\newblock {\em Aerospace Science and Technology}, 13(2-3):92--104, 2009.
+
+\bibitem{farantatos2015predictive1826}
+E.~Farantatos, R.~Huang, G.~J. Cokkinides, and A.~Meliopoulos.
+\newblock A predictive generator out-of-step protection and transient stability
+  monitoring scheme enabled by a distributed dynamic state estimator.
+\newblock {\em IEEE Transactions on Power Delivery}, 31(4):1826--1835, 2016.
+
+\bibitem{xiao2011adaptive1605}
+B.~Xiao, Q.~Hu, and Y.~Zhang.
+\newblock Adaptive sliding mode fault tolerant attitude tracking control for
+  flexible spacecraft under actuator saturation.
+\newblock {\em IEEE Transactions on Control Systems Technology},
+  20(6):1605--1612, 2012.
+
+\bibitem{li2020impulsive}
+H.~Li, C.~Li, D.~Ouyang, and S.~K. Nguang.
+\newblock Impulsive synchronization of unbounded delayed inertial neural
+  networks with actuator saturation and sampled-data control and its
+  application to image encryption.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  32(4):1460--1473, 2020.
+
+\bibitem{li2020impulsivePolytopic}
+H.~Li, C.~Li, D.~Ouyang, and S.~K. Nguang.
+\newblock Impulsive stabilization of nonlinear time-delay system with input
+  saturation via delay-dependent polytopic approach.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  51(11):7087--7098, 2021.
+
+\bibitem{shen2019estimation}
+Z.~Shen, C.~Li, H.~Li, and Z.~Cao.
+\newblock Estimation of the domain of attraction for discrete-time linear
+  impulsive control systems with input saturation.
+\newblock {\em Applied Mathematics and Computation}, 362:124502, 2019.
+
+\bibitem{HE2021126452}
+Z.~He, C.~Li, Y.~Li, Z.~Cao, and X.~Zhang.
+\newblock Local synchronization of nonlinear dynamical networks with hybrid
+  impulsive saturation control inputs.
+\newblock {\em Applied Mathematics and Computation}, 410:126452, 2021.
+
+\bibitem{ouyang2020impulsive}
+D.~Ouyang, J.~Shao, H.~Jiang, S.~K. Nguang, and H.~T. Shen.
+\newblock Impulsive synchronization of coupled delayed neural networks with
+  actuator saturation and its application to image encryption.
+\newblock {\em Neural Networks}, 128:158--171, 2020.
+
+\bibitem{lu2006new214}
+W.~Lu and T.~Chen.
+\newblock New approach to synchronization analysis of linearly coupled ordinary
+  differential systems.
+\newblock {\em Physica D: Nonlinear Phenomena}, 213(2):214--230, 2006.
+
+\bibitem{godsil2001algebraic}
+C.~Godsil and G.~F. Royle.
+\newblock {\em Algebraic graph theory}.
+\newblock New York, USA: Springer-Verlag, 2001.
+
+\bibitem{horn2012matrix}
+R.~A. Horn and C.~R. Johnson.
+\newblock {\em Topics in Matrix Analysis}.
+\newblock Cambridge, U.K.: Cambridge University Press, 1991.
+
+\bibitem{boyd1994linear}
+S.~Boyd, L.~El~Ghaoui, E.~Feron, and V.~Balakrishnan.
+\newblock {\em Linear Matrix Inequalities in System and Control Theory}.
+\newblock Philadelphia, PA: SIAM, 1994.
+
+\bibitem{3_1}
+J.~Pearl.
+\newblock Causal inference in statistics: An overview, stat.
+\newblock {\em Surv.}, 3:96--146, 2009.
+
+\bibitem{3_2}
+S.~Epskamp and E.~I. Fried.
+\newblock A tutorial on regularized partial correlation networks, psychol.
+\newblock {\em Methods}, 23(4):617--634, 2018.
+
+\bibitem{3_3}
+T.~Schreiber.
+\newblock Measuring information transfer.
+\newblock {\em Phys. Rev. Letters}, 85:461464, 2000.
+
+\bibitem{3_35}
+A.~Sensoy, C.~Sobaci, S.~Sensoy, and F.~Alali.
+\newblock Effective transfer entropy approach to information flow between
+  exchange rates and stock markets.
+\newblock {\em Chaos Solitons Fractals}, 68:180--185, 2014.
+
+\bibitem{3_4}
+A.~R{\'e}nyi.
+\newblock On measures of entropy and information.
+\newblock In {\em Proceedings of the fourth Berkeley symposium on mathematical
+  statistics and probability}, pages 547--561, Berkeley, California., 1961.
+  Univeristy of Berkeley.
+
+\bibitem{3_34}
+M.~Xu, P.~Shang, and S.~Zhang.
+\newblock Multiscale renyi cumulative residual distribution entropy:
+  Reliability analysis of financial time series.
+\newblock {\em Chaos Solitons Fractals}, 143:110410, 2021.
+
+\bibitem{3_5}
+Y.~Mi and A.~Lin.
+\newblock Kernel based multiscale partial renyi transfer entropy and its
+  applications.
+\newblock {\em Commun. Nonlinear Sci. Numer. Simul.}, 119:107084, 2023.
+
+\bibitem{3_6}
+J.~He and P.~Shang.
+\newblock Comparison of transfer entropy methods for financial time series,.
+\newblock {\em Phys. A}, 482:772--785, 2017.
+
+\bibitem{3_7}
+A.~Bossman, Z.~Umar, S.~Agyei, and P.~Junior.
+\newblock A new iceemdan-based transfer entropy quantifying information flow
+  between real estate and policy uncertainty.
+\newblock {\em Res. Econ.}, 76(3):189--205, 2022.
+
+\bibitem{3_8}
+M.~Staniek and K.~Lehnertz.
+\newblock Symbolic transfer entropy.
+\newblock {\em Phys. Rev. Lett.}, 100(15):158101, 2008.
+
+\bibitem{3_9}
+A.~Kraskov, H.~St{\"o}gbauer, and P.~Grassberger.
+\newblock Estimating mutual information.
+\newblock {\em Phys. Rev. E.}, 69:066138, 2004.
+
+\bibitem{3_10}
+L.~Faes, G.~Nollo, and A.~Porta.
+\newblock Non-uniform multivariate embedding to assess the information transfer
+  in cardiovascular and cardiorespiratory variability series.
+\newblock {\em Comput. Biol. Med.}, 42:290--297, 2012.
+
+\bibitem{3_11}
+J.~D. Wren.
+\newblock Extending the mutual information measure to rank inferred literature
+  relationships.
+\newblock {\em BMC Bioinform.}, 5:1--13, 2004.
+
+\bibitem{3_12}
+L.~G.~S. Giraldo, M.~Rao, and J.~C. Principe.
+\newblock Measures of entropy from data using infinitely divisible kernels,
+  ieee trans.
+\newblock {\em IEEE Trans. Inf. Theory}, 61:535--548, 2015.
+
+\bibitem{3_13}
+I.~D. L.~P. Panche, A.~M. Alvarez-Meza, and A.~Orozco-Gutierrez.
+\newblock A data-driven measure of effective connectivity based on renyi's
+  $\alpha$-entropy.
+\newblock {\em Front. Neurosci.}, 13:1277, 2019.
+
+\bibitem{3_14}
+W.~Zhou, S.~Yu, and B.~Chen.
+\newblock Causality detection with matrix-based transfer entropy.
+\newblock {\em Inf. Sci.}, 613:357--375, 2022.
+
+\bibitem{3_15}
+M.~Materassi, A.~Wernik, and E.~Yordanova.
+\newblock Determining the verse of magnetic turbulent cascades in the earth's
+  magnetospheric cusp via transfer entropy analysis: preliminary results.
+\newblock {\em Nonlinear Process. Geophys.}, 14:153--161, 2007.
+
+\bibitem{3_16}
+D.~Storhas, L.~D. Mello, and A.~Singh.
+\newblock Multiscale lead-lag relationships in oil and refined product return
+  dynamics: A symbolic wavelet transfer entropy approach.
+\newblock {\em Energy Econ.}, 92:104927, 2020.
+
+\bibitem{3_31}
+M.~Lungarella, A.~Pitti, and Y.~Kuniyoshi.
+\newblock Information transfer at multiple scales.
+\newblock {\em Phys. Rev. E.}, 76(5):056117, 2007.
+
+\bibitem{3_17}
+Z.~Guo, V.~McClelland, O.~Simeone, K.~Mills, and Z.~Cvetkovic.
+\newblock Multiscale wavelet transfer entropy with application to
+  corticomuscular coupling analysis.
+\newblock {\em IEEE Trans. Biomed. Eng.}, 69:771--782, 2022.
+
+\bibitem{3_18}
+Y.~Lu, N.~Zeng, Y.~Liu, and N.~Zhang.
+\newblock A hybrid wavelet neural network and switching particle swarm
+  optimization algorithm for face direction recognition.
+\newblock {\em Neurocomputing}, 155:219--224, 2015.
+
+\bibitem{3_19}
+M.~Saadatmorad, R.~Jafari-Talookolaei, M.~Pashaei, and S.~Khatir.
+\newblock Damage detection on rectangular laminated composite plates using
+  wavelet based convolutional neural network technique.
+\newblock {\em Comp. Struct.}, 278:114656, 2021.
+
+\bibitem{3_20}
+M.~Zhao, M.~Kang, B.~Tang, and M.~Pecht.
+\newblock Multiple wavelet coefficients fusion in deep residual networks for
+  fault diagnosis, ieee trans.
+\newblock {\em IIEEE Trans. Ind. Electron.}, 66(6):4696--4706, 2018.
+
+\bibitem{3_21}
+L.~Bruce, C.~Koger, and J.~Li.
+\newblock Dimensionality reduction of hyperspectral data using discrete wavelet
+  transform feature extraction.
+\newblock {\em IEEE Trans. Geosci. Remote Sens.}, 40:2331--2338, 2002.
+
+\bibitem{3_22}
+T.~Duong and M.~Hazelton.
+\newblock Plug-in bandwidth matrices for bivariate kernel density estimation.
+\newblock {\em J. Nonparametr. Stat.}, 15:17--30, 2003.
+
+\bibitem{3_24}
+D.~W. Scott.
+\newblock {\em Multivariate density estimation: theory, practice, and
+  visualization}.
+\newblock John Wiley \& Sons Press, 2015.
+
+\bibitem{3_25}
+J.~M. Mooij, J.~Peters, D.~Janzing, J.~Zscheischler, and B.~Sch{\"o}lkopf.
+\newblock Distinguishing cause from effect using observational data: methods
+  and benchmarks.
+\newblock {\em J. Mach. Learn. Res.}, 17:1103--1204, 2016.
+
+\bibitem{3_26}
+I.~C. Yeh.
+\newblock Modeling of strength of high-performance concrete using artificial
+  neural networks.
+\newblock {\em Cem. Concr. Res.}, 28:1797--1808, 1998.
+
+\bibitem{3_29}
+T.~Dimpfl and F.~J. Peter.
+\newblock Using transfer entropy to measure information flows between financial
+  markets.
+\newblock {\em Stud. Nonlinear Dyn. Econom.}, 17:85--102, 2013.
+
+\bibitem{3_30}
+K.~Bae, G.~A. Karolyi, and R.~M. Stulz.
+\newblock A new approach to measuring financial contagion.
+\newblock {\em Rev. Financ. Stud.}, 16:717--763, 2003.
+
+\bibitem{3_32}
+K.~Hlav\'{a}\v{c}kov\'{a}-Schindler, M.~Palu\v{s}, M.~Vejmelka, and
+  J.~Bhattacharya.
+\newblock Causality detection based on information-theoretic approaches in time
+  series analysis.
+\newblock {\em Phys. Rep.}, 441(1):1--46, 2007.
+
+\bibitem{yalcin2000experimental425}
+M.~Yalcin, J.~Suykens, and J.~Vandewalle.
+\newblock Experimental confirmation of 3-and 5-scroll attractors from a
+  generalized {C}hua's circuit.
+\newblock {\em IEEE Transactions on Circuits and Systems I: Fundamental Theory
+  and Applications}, 47(3):425--429, 2000.
+
+\bibitem{wang2016impulsive1560}
+Y.-W. Wang, W.~Yang, J.-W. Xiao, and Z.-G. Zeng.
+\newblock Impulsive multisynchronization of coupled multistable neural networks
+  with time-varying delay.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  28(7):1560--1571, 2016.
+
+\bibitem{Rakkiyappan2017Exponential217}
+R.~Rakkiyappan, G.~Velmurugan, J.~N. George, and R.~Selvamani.
+\newblock Exponential synchronization of {L}ur'e complex dynamical networks
+  with uncertain inner coupling and pinning impulsive control.
+\newblock {\em Applied Mathematics and Computation}, 307:217--231, 2017.
+
+\bibitem{zhang2013synchronization}
+W.~Zhang, Y.~Tang, X.~Wu, and J.-A. Fang.
+\newblock Synchronization of nonlinear dynamical networks with heterogeneous
+  impulses.
+\newblock {\em IEEE Transactions on Circuits and Systems I: Regular Papers},
+  61(4):1220--1228, 2013.
+
+\bibitem{yang2007stability1448}
+Z.~Yang and D.~Xu.
+\newblock Stability analysis and design of impulsive control systems with time
+  delay.
+\newblock {\em IEEE Transactions on Automatic Control}, 52(8):1448--1454, 2007.
+
+\bibitem{2014Semi2222}
+M.~C. Fan, Z.~Chen, and H.~T. Zhang.
+\newblock Semi-global consensus of nonlinear second-order multi-agent systems
+  with measurement output feedback.
+\newblock {\em IEEE Transactions on Automatic Control}, 59(8):2222--2227, 2014.
+
+\bibitem{2017Leader327}
+W.~He, B.~Zhang, Q.~L. Han, Q.~Feng, J.~Kurths, and J.~Cao.
+\newblock Leader-following consensus of nonlinear multiagent systems with
+  stochastic sampling.
+\newblock {\em IEEE Transactions on Cybernetics}, 47(2):327--338, 2017.
+
+\bibitem{2017Adaptive4654}
+C.~Chen, C.~Wen, Z.~Liu, K.~Xie, Y.~Zhang, and C.~L.~P. Chen.
+\newblock Adaptive consensus of nonlinear multi-agent systems with
+  non-identical partially unknown control directions and bounded modelling
+  errors.
+\newblock {\em IEEE Transactions on Automatic Control}, 62(9):4654--4659, 2017.
+
+\bibitem{zhang2017sampled2199}
+X.~Zhang, X.~Lv, and X.~Li.
+\newblock Sampled-data-based lag synchronization of chaotic delayed neural
+  networks with impulsive control.
+\newblock {\em Nonlinear Dynamics}, 90(3):2199--2207, 2017.
+
+\bibitem{2017Stability129}
+W.-H. Chen, Z.~Ruan, and W.~Zheng.
+\newblock Stability and ${L}_2$-gain analysis for impulsive delay systems: An
+  impulse-time-dependent discretized {L}yapunov functional method.
+\newblock {\em Automatica}, 86:129--137, 2017.
+
+\bibitem{2013Analysis871}
+B.~Zhou.
+\newblock Analysis and design of discrete-time linear systems with nested
+  actuator saturations.
+\newblock {\em Systems and Control Letters}, 62(10):871--879, 2013.
+
+\bibitem{2014Global499}
+Y.~Tao, Z.~Meng, D.~V. Dimarogonas, and K.~H. Johansson.
+\newblock Global consensus for discrete-time multi-agent systems with input
+  saturation constraints.
+\newblock {\em Automatica}, 50(2):499--506, 2014.
+
+\bibitem{2017Global1270}
+B.~Wang, J.~Wang, B.~Zhang, and X.~Li.
+\newblock Global cooperative control framework for multiagent systems subject
+  to actuator saturation with industrial applications.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  47(7):1270--1283, 2017.
+
+\bibitem{2020Performance734}
+H.~Chu, B.~Yi, G.~Zhang, and W.~Zhang.
+\newblock Performance improvement of consensus tracking for linear multiagent
+  systems with input saturation: A gain scheduled approach.
+\newblock {\em IEEE Transactions on Systems Man and Cybernetics Systems},
+  50(3):734--746, 2020.
+
+\bibitem{2013Adaptive1545}
+H.~Atrianfar and M.~Haeri.
+\newblock Adaptive flocking control of nonlinear multi-agent systems with
+  directed switching topologies and saturation constraints.
+\newblock {\em Journal of the Franklin Institute}, 350(6):1545--1561, 2013.
+
+\bibitem{2018Event4391}
+X.~You, C.~Hua, and X.~Guan.
+\newblock Event-triggered leader-following consensus for nonlinear multiagent
+  systems subject to actuator saturation using dynamic output feedback method.
+\newblock {\em IEEE Transactions on Automatic Control}, 63(12):4391--4396,
+  2018.
+
+\bibitem{2020Consensus194}
+A.~U. Rehman, M.~Rehan, M.~R. Mehar, M.~Abid, and N.~I. Awan.
+\newblock Consensus tracking of nonlinear multi-agent systems under input
+  saturation with applications: A sector-based approach.
+\newblock {\em ISA Transactions}, 107:194--205, 2020.
+
+\bibitem{2020Adaptive3013960}
+H.~Yang and D.~Ye.
+\newblock Adaptive fuzzy nonsingular fixed-time control for nonstrict-feedback
+  constrained nonlinear multi-agent systems with input saturation.
+\newblock {\em IEEE Transactions on Fuzzy Systems}, 29(10):3142--3153, 2021.
+
+\bibitem{2018StabilityLi}
+Y.~Li and Z.~Lin.
+\newblock {\em Stability and Performance of Control Systems with Actuator
+  Saturation}.
+\newblock Switzerland: Birkh{\" a}user, 2018.
+
+\end{thebibliography}
