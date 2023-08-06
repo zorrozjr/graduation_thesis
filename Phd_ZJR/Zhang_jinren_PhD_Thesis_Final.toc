@@ -14,8 +14,8 @@
 \contentsline {subsection}{\numberline {1.5.2}主要创新点}{16}{subsection.1.5.2}%
 \contentsline {chapter}{\numberline {第二章\hspace {.3em}}两种基于r\'{e}nyi熵的分数阶累计剩余时间序列度量}{19}{chapter.2}%
 \contentsline {section}{\numberline {2.1}引言}{19}{section.2.1}%
-\contentsline {section}{\numberline {2.2}R\'{e}nyi cumulative residual kullback-leibluer divergence及其性质}{22}{section.2.2}%
-\contentsline {section}{\numberline {2.3}R\'{e}nyi cumulative residual transfer entropy及其性质}{26}{section.2.3}%
+\contentsline {section}{\numberline {2.2}R\'{e}nyi 累积剩余KL散度及其性质}{22}{section.2.2}%
+\contentsline {section}{\numberline {2.3}R\'{e}nyi累积剩余传递熵及其性质}{26}{section.2.3}%
 \contentsline {section}{\numberline {2.4}仿真数据实例}{31}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}VAR 模型}{31}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}H\'{e}non映射}{31}{subsection.2.4.2}%
@@ -44,25 +44,22 @@
 \contentsline {subsubsection}{\numberline {3.3.4.1}仿真数据实验}{55}{subsubsection.3.3.4.1}%
 \contentsline {subsubsection}{\numberline {3.3.4.2}真实数据实验}{60}{subsubsection.3.3.4.2}%
 \contentsline {section}{\numberline {3.4}小结}{66}{section.3.4}%
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}基于多级小波分解和传递熵的车辙预测建模和影响因素分析混合框架}{69}{chapter.4}%
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}基于多级小波分解和传递熵的车辙预测框架}{69}{chapter.4}%
 \contentsline {section}{\numberline {4.1}引言}{69}{section.4.1}%
 \contentsline {section}{\numberline {4.2}相关工作}{70}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}车辙预测模型}{70}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}路面材料和结构的非稳态时间序列预测}{71}{subsection.4.2.2}%
 \contentsline {section}{\numberline {4.3}模型描述}{72}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}时间序列预测模型}{74}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}主要结果}{76}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}数值实例}{76}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}分布式饱和脉冲控制下非线性时滞多智能体系统的局部一致性}{79}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}模型描述}{79}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}主要结果}{82}{subsection.4.4.2}%
-\contentsline {subsubsection}{\numberline {4.4.2.1}依赖脉冲时刻的复合型 Lyapunov 函数}{82}{subsubsection.4.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.4.2.2}切换拓扑下局部领导者--跟随一致性}{83}{subsubsection.4.4.2.2}%
-\contentsline {subsection}{\numberline {4.4.3}优化问题}{88}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}数值实例}{92}{subsection.4.4.4}%
-\contentsline {section}{\numberline {4.5}小结}{96}{section.4.5}%
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}总结与展望}{97}{chapter.5}%
-\contentsline {section}{\numberline {5.1}总结}{97}{section.5.1}%
-\contentsline {section}{\numberline {5.2}展望}{98}{section.5.2}%
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}博士期间撰写和发表的论文}{121}{appendix.A}%
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}博士期间主持和参加的科研项目、学术会议和获得的荣誉}{123}{appendix.B}%
+\contentsline {subsection}{\numberline {4.3.1}时序预测模型框架}{74}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}高斯随机过程}{75}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}基于融合注意力机制的自编码器}{76}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}实例结果及讨论}{79}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}小波基函数的选择}{79}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}基于传递熵的因果关系结果验证}{80}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}预测模型的性能分析}{81}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}小结}{86}{section.4.5}%
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}总结与展望}{87}{chapter.5}%
+\contentsline {section}{\numberline {5.1}总结}{87}{section.5.1}%
+\contentsline {section}{\numberline {5.2}展望}{88}{section.5.2}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}博士期间撰写和发表的论文}{111}{appendix.A}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}博士期间主持和参加的科研项目、学术会议和获得的荣誉}{113}{appendix.B}%

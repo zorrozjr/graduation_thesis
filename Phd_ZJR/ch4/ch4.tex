@@ -2,9 +2,9 @@
  \vskip 6mm
  \pagestyle{myheadings}
  \markboth{{\underline{\centerline{东南大学博士学位论文} }}}
- {{\underline{\centerline{第四章 \ \ \  基于多级小波分解和传递熵的车辙预测建模和影响因素分析混合框架} }}}
+ {{\underline{\centerline{第四章 \ \ \  基于多级小波分解和传递熵的车辙预测框架} }}}
  
- \chapter{基于多级小波分解和传递熵的车辙预测建模和影响因素分析混合框架}\label{ch4}
+ \chapter{基于多级小波分解和传递熵的车辙预测框架}\label{ch4}
  \setcounter{equation}{0}
 \section{引言}
 在前两章中，我们对以传递熵为基础的因果关系模型进行了理论和方法上的创新。从本章开始，我们将展示基于传递熵的因果网络在复杂系统中建模的应用。以沥青路面车辙预测模型为例，本章将展示因果网络作为模型中特征选取模块的应用。
@@ -63,32 +63,31 @@ x^{l}_{t}(i-1) = \sum_{k=1}^{K}y^{l}_{t+k-1}(i)\cdot l_{k}+\sum_{k=1}^{K}y^{h}_{
 
 这一过程也被称为逆离散小波变换（inverse discrete wavelet transform，IDWT）。它的过程包括向上采样和重建。变换函数 $l_{k}$ 和 $h_{k}$ 是上一级函数的缩放和移位。
 
-\textbf{基于 MTE 的特征抽取模块} 在上一章中，我们已经介绍了一种新型的基于核函数估计的方法来计算MTE，尽管该方法具有准确性高和计算代价小的优点。但由于其本身是一种更普适性的概率密度估计方法，对于MTE中参数马尔可夫阶数$\tau$的选取并没有针对性的讨论，导致在选取$\tau$值时只能根据经验选择，会出现虚假因果关系，甚至无法发现显著因果关系。为了能够有效传递熵（effective transfer entropy, ETE），本章将继续介绍一种基于贪心算法的ETE计算方法，首先，我们回顾TE的定义，从 $Y$ 到 $X$ 的 TE 是以历史数据 $X_{t}^{k}$ 为条件，从源过程 $Y_{t}$ 到 $X$ 的实现值 $x_{\tau}$ 的条件互信息：
+\textbf{基于 MTE 的特征抽取模块} 在上一章中，我们已经介绍了一种新型的基于核函数估计的方法来计算MTE，尽管该方法具有准确性高和计算代价小的优点。但由于其本身对于MTE中参数马尔可夫阶数$\tau$的选取并没有针对性的讨论，导致在选取$\tau$值时只能根据经验选择，会出现虚假因果关系，甚至无法发现显著因果关系。为了能够选择出统计显著的传递熵（effective transfer entropy, ETE），本章将继续介绍一种基于贪心算法的MTE计算方法，进一步确定公式中的Markov阶数，首先，我们回顾TE的定义，从 $Y$ 到 $X$ 的 TE 是以历史数据 $X_{t}^{k}$ 为条件，从源过程 $Y_{t}$ 到 $X$ 的实现值 $x_{\tau}$ 的条件互信息：
 \begin{equation}\label{TE}
 \begin{array}{ll}
 T_{Y\rightarrow X}=I(Y_{t}^{k};x_{\tau} |X_{t}^{k})=-\sum^{t-k}_{i=1}\frac{log(p(x_{\tau}|x_{i},y{i}))}{p(p(x_{\tau}|x_{i}))},
 \end{array}
 \end{equation}
-
 其中$Y_{t}^{k}$和$X_{t}^{k}$为长度为$k$的历史序列，$x_{\tau}$为$\tau$时刻的随机变量。$T_{Y\rightarrow X}$大于0意味着$Y$是$X$的原因。否则，$Y$就是$X$的结果。值得注意的是，TE取决于历史序列长度$k$。$T_{Y\rightarrow X}$可以表示整个概念信息传递，而$k\rightarrow \infty$。但是，$\tau$值的选取会影响TE的显著性，甚至会带来冗余信息。为了克服这些问题，\cite{31}提出了集体传递熵(CTE)，它表示因果源的增量条件互信息之和:
 \begin{equation}\label{npl1}
 \begin{array}{ll}
 T_{Y\rightarrow X}=\sum\limits_{G} I(z_{n},t;y_{t+\tau}|y_{t}^{k},z^{<n}),
 \end{array}
 \end{equation}
-其中 $z^{<n} \in Z$ 中的 $z_{n}$ 是额外的源变量集，用于检测来自 $X$ 的冗余变量：${z^{<n}}=\{Z_{c}|\forall c: 1\leq c \leq n\}$。受 \cite{32} 的启发，我们提供了一种贪婪算法，根据 CMI 对候选变量 $C$ 的贡献从 $X$ 中选择 $Z$。算法如算法 1 所示：
+其中 $z^{<n} \in Z$ 中的 $z^{<n}$ 是额外的源变量集，用于检测来自 $X$ 的冗余变量：${z^{<n}}=\{Z_{c}|\forall c: 1\leq c \leq n\}$。受 \cite{32} 的启发，我们提供了一种贪婪算法，根据 CMI 对候选变量 $C$ 的贡献从 $X$ 中选择 $Z$。算法如算法 1 所示：
 
 \begin{algorithm}[htb]
 \caption{基于贪心算法的有效传递熵（ETE）的计算}
 \label{alg:SA1}
-\hspace*{0.02in} {\bf 输入:} 多元源时间序列 $X$, 目标时间序列 $Y$, 相关源序列集 $Z$ and 变量历史数据候选集 $C_{X}$ and $C_{Y}$.\\
+\hspace*{0.02in} {\bf 输入:} 多元源时间序列 $X$, 目标时间序列 $Y$, 相关源序列集 $Z$ 和变量历史数据候选集 $C_{X}$ and $C_{Y}$.\\
 \hspace*{0.02in} {\bf 输出:} 多元因果关系集 $E$.\\
 \begin{algorithmic}[1]
 %\ENSURE ~~Split data set into $k$ folds $F:\{F_{1}, F_{2},..., F_{k}\}$\
 \STATE Initialise $\ Z=\emptyset$,  $\ E=\emptyset$
 \\
 
-\FOR{$c \in C_{Y}$}
+\FOR{$c \in C_{X}$}
     \STATE $T_{c\rightarrow y_{t+ \tau}} = I(c,y_{t}|Z)$;
     \IF {$T_{c\rightarrow y_{t+ \tau}}$ meets $Maximum\ Statistics$}
         \STATE add $c$ to $Z$ and remove it from $C_{Y}$;
@@ -120,10 +119,10 @@ T_{Y\rightarrow X}=\sum\limits_{G} I(z_{n},t;y_{t+\tau}|y_{t}^{k},z^{<n}),
 \end{algorithm}
 
 
-\subsection{时间序列预测模型}
-在小波分解模块中，车辙及其影响因素的时间序列被分解为 3 层，其中最后一层的低频分量（0-20Hz）表示原始时间序列的趋势项，所有 3 层的高频分量（20-30Hz、30-50Hz 和 50-100Hz）表示原始时间序列的波动项。作为递归神经网络（RNN）的扩展，LSTM能够捕捉时间序列的长期依赖关系，而注意力机制的概念在近几年的深度学习，特别是神经网络领域的研究中得到了普及，它能有效捕捉输入数据不同部分之间的依赖关系，这在许多任务中都至关重要。（\cite{33}），因此也被被用于时间序列预测。因此，我们设计了一种基于融合注意力机制和LSTM的自编码器为趋势项的预测模型。此外，为了克服 RNN 模型在面对时间序列高频波动时的不敏感性，本文将基于统计理论的复杂时间序列高维非线性机器学习模型 GPR 引入到所提出的框架中，以预测波动项。本小节的其余部分将介绍这两个模型的机制。
+\subsection{时序预测模型框架}
+在小波分解模块中，车辙及其影响因素的时间序列被分解为 3 层，其中最后一层的低频分量（0-20Hz）表示原始时间序列的趋势项，所有 3 层的高频分量（20-30Hz、30-50Hz 和 50-100Hz）表示原始时间序列的波动项。作为递归神经网络（RNN）的扩展，LSTM能够捕捉时间序列的长期依赖关系，而注意力机制的概念在近几年的深度学习，特别是神经网络领域的研究中得到了普及，它能有效捕捉输入数据不同部分之间的依赖关系，这在许多任务中都至关重要。（\cite{33}），因此也被被用于时间序列预测。因此，我们设计了一种基于融合注意力机制和LSTM的自编码器为趋势项的预测模型。此外，为了克服 RNN 模型在面对时间序列高频波动时的不敏感性，本文将基于统计理论的复杂时间序列高维非线性机器学习模型 GPR 引入到所提出的框架中，以预测波动项。本节的其余部分将介绍这两个模型的机制。
 
-\textbf{高斯随机过程} 高斯过程是随机变量的集合，其中任意有限个变量都具有联合高斯分布。给定一组点 $X = \{x_1,x_2,\ldots,x_t\}$，其值 $f(X)$ 完全由其均值函数 $m(X)$ 和协方差函数 $k(X,X')$指定，它们分别定义为：
+\subsection{高斯随机过程} 高斯过程是随机变量的集合，其中任意有限个变量都具有联合高斯分布。给定一组点 $X = \{x_1,x_2,\ldots,x_t\}$，其值 $f(X)$ 完全由其均值函数 $m(X)$ 和协方差函数 $k(X,X')$指定，它们分别定义为：
 \begin{equation}
 \begin{aligned}
 m(X)=\mathbb{E}[f(X)&], \\
@@ -167,904 +166,319 @@ P(f'\mid y,X,X')=\mathcal{N}(m,C).
 \begin{array}{c}
 \boldsymbol{m}=\boldsymbol{\mu}^{\prime}+\boldsymbol{K}\left(X, X^{\prime}\right)\left(\boldsymbol{K}(X, X)+\sigma_{n}^{2} I\right)^{-1}(\boldsymbol{y}-\boldsymbol{\mu}) \\
 \boldsymbol{C}=\boldsymbol{K}\left(X^{\prime}, X^{\prime}\right)-\boldsymbol{K}\left(X, X^{\prime}\right)\left(\boldsymbol{K}(X, X)+\sigma_{n}^{2} I\right)^{-1} \boldsymbol{K}\left(X^{\prime}, X\right)
-\end{array}.
+\end{array}
 \end{equation}
 
-\subsection{主要结果}  
+\subsection{基于融合注意力机制的自编码器}
+本节所提出的时间序列预测模型利用了长短期记忆和融合注意力机制，是一个端到端的深度学习框架，它将编码上下文向量和注意力向量相互融合，从而进行时间序列表示学习。模型架构见图\ref{fig4_2}。模型的流程如下：在经过特征提取后的序列$X_{n}=\{x_{1}, x_{2}, ... ,x_{n}\}$被当模型输入送入编码器模块，首先进入LSTM模型，生成隐向量$h_{t}$，作为注意力层的输入。注意力层包括两种注意力机制：自注意力（self-attention）和时间注意力（temproal attention）,图中$h'_{t}$表示自注意层在时间步长为t时的输出向量，其维度为$l$，滑动窗口大小为t。在时间注意力层中有t个1维 CNN 滤波器$C_{i}$,（$i \in l$），其大小为$t\times 1$。通过滤波器对$h'_{t}$进行卷积，产生一组行向量 $H^{C}$，其大小为 $k \times l$）。接下来，关注度权重 $\alpha_{i}$，（$i \in l$），即行向量中元素相关性，由评分函数 $f: \mathbb{R}^{k \times l} \times \mathbb{R}^{l}\mapsto \mathbb{R}$。最后，编码器的输出向量 $\tilde{h}^{'}_{t}$ 是由 $h^{'}_{t}$ 和原始向量 $h_{t}$ 连接生成的。在本节的剩下部分，我们将详细介绍模型内所涉及到的模块。
+
+\begin{figure*}[ht]
+\begin{center}
+\includegraphics[scale=0.4]{./ch4/fig4_2.pdf}
+\caption{基于融合注意力机制的自编码器} \label{fig4_2}
+\end{center}
+\end{figure*}
+
+\textbf{长短记忆网络} 长短记忆网络（long short term memory, LSTM）是 Hochreiter 等人提出的 RNN 变体\cite{SHochreiter1997}。LSTM 继承了循环神经网络（recurrent neural network，RNN）对时间序列数据的上下文信息进行动态建模的能力，还能处理不同长度和维度的变量序列。通过引入门机制，LSTM 克服了RNN在长期序列依赖问题和梯度消失问题。为了解决这些问题，LSTM 使用单元状态 $c_{t} $中存储长期信息，并在隐藏状态 $h_{t}$来处理当前信息：
+
+\begin{eqnarray}
+&& h_{t} = o_{t}\odot \tanh(c_{t}),\\
+&& o_{t} = \delta(W_{x_{o}}x_{t}+W_{h_{o}}h_{t-1}),\\
+&& c_{t} = {f}_{t}\odot {c}_{t-1}+i_{t}\odot \tanh(W_{x_{g}}x_{t}+W_{h_{g}}h_{t-1}),\\
+&& i_{t} = \delta(W_{x_{i}}x_{t}+W_{h_{i}}h_{t-1}),\\
+&& f_{t} = \delta(W_{x_{f}}x_{t}+W_{h_{f}}h_{t-1}),
+\end{eqnarray}
+
+其中，$i_{t}$, $f_{t}$, $o_{t}$ 分别是输入门、遗忘门和输出门，$W_{x_{i}}$, $W_{x_{f}}$, $W_{x_{o}}$, $W_{x_{g}} \in \mathbb{R}^{m\times i}$ 是每个门控的可学习参数矩阵。编码器中的 LSTM 层用于将多变量输入编码为隐藏状态 $H_{t}=\{h_{1}, h_{2}, ... , h{t}\}$ ，这是一个固定大小的向量，作为混合注意力层的输入。而输出的大小$Y_{t}=\{y_{1},y_{2}, ... ,y_{t}\}$ 由解码器中的 LSTM 生成，长度可以按需指定。
+
+\textbf{注意力机制} 注意力机制模拟了认知心理学中引入的人脑注意力。注意力机制的发展也引领了长期时间序列依赖性学习。本节引入了两种注意力机制，首先介绍自注意力机制，自我注意力的提出是为了克服序列生成的变换器架构中的一个问题，即固定大小的嵌入引起的信息损失\cite{AVaswani2017}。注意力层将每个时间步的时间信息与动态生成的注意力值聚合在一起，这样模型就能锁定重要的时间步，并消除长期序列中的无用信息。从概念上讲，注意力是一种基于给定查询的键值查找机制，可表述为：
+\begin{eqnarray}
+&& h_{t} = \sum^{T}_{\tau = 0} \alpha (q_{\tau},k_{t})v_{t-\tau },\\
+&& \alpha (q_{\tau},k_{t}) = exp(\frac{q_{\tau} \cdot k_{t}^{T}}{\sqrt{d_{k}}}) \// \sum^{T}_{\tau = 0} exp(\frac{q_{\tau} \cdot k_{t}^{T}}{\sqrt{d_{k}}}),
+\end{eqnarray}
+其中，$H_{t}$ 是自注意力机制的输出；$Q_{\tau}$、$K_{t}$ 和 $v_{t-\tau}$ 是输入线性变换的中间矩阵，$Q、K$ 和 $V$ 在不同时间步的特征向量表示；$\alpha$ 是可学习的自注意系数。自注意力机制的第一步是对输入特征 $x_{\tau}$ 和输出状态 $h_{t}$ 进行相似度测量。相似度越高，输入的注意力就越强。上式中的相似度运算是向量点积，也可以用余弦相似度或输入 $h_{t}$ 和输出 $\alpha_{t}$ 的多层感知器（MLP）来代替。第二步是加权平均算子，用于消除量纲影响\cite{AVaswani2017}。
+
+自注意力主要集中在描述每个连续隐藏向量元素在时间维度的重要性上，这种设计忽略了行元素对输出包含信息的影响，尤其是在多变量任务中，它无法检测到有用的时态模式。而隐向量的行元素之间的关系则可以时间注意力来捕捉，时间注意力的具体架构如图\ref{fig4_3} 所示。给定回视窗口 $t$ 中的 RNN 单元隐藏状态矩阵 $H_{t-1} \in \mathbb{R}^{m\times t}$，时态模式关注机制关注用 $K$个1维的CNN 过滤器 $C_{i}\in \mathbb{R}^{t\times 1}$ 操作每个向量 $h$ 中的行元素，所有向量得到的结果组成矩阵 $H^{C} \in \mathbb{R}^{l\times k}$。最后，使用评分函数 $f: \mathbb{R}^{l\times k}\longmapsto \mathbb{R} $ 来计算矩阵 $H^{C}$ 和隐藏状态 $h_{t}$ 在时间步长 $t$ 中的相关性，因此时间注意力可以表述为：
+\begin{eqnarray}
+&& \hat{h}_{t} = W_{h^{'}}h^{'}_{t}+W_{h}h_{t},\\
+&& h^{'}_{t} = \sum^n_{i=1}\alpha_{i}\widetilde{H}^{C}_{i},\\
+&& \alpha_{i} = \frac{exp(f(\widetilde{H}^{C}_{i},h_{t}))}{\sum^{n}_{i=1} exp(f(\widetilde{H}^{C}_{i},h_{t}))},\\
+&& f(\widetilde{H}^{C}_{i},h_{t}) = (\widetilde{H}_{i}^{C})^{\top}W_{a}h_{t},\\
+&& \widetilde{H}_{i,j}^{C} = \sum^{K}_{j = 1} r_{j} \times C_{i},
+\end{eqnarray}
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.4]{./ch4/fig4_3.pdf}
+\caption{时间模式注意力原理图。}\label{fig4_3}
+\label{fig2}
+\end{center}
+\end{figure}
+其中，$h^{'}_{t}$ 是时间注意力机制的输出矩阵,$h_{t}$ 是上一步LSTM的输出矩阵，$W_{h^{'}}$,$W_{h}$ 分别是对应的参数矩阵；$\alpha_{i}$ 是 $H_{t}$ 中 $i$ 行元素的注意力权重，由式（4.3.19）中的评分函数 $f$ 计算得出；式（4.3.20）中的$\widetilde{H}^{C}$ 表示卷积运算的权重；$r_{j}$ 是 RNN 单元的输出矩阵，$W_{h^{'}}$,$W_{h}$ 分别是参数矩阵。评分矩阵中每行的权重可以代表行元素与输出 $h'_{t}$ 之间的相关性。
+
+
+\section{实例结果及讨论}\label{ne}
+为了验证本章所提出的时间序列预测框架的有效性，采用RIOHTrack数据集作为实例并设计验证实验。实例结果包括三个部分：时间序列分解模块中小波基函数的选择；特征选择模块中有效传递熵的结果验证；以及预测模型的性能分析及对比。
+\subsection{小波基函数的选择}
+车辙序列进行小波变换的目的是提高车辙数据的稳定性。与上一章选择小波基函数的原则相同，主要是根据小波变换后数据的平滑度，具体可量化为以下几个方面：正交性、支持集、规则性和消失矩的阶数。根据上述原则，我们继续从Haar小波、Daubechies小波、 Symlets小波，和Coiflets小波中进行选择，每个小波的最优滤波系数由第二章所提出的自适应算法求得。我们给出两个指标来衡量小波函数的分解性能：1.时间序列的小波重构误差，即重构序列$X'$与原序列$X$的均方误差（mean squre error，MSE）：$\rm{MSE}(X,X')$；2.高斯过程验证（Gaussian process validation, GPV），即验证采样时间点中不符合高斯随机过程的点数。此外，对于分解层数，我们继续按照第三章中的经验，设置分解层数为2层。验证结果如表\ref{table1}所示：
+
+\begin{table}
+	\centering
+	\caption{小波基函数的选择 }
+	\begin{tabular}{lllll}
+	
+		小波基函数& 公式 &MSE& \multicolumn{2}{l}{\begin{tabular}[c]{@{}l@{}}GPV\end{tabular}}   \\
+		\hline
+		&& & $R^{h1}$ & $R^{h2}$ \\
+		\hline
+		db4                                                & 369.8 & 5.3 & 3.8            & 14  \\
+		\hline
+		db20                                                & 369.7 & 5.6 & 3.3            & 10  \\
+		\hline
+		Symlets4                                              & 370.6 & 5.5 & 3.3            & 11 \\
+		\hline
+		Symlets20                                               & 369.8 & 5.1 & 3.7            & 9   \\
+		\hline
+		Coiflets21                                               & 369.6 & 5.3 & 3.6            & 10  \\
+		\hline
+		Coiflets22                                               & 370.0 & 5.3 & 3.8            & 9  \\
+	\end{tabular}
+\label{table1}
+\end{table}
+
+对于小波基函数筛选的两个指标，$\rm{MSE}(X,X')$的值越小，证明小波分解后的信息损失的越少，小波基函数的性能越好；GPV的值越小，证明分解后的序列更符合高斯分布，越有助于提升GPR预测的性能。同时，考虑到消失矩越大，所需要的计算代价越高。从表\ref{table1}中的结果可知，消失矩越高的的小波基函数，其对应的MSE越小，其中，又以Symlet20小波和Coidlets20小波的MSE最小；同时，无论是第一层高频序列的GPV的Symlets20的GPV。综合以上因素，我们选择Symlets20作为时间序列分解模块的小波基。
 
 
 
- 
-\textit{\textbf{最大的平均脉冲区间} }为了降低控制成本，构造如下的优化问题 以获得最大的平均脉冲区间：
-\begin{align} 
-&\quad\quad\quad\max \quad \mathcal{T}_a\label{4-2-34}\\
-&\begin{array}{r@{\quad}r@{}l@{\quad}l}
-{\rm s.t.} & (\ref{4-2-33})\ \text{中}\ a)-g).
-\end{array}\nonumber
-\end{align}
-%\begin{remark} 
-%显然， 优化问题  (\ref{4-2-33}) 和  (\ref{4-2-34}) 是关于 $Q$，$\tau$，$W$，$M$和 $U$ 的 LMIs 问题，使用 Matlab 中 Yalmip 工具箱很容易得到它们的最优解。注意到优化问题  (\ref{4-2-33}) 和  (\ref{4-2-34}) 都是以定理 \ref{t4-2-1} 的条件为约束条件构建起来的。作为特例，分别以推论 \ref{c4-2-1} 和 \ref{c4-2-2} 中条件为约束条件的优化问题很容易建立出来，由于方法类似，这里不再赘述。 
-%\end{remark}
 
-\subsection{数值实例}\label{ne}
-考虑广义蔡氏电路，其状态方程描述如下： 
-\begin{align}\label{4-2-35}\left\{
-\begin{aligned}
-\dot{s}_1(t)=&\tilde{\alpha}(s_2(t)-h(s_1)),\\
-\dot{s}_2(t)=&s_1-s_2+s_3,\\
-\dot{s}_3(t)=&-\tilde{\beta}s_2(t),
-\end{aligned}
-\right.
-\end{align}
-其中参数 $\tilde{\alpha}=9$，$ \tilde{\beta}=14.28$，且非线性函数为 $h(s_1)=m_{2r-1}s_1+\frac{1}{2}\sum\limits_{i=1}^{2r-1}(m_{i-1}-m_i)(|s_1+\tilde{c}_i|-|s_1-\tilde{c}_i|)$。 选取 $r=2$，$ m=[-\frac{1}{7};\frac{2}{7};-\frac{4}{7};\frac{2}{7}]$，$\tilde{c} = [1; 2.15; 3.6]$， 则系统 (\ref{4-2-35})  可以呈现出 3-涡卷混沌吸引子 \cite{yalcin2000experimental425}，如图 \ref{f4-3} (a) 所示。 显然，系统 (\ref{4-2-35}) 可以写成鲁里叶系统的形式，其中 $f(s_1)=(1+\tilde{\delta})s_1-h(s_1)$， 
-\begin{align*} A=
-\left[ \begin{array}{ccc} -\tilde{\alpha}(1+\tilde{\delta})&\tilde{\alpha}&0\\
-1&-1&1\\
-0&-\tilde{\beta}&0
-\end{array}\right],\ 
- B=
-\left[ \begin{array}{cc} \tilde{\alpha}&0\\
-0&0\\
-0&0\\
-\end{array}\right],\ 
- \tilde{D}=
-\left[ \begin{array}{ccc} 1&0&0\\
-0&0&0\\
-\end{array}\right],
-\end{align*}
-\begin{figure}[!tp]
+
+
+\subsection{基于传递熵的因果关系结果验证}
+
+\begin{table}[bp]
     \centering
-    \includegraphics[scale=0.5]{./ch4/fig4-3-1.eps}
-    \includegraphics[scale=0.5]{./ch4/fig4-3-2.pdf} 
-    \caption{(a) 3-涡卷混沌吸引子的蔡氏电路 \cite{yalcin2000experimental425}； (b) 具有 60 个节点的有向网络拓扑}
-    \label{f4-3}
+    \caption{基于转移熵的车辙及其影响因素之间的因果关系，括号中为 $p$ 值，$\rightarrow$ 左侧为源变量及其Markov阶数$l$，$\rightarrow$ 左侧为目标变量及其Markov阶数$k$。}
+    \begin{tabular}{llll}
+     \hline
+      因果关系  & 第一次低频分量 & 第一层高频分量 & 第二层高频分量 \\
+      \hline
+      温度(3) $\rightarrow$ 车辙(1)& 0.0013 \ (0.8710) & \textbf{0.0792 \ (0.0040)}  & \textbf{0.0812 \ (0.0021)}  \\
+      \hline
+      荷载(1) $\rightarrow$ 车辙(1) & \textbf{0.1190 \ (0.0003)}  & 0.0036 \ (0.9310)  & 0.0049  \ (0.6711)\\
+      \hline
+      弯沉深度(5) $\rightarrow$ 车辙(3)&  \textbf{0.0943 \ (0.0000)} & \textbf{0.0596 \ (0.0035)}  &  \textbf{0.0889 \ (0.0014)} \\
+      \hline
+      弯沉面积(5) $\rightarrow$ 车辙(2) & \textbf{0.1251 \ (0.0002)}  &  \textbf{0.0341 \ (0.0079)} & \textbf{0.0666 \ (0.0061)} \\
+      \hline
+      车辙(3) $\rightarrow$ 弯沉深度(1) & 0.0091 \ (0.9130)  & 0.0013 \ (0.9005)  & 0.0018 \ (0.9116) \\
+      \hline
+      车辙(3) $\rightarrow$ 弯沉面积(1) & \textbf{ 0.0875 \ (0.0010) }&  0.0037 \ (0.9375) &  0.0017 \ (0.3671)\\
+      \hline
+\end{tabular}\label{table2}
+\end{table}
+
+我们还比较并显示了每个变量在不同频率下的情况，如图 7 所示。然而，变量之间的相关性并不能直观地发现。为了定量测量不同频段车辙及其影响因素之间的偶然性，本文采用了贪心算法的显著TE计算方法，其中源变量和目标变量候选集的长度均为10。在对所有19种路面数据集进行影响因素与车辙之间的偶然性分析后，结果如表\ref{table2}, 所示，括号内表示转移熵的P值。高亮显示的数据表示该数据具有统计意义。根据公式 ，MTE 的核心思想是：如果一个变量引起另一个变量，那么源变量的历史数据的分布应该为目标变量的未来值提供额外的转移信息，而不是仅仅从目标变量的过去值就能预测到的。因此，从源变量到目标变量的转移熵值越高，因果关系就越强。表\ref{table2}中的结果表明，轴载与车辙的因果关系在低频段（L1）统计显著，这表明轴载主要影响车辙的变化趋势。同时，从温度到车辙的传递熵在统计意义上是显著的。这也表明，在趋势项中，全轮驱动挠度盆面积与车辙的因果关系最强，而在波动项中，温度（H1 层）和全轮驱动中心点挠度与车辙的因果关系最强。｝ 特别地，在所有频段中，我们都可以观察到车辙与全轮驱动深度和全轮驱动面积之间存在着非常显著的双向信息传递。因此，低频段预测模型选择轴载、全断面深度和全断面面积作为特征，高频段预测模型选择温度、全断面深度和全断面面积作为特征。此外，虽然不同路面的因果关系值不同，但所有路面的偶然关系是相同的。这表明多元转移熵可以在车辙及其影响因素之间建立稳定的因果关系。此外，本章所提出的基于贪心算法的显著TE计算方法，进一步的明确了源变量和目标变量的有效Markov阶数，确定了用于计算的历史长度，可以看到，由本章所提出的方法所计算出的统计显著的因果关系，除了$\rm{TE}(load \rightarrow rutting)$，目标变量和源变量的Markov阶数不是相同的。具体的，以温度和荷载为源变量的因果关系，其源变量的Markov阶数较小，说明其数值变化对车辙的影响较快。以弯沉深度和弯沉面积为源变量的因果关系，其源变量的Markov阶数较大，说明其数值变化对车辙的影响更久。在之后的时间序列预测模块中，这些Markov阶数将作为模型自变量的历史滑动窗口尺寸进行使用。
+
+
+
+\subsection{预测模型的性能分析}
+
+为了验证所提出的框架在利用 RIOHTrack 数据集进行车辙预测方面的性能，将其与以下基线时间序列预测模型进行了比较：统计回归模型，包括 GPR 模型和 VARIMA；两个基于深度学习的时间序列预测模型，这两个模型为自编码器，其中的编码器分别由 transformer 模型和双向 LSTM构成，其中滑动窗口大小为 5，层数为 2；transformer模型中的多头注意数为 3，注意力机制为自注意力；解码器中则是一个线性回归模型。所有模型都进行了 1000 次训练。每个路面类别选择一个路面数据作为训练集，其余路面数据作为测试集。在训练集中，80\% 用于训练，20\% 用于验证。
+
+我们使用三个指标来衡量模型的预测性能：平均绝对百分比误差 (MAE)、均方根误差 (RMSE) 和判定系数 $R^{2}$，它们的定义分别是：
+\begin{align}
+MAPE = &\frac{1}{n}\sum\limits_{i=1}\limits^{n}|\hat{y}_{i}-y_{i}|,\\
+RMSE =& \sqrt{\frac{1}{n}\sum\limits_{i=1}\limits^{n}(\hat{y}_{i}-y_{i})^2},\\
+R^{2} = &1-\frac{\sum\limits_{i=1}\limits^{n}(\hat{y}_{i}-y_{i})^2}{\sum\limits_{i=1}\limits^{n}(\hat{y}_{i}-\overline{y})},
+\end{align}
+其中，$y_{t}$ 为时间步长 $t$ 时的车辙地面实况，$\hat{y}$ 为预测值，$\overline{y}$ 为车辙时间序列的真实值。对于 MAPR 和 RMSE，数值越小表示性能越好。$R^{2}$ 的取值范围为 $[0,1]$，该值越接近 1，模型的预测性能越好。$R^{2}$ 的值小于 0 意味着预测值的性能比平均值的性能要差。
+
+在性能对比实验中，我们在来自 RIOHTrack 的 19 种路面车辙数据上比较了所提出的框架和其他先进的时间序列预测模型。预测结果的步长分别为 2、4、8 和 16 步。按照第二章中的聚类结果，我们将路面分为五个簇，结果如表 3、表 4 和表 5 所示。其中，每个路面数据的最佳性能以粗体标出。总体而言，在大多数路面类别的车辙数据上，所提出的框架显然比其他基线模型取得了更好、更稳健的性能。在硬基路面（STR4-5）上的两步预测任务的预测性能最好，其指标为 $MAE=0.97$、$RMSE=1.15$、$R^{2}=0.92$。单向 LSTM 在 STR18-19 的两步预测任务中取得了最佳结果。此外，我们还发现传统的统计方法--多元 GPR 在所有指标上都表现最差。这是因为该模型对预测目标有很强的假设。GPR 和 VARIMA 的 MAE 和 RMSE 值较大，因为这些模型会忽略一些跳跃点。结果中另一个有趣的现象是：基于深度学习的模型（LSTM、GRU、转换器和所提出的框架）普遍优于浅层模型，而所提出的框架在小波分解和偶然性推理的帮助下，对于泛化数据具有更强的鲁棒性。在合同中，基于注意力机制的模型，如转换器，可以学习较长时间序列的趋势。而在小波分解和偶然性推理的帮助下，拟议框架中基于 RNN 的模型也能保证长期预测的性能。从预测步长方面来看，我们发现预测性能随着预测步长的增加而降低，这一现象在基于 RNN 的模型中尤为明显。拟议框架在 16 个水平线上的平均性能为 $MAE=2.07\pm0.15$、$RMSE=3.09\pm1.14$、$R^{2}=0.72\pm0.20$，这表明所提出的框架在较长的预测步长上具有鲁棒性。从不同的路面数据来看，随着数据的变化，所提框架的性能变化不大。建议框架在所有水平面上的平均性能为 $MAE=1.79\pm1.07$、$RMSE=2.85\pm1.68$、$R^{2}=0.77\pm0.15$，结果表明所提框架对数据变化的鲁棒性。
+
+\begin{table*}[htbp]
+\centering
+\caption{在STR1-9的RIOHTrack数据集上，本章所提框架与其他基线模型的平均性能比较}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllllllllllll}
+ \hline
+  路面类别 & \multicolumn{4}{c}{semi-rigid base (STR1-3)}&  \multicolumn{4}{c}{rigid base (STR4-5)} & \multicolumn{4}{c}{common forms (STR6-9)}\\
+  \hline
+  ~ & ~ & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长\\
+  \hline
+  模型 & 度量 & 2 & 4 & 8 & 16 & 2 & 4 & 8 & 16 & 2 & 4 & 8 & 16\\
+  \hline
+    ~ & $MAE$ & 10.11 & 13.41 & 15.36 & 16.91 & 9.31 & 10.33 & 13.72 & 15.11 & 12.87 & 16.14 & 18.33 & 20.26\\
+  ~ & $RMSE$ & 11.58 & 14.79 & 16.26 & 18.05 & 9.89 & 11.02 & 14.14 & 16.26 & 13.97 & 18.33 & 20.12 & 22.37\\
+
+  GPR & $R^{2}$ & 0.43 & 0.32 & 0.31 & 0.21 & 0.43 & 0.39 & 0.34 & 0.29 & 0.35 & 0.31 & 0.24 & 0.12\\
+  \hline
+  ~ & $MAE$ & 9.75 & 15.12 & 18.26 & 19.97 & 8.33 & 16.38 & 17.99 & 20.37 & 10.33 & 14.62 & 23.15 & 25.71\\
+  ~ & $RMSE$ & 11.31 & 17.81 & 21.89 & 22.31 & 12.33 & 18.57 & 20.12 & 22.37 & 17.97 & 18.33 & 23.15 & 27.15\\
+
+  VARIMA & $R^{2}$ & 0.41 & 0.32 & 0.15 & 0.03 & 0.64 & 0.41 & 0.25 & 0.10 & 0.62 & 0.37 & 0.19 & 0.13\\
+  \hline
+  ~ & $MAE$ & 1.61 & 1.74 & 3.53 & 4.97 & 1.24 & 1.63 & 2.59 & 3.59 & 2.33 & 4.09 & 5.93 & 8.39\\
+  ~ & $RMSE$ & 1.83 & 2.27 & 5.59 & 6.97 & 1.47 & 1.94 & 2.73 & 5.31 & 2.74 & 6.59 & 6.06 & 9.16\\
+  LSTM &  $R^{2}$ & 0.80 & 0.74 & 0.68 & 0.53 & 0.79 & 0.73 & 0.69 & 0.50 & 0.64 & 0.55 & 0.42 & 0.26\\
+  \hline
+  ~ & $MAE$ & 1.57 & 1.71 & 3.97 & 4.31 & 1.33 & 1.52 & 2.76 & 3.85 & 2.73 & 3.12 & 6.26 & 8.15\\
+  ~ & $RMSE$ & 1.80 & 2.33 & 6.22 & 7.73 & 1.83 & 1.92 & 2.37 & 6.97 & 3.33 & 3.64 & 7.53 & 8.93\\
+  GRU &  $R^{2}$ & 0.83 & 0.71 & 0.66 & 0.54 & 0.83 & 0.80 & 0.69 & 0.51 & 0.70 & 0.61 & 0.51 & 0.36\\
+  \hline
+  ~ & $MAE$ & 1.59 & 1.67 & 1.71 & 1.93 & 1.12 & 1.56 & 1.97 & 2.33 & 2.12 & 3.26 & 3.57 & 4.14\\
+  ~ & $RMSE$ & 1.83 & 2.12 & 2.26 & 2.57 & 1.31 & 1.93 & 2.54 & 3.31 & 3.09 & 3.74 & 4.15 & 4.38\\
+  transformer & $R^{2}$ & 0.82 & 0.81 & 0.79 & 0.71 & 0.83 & 0.80 & 0.76 & 0.71 & 0.69 & 0.65 & 0.59 & 0.41\\
+  \hline
+  ~ & $MAE$ & \textbf{1.22} & \textbf{1.23} & \textbf{1.51}& \textbf{1.67} & \textbf{0.97} & \textbf{1.17} & \textbf{1.24}& \textbf{1.46} & \textbf{1.25} & \textbf{1.53} & \textbf{1.74}& \textbf{1.96}\\
+  ~ & $RMSE$ & \textbf{1.37} & \textbf{1.67} & \textbf{1.75}& \textbf{1.93} & \textbf{1.15} & \textbf{1.33} & \textbf{1.74}& \textbf{1.97} & \textbf{1.55} & \textbf{1.93} & \textbf{1.94}& \textbf{2.13}\\
+  proposed framework & $R^{2}$& \textbf{0.87} & \textbf{0.82} & \textbf{0.79}& \textbf{0.71} & \textbf{0.92} & \textbf{0.87} & \textbf{0.83}& \textbf{0.80} & \textbf{0.86} & \textbf{0.81} & \textbf{0.77}& \textbf{0.72}\\
+  \hline
+\end{tabular}}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\caption{在STR10-17的RIOHTrack数据集上，本章所提框架与其他基线模型的平均性能比较}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllllllllllll}
+ \hline
+  pavement & \multicolumn{4}{c}{semi-rigid base (STR10\& 12)}&  \multicolumn{4}{c}{rigid base (STR11 \& 13-14)} & \multicolumn{4}{c}{common forms (STR15-17)}\\
+  \hline
+  ~ & ~ & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长 & 距离步长\\
+  \hline
+  模型 & 度量 & 2 & 4 & 8 & 16 & 2 & 4 & 8 & 16 & 2 & 4 & 8 & 16\\
+  \hline
+  ~ & $MAE$ & 6.34 & 10.15 & 13.64 & 20.51 & 9.31 & 13.33 & 19.44 & 23.89 & 10.81 & 14.14 & 17.95 & 21.73\\
+  ~ & $RMSE$ & 9.74 & 12.59 & 15.05 & 26.35 & 9.89 & 15.91 & 21.07 & 26.66 & 13.98 & 16.27 & 19.99 & 23.17\\
+
+  GPR & $R^{2}$ & 0.39 & 0.31 & 0.27 & 0.22 & 0.35 & 0.26 & 0.17 & 0.09 & 0.40 & 0.35 & 0.23 & 0.10\\
+  \hline
+  ~ & $MAE$ & 10.09 & 12.35 & 20.03 & 27.93 & 6.15 & 7.34 & 16.87 & 22.59 & 10.33 & 12.61 & 17.15 & 23.33\\
+  ~ & $RMSE$ & 11.31 & 17.81 & 21.89 & 22.31 & 7.71 & 9.15 & 20.42 & 29.13 & 12.22 & 15.85 & 20.15 & 26.92\\
+
+  VARIMA & $R^{2}$ & 0.41 & 0.27 & 0.08 & 0.02 & 0.48 & 0.46 & 0.29 & 0.22 & 0.54 & 0.33 & 0.21 & 0.15\\
+  \hline
+  ~ & $MAE$ & 1.43 & 1.70 & 3.53 & 4.97 & 1.24 & 1.63 & 2.59 & 3.59 & 2.67 & 4.15 & 6.35 & 8.88\\
+  ~ & $RMSE$ & 1.65 & 1.92 & 5.59 & 6.97 & 1.47 & 1.94 & 2.73 & 5.31 & 3.03 & 5.66 & 8.10 & 10.33\\
+  LSTM &  $R^{2}$ & 0.90 & 0.81 & 0.74 & 0.62 & 0.83 & 0.77 & 0.61 & 0.42 & 0.68 & 0.60 & 0.58 & 0.32\\
+  \hline
+  ~ & $MAE$ & 1.61 & 2.79 & 4.18 & 4.98 & 1.41 & 1.55 & 2.63 & 3.77 & 2.73 & 4.45 & 7.14 & 9.66\\
+  ~ & $RMSE$ & 2.01 & 2.93 & 6.21 & 7.14 & 1.69 & 1.70 & 2.81 & 5.99 & 3.33 & 6.66 & 10.15 & 12.15\\
+  GRU &  $R^{2}$ & 0.73 & 0.70 & 0.65& 0.63 & 0.81 & 0.75 & 0.62 & 0.45 & 0.68 & 0.57 & 0.52 & 0.34\\
+  \hline
+  ~ & $MAE$ & 1.61 & 1.66 & 1.75 & 2.44 & 2.13 & 2.73 & 2.97 & 3.28 & 1.92 & 2.08 & 2.61 & 2.88\\
+  ~ & $RMSE$ & 1.64 & 1.74 & 2.26 & 3.05 & 2.54 & 1.93 & 2.54 & 3.31 & 2.09 & 2.74 & 3.33 & 4.19\\
+  transformer & $R^{2}$ & 0.79 & 0.71 & 0.66 & 0.43 & 0.74 & 0.70 & 0.67 & 0.54 & 0.74 & 0.66 & 0.61 & 0.50\\
+  \hline
+  ~ & $MAE$ & \textbf{1.21} & \textbf{1.27} & \textbf{1.74}& \textbf{2.01} & \textbf{1.70} & \textbf{1.78} & \textbf{1.99}& \textbf{2.35} & \textbf{1.68} & \textbf{1.73} & \textbf{1.97}& \textbf{2.70}\\
+  ~ & $RMSE$ & \textbf{1.67} & \textbf{1.81} & \textbf{2.50}& \textbf{2.77} & \textbf{2.67} & \textbf{2.31} & \textbf{2.50}& \textbf{4.17} & \textbf{1.72} & \textbf{2.47} & \textbf{3.13}& \textbf{4.60}\\
+  proposed framework & $R^{2}$& \textbf{0.90} & \textbf{0.85} & \textbf{0.81}& \textbf{0.76} & \textbf{0.80} & \textbf{0.78} & \textbf{0.73}& \textbf{0.67} & \textbf{0.78} & \textbf{0.72} & \textbf{0.70}& \textbf{0.66}\\
+  \hline
+\end{tabular}}
+\end{table*}
+
+\begin{table}[htbp]\small
+\centering
+\caption{在STR18-19的RIOHTrack数据集上，本章所提框架与其他基线模型的平均性能比较}
+\begin{tabular}{llllll}
+ \hline
+  pavement & \multicolumn{4}{c}{semi-rigid base (STR18-19)} \\
+  \hline
+  ~ & ~ & 预测步长 & 预测步长 & 预测步长 & 预测步长\\
+  \hline
+  模型 & 度量 & 1 & 3 & 6 & 10 \\
+  \hline
+  ~ & $MAE$ & 5.96 & 6.12 & 16.28 & 28.12 \\
+  ~ & $RMSE$ & 7.39 & 7.68 & 18.29 & 30.17 \\
+
+  GPR & $R^{2}$ & 0.53 & 0.37 & 0.26 & 0.02 \\
+  \hline
+  ~ & $MAE$ & 8.85 & 10.12 & 18.58 & 21.97 \\
+  ~ & $RMSE$ & 9.89 & 13.31 & 20.02 & 28.97 \\
+
+  VARIMA & $R^{2}$ & 0.41 & 0.30 & 0.24 & 0.19 \\
+  \hline
+  ~ & $MAE$ & \textbf{1.33} & 1.92 & 4.16 & 5.35 \\
+  ~ & $RMSE$ & \textbf{1.61} & 2.37 & 5.07 & 7.33 \\
+  LSTM &  $R^{2}$ & \textbf{0.88} & 0.72 & 0.66 & 0.49\\
+  \hline
+  ~ & $MAE$ & 1.51 & 1.75 & 2.03 & 4.21 \\
+  ~ & $RMSE$ & 1.73 & 2.12 & 2.25 & 6.03 \\
+  GRU &  $R^{2}$ & 0.81 & 0.73 & 0.68 & 0.59 \\
+  \hline
+  ~ & $MAE$ & 1.42 & 1.63 & 1.93 & 2.33 \\
+  ~ & $RMSE$ & 1.77 & 1.81 & 2.17 & 2.47 \\
+  transformer & $R^{2}$ & 0.80 & 0.76 & 0.70 & 0.67 \\
+  \hline
+  ~ & $MAE$ & 1.35 & \textbf{1.73} & \textbf{2.01}& \textbf{2.31}  \\
+  ~ & $RMSE$ & 1.71 & \textbf{2.05} & \textbf{2.67}& \textbf{4.03} \\
+  proposed framework & $R^{2}$& 0.87 & \textbf{0.81} & \textbf{0.74} & \textbf{0.72} \\
+  \hline
+\end{tabular}
+\end{table}
+
+由于提议的框架由三个模块组成，为了研究每个模型的贡献，我们设计了一组消融实验。消融实验中包含6个变体框架，变体 1、2 和 3 是针对数据处理模块的变体。变体 4 和 5 针对基于转移熵的特征提取模块的变体。变体 6 使用单一预测模型来预测车辙。这些变体模型的具体设置如下：
+
+\begin{itemize}
+  \item  在变体 1 中，删除了基于小波分解的数据处理模块。框架中只使用了基于传递熵的特征提取模块和单一时间序列预测模块。
+  \item  在变体 2 中，结构与本章所提出框架相同，但特征提取模块中的小波函数由 dB20 代替。
+  \item  在变体 3 中，架构与本章所提出框架相同，但特征提取模块中的小波函数由 Coeflit20 代替。
+  \item  在变体 4 中, 删除了基于传递熵的特征提取模块。框架中只使用了基于小波分解的数据处理模块和时间序列预测模块。
+  \item  在变体 5 中, 其结构与建议的框架相同，其中特征提取模块中传递熵的计算不使用本章所提出的贪心算法。
+  \item  在变体 6 中, 其结构与拟议框架相同，但时间序列预测模型只使用基于注意力机制的自编码器的单一预测模型。
+\end{itemize}
+
+
+我们对所有路面数据进行了消融实验，平均性能对比结果如图\ref{fig4_4}和图\ref{fig4_5}所示。总体而言，结果表明所提出的框架能比其他变体更精确地模拟车辙曲线，这表明所有模块缺一不可。特别是，从图\ref{fig4_4}的结果来看，变体1 的对比结果表明，基于小波分解的数据处理模块的使用大大提高了性能，使各预测步长上的$R^{2}$指标分别提高了$16.23\%$、$18.53\%$、$24.35\%$和$36.66\%$。同时，变体2 和 变体3 的 GPV 验证值分别为 10、12 和 10、10，比基于Symlet20小波基函数的值要差。变体2和变体3的对比也表明，基于Symlet20的时间序列分解模块对车辙数据的定位更准确，对多步骤预测的鲁棒性更高。在图\ref{fig4_5} 中，本章所提出框架与变体 4的性能差异体现了基于传递熵的特征选择模块的必要性。而和变体 5 的性能差异显示了基于贪心算法所计算的统计显著转移熵在特征选择模块的优势。我们还注意到，单预测模型的变体 6在预测步长较小时（horizon=2，4）性能接近本章所提出框架，但随着预测步长的增加，其性能会迅速下降，这表明变体 3 提取的特征中产生了冗余信息和虚假因果关系。 此外，与变体 4 的比较表明，超时间序列预测模型更适合 RIOHTrack 的车辙数据。
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=0.26]{./ch4/fig4_5.pdf}
+\caption{变体（1-3）与本章所提出框架的消融实验性能比较。} \label{fig4_4}
+\end{center}
 \end{figure}
 
-\noindent 其中 $\tilde{\beta}=1$ 且 $f(\cdot)$ 满足扇区条件且 $l_k=2.5$，$k\in I[1,2]$。 现考虑由 $60$ 个相同的蔡氏电路系统 (\ref{4-2-35}) 耦合而成的鲁里叶网络，其中 $q(t)=\frac{1}{2}-\frac{1}{2}e^{-t}$，$ c=0.2$，$\varGamma={\rm diag}\{1,1,1\}$，且网络拓扑结构如图 \ref{f4-3} (b) 所示。
-
-\textbf{情况一}: 选择脉冲序列为  $t_{5n-4}=0.03n-0.025$，$ t_{5n-3}=0.03n-0.017$，$ t_{5n-2}=0.03n-0.01$，$ t_{5n-1}=0.03n-0.006$，$t_{5n}=0.03n$，$n\in \mathbb{Z}_+$，容易计算出 $\mathcal{T}_{a}=0.006$。 选取形状参考集 $\chi_R=\{\varphi_1\}$， 其中 $\varphi_1= [-0.7,-0.02,0.2]^T$，通过 Yalmip 工具箱求解优化问题 (\ref{4-2-33})，可得  
- $\mu^{\text{定理 \ref{t4-3-1}}}_{opt}=0.1926$，其他的可行解为
- \begin{align*} P&=
-\left[ \begin{array}{ccc} 
- 2.3597&0 & 0 \\
-0&   20.9991 & 2.2148\\
-0&    2.2148 &   2.5951
-\end{array}\right],\ 
-S=
-\left[ \begin{array}{ccc} 
-21.2373 &0& 0\\
-0 & 188.9919  & 19.9332\\
-0 &  19.9332  & 23.3559
-\end{array}\right],\\ 
- H&=
-\left[ \begin{array}{cccccccccccc} 
-0.3348&0&0\\
-0&0.4281&0.0098\\
-0&0&0.3349\\
-0.3348&0&0\\
-0&0.4200&0.0002\\
-0&0&0.3349\\
-0.3348&0&0\\
-0&0.4200 & 0.0002\\
-0  &  0& 0.3349\\
-0.3348  &  0  &  0\\
-0 &   0.4281 &   0.0098\\
-0  &  0 &  0.3349
-\end{array}\right],\\K&={\rm diag}\{0.4025,
-0.4603,
-0.4357\},~\overline{W}={\rm diag}\{
-42.4746,
-0.2894\}. 
-\end{align*} 
-图 \ref{f4-4}--\ref{f4-7}  是相关的数值模拟，其中图 \ref{f4-4} 展示了鲁里叶网络 (\ref{4-2-1}) 在没有脉冲控制输入的情况下是无法实现同步的，其中初始值在集合 $\mathcal{E}(\varXi\otimes P,1)$ 内随机选择。在相同的初值条件下， 通过施加分布式饱和脉冲控制，鲁里叶网络 (\ref{4-2-1}) 关于脉冲序列 $\Im(1,0.006)$ 可以实现局部指数同步，如图 \ref{f4-5} 所示。另外，如果选择初值 $\psi\in\mathcal{E}^c(\varXi\otimes P,1) \cap \mathcal{E}(\varXi\otimes P, 10/9)$，鲁里叶网络 (\ref{4-2-1}) 的局部指数同步无法实现，如图 \ref{f4-6} 所示。这些数值模拟充分证明了所得结果的可行性和有效性，并且证实了椭球 $\mathcal{E}(\varXi\otimes P,1)$ 包含在误差系统的吸引域内。 
-
-为了表明所得结果保守性更小， 在优化问题 (\ref{4-2-33}) 相同的初值条件下，解决以推论 \ref{c4-2-1} 条件为约束条件的优化问题，可得 $\mu^{\text {推论 \ref{c4-2-1}}}_{opt}=0.0657$。 由于 $0.1926>0.0657$，这意味着定理 \ref{t4-2-1} 可以获得比推论 \ref{c4-2-1} 更大的吸引域估计， 相应的 Lyapunov 函数水平集绘于图 \ref{f4-7}。这也充分说明引理 \ref{l4-2-1} 中最新的凸包表示法在处理饱和脉冲控制约束方面比引理 \ref{l4-2-2} 具有更小的保守性。
-
-\textbf{情况二}:
-为了降低控制成本，构造了优化问题 (\ref{4-2-34})。 在情况一相同的条件下，通过求解优化问题 (\ref{4-2-34}) 可以得到最大平均脉冲区间 $\mathcal{T}_{a\_opt}=0.0071$。 因此，只要 $\mathcal{T}_{a\_opt}=0.0071$，脉冲间隔  $t_{k+1}-t_{k},\ k\in\mathbb{Z}_+$ 的上下界将不再有任何限制，允许不规则脉冲信号的存在，即脉冲间隔的上下界可以尽可能大，也可以尽可能小。因此，所得结果比文献 
-\cite{wang2016impulsive1560,Rakkiyappan2017Exponential217,zhang2013synchronization,yang2007stability1448,li2020impulsive,li2020impulsivePolytopic} 中的结果具有更小的保守性。  
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{./ch4/fig4-4-1.pdf}
-    \includegraphics[scale=0.5]{./ch4/fig4-4-2.pdf}
-    \caption{无脉冲下无法实现局部同步。 (a) 鲁里叶网络 (\ref{4-2-1}) 的状态轨迹；(b) 误差系统 (\ref{4-2-5}) 的状态轨迹 } 
-    \label{f4-4} 
-\end{figure}         
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{./ch4/fig4-5-1.eps}
-    \includegraphics[scale=0.5]{./ch4/fig4-5-2.eps}
-   \caption{在满足脉冲序列 $\Im(1,0.006)$ 的分布式饱和脉冲控制下可以实现局部同步。 (a) 鲁里叶网络 (\ref{4-2-1}) 的状态轨迹；(b) 误差系统 (\ref{4-2-5}) 的状态轨迹 } 
-      \label{f4-5} 
-\end{figure} 
-
-\begin{figure}[H]
-    \begin{center}
-        \begin{minipage}[c]{0.5\textwidth}
-            \centering
-            \includegraphics[scale=0.5]{./ch4/fig4-6.eps}
-            \centering
-            \caption{具有饱和脉冲控制且初值\\ $\psi\in\mathcal{E}^c(\varXi\otimes P,1) \cap \mathcal{E}(\varXi\otimes P, 10/9)$ \\的误差系统 (\ref{4-2-5}) 的状态轨迹}
-            \label{f4-6}
-        \end{minipage}%
-        \begin{minipage}[c]{0.5\textwidth} \centering\includegraphics[scale=0.7]{./ch4/fig4-7.pdf} \vspace{0.5cm}
-            \caption{基于不同方法的吸引域估计。 内部彩色椭球表示基于推论 \ref{c4-2-1} 估计的吸引域，外部黑色网格椭球表示基于定理 \ref{t4-2-1} 估计的吸引域}
-            \label{f4-7}
-        \end{minipage}
-    \end{center}
-\end{figure}
-\section{分布式饱和脉冲控制下非线性时滞多智能体系统的局部一致性}
-上一节开发了一种新的估计吸引域的方法，本节将在此方法的基础上继续研究分布式饱和脉冲控制下具有切换拓扑的 非线性时滞多智能体的局部一致性。为了进一步降低保守性，构造全新的复合的 Lyapunov 函数替代一般的二次 Lyapunov 函数，以估计出最接近真实的吸引域。
-\subsection{模型描述}
-考虑由一个领导者和 $N$ 个跟随者组成的非线性时滞多智能体系统，其动态方程为 
-\begin{align}\label{4-3-1}
-\left\{\begin{aligned} 
-\dot{x}_0(t)=&Ax_0(t)+Bf(x_0(t-\tau(t))),\\
-\dot{x}_i(t)=&Ax_i(t)+Bf(x_i(t-\tau(t)))+u_i(t),
-\end{aligned}\right.
-\end{align}
-其中$x_0(t)$、$x_i(t)\in \mathbb{R}^n$，$i\in I[1,N]$ 分别表示领导者和第 $i$ 个跟随者的状态，$A$、$ B\in\mathbb{R}^{n\times n}$ 是已知的常矩阵，$\tau(t)$ 是时变时滞且满足 $0\leq\tau(t)\leq \tau$，这里 $\tau>0$ 是给定常量，$f(\cdot)\in \mathcal{C}^1( \mathbb{R}^n,\mathbb{R}^n) $ 是向量值非线性函数，$u_i(t)$ 表示分布式饱和脉冲控制输入，其设计如下：
-\begin{align}\label{4-3-2}
-u_i(t)=\sum\limits_{k=1}^{\infty}{\rm sat}(w_i(t)) \delta (t-t_k),\ k\in\mathbb{Z}_+,
-\end{align}
-其中 ${\rm sat}(w_i(t))=({\rm sat}( w_{i1}(t)), {\rm sat}( w_{i2}(t)),\cdots,{\rm sat}( w_{in}(t)))^T$ 是向量值饱和函数，这里 ${\rm sat}( w_{ir}(t))={\rm sgn}  (w_{ir}(t))\min\{1,|w_{ir}(t)|\}$，$r \in I[1,n]$，且 
-\begin{align*}
-\omega_i(t)=F\Big(\sum\limits_{j\in \mathcal{N}_i}a^{\sigma(t)}_{ij}(x_j(t)-x_i(t))+b^{\sigma(t)}_i(x_0(t)-x_i(t))\Big),
-\end{align*}
-其中 $F\in\mathbb{R}^{n\times n}$ 是分布式饱和脉冲控制的增益矩阵，$\sigma(t): [0,+\infty)\rightarrow
-I[1,\hbar]:=\mathfrak{H}$ 为右连续的分段常数函数被称为切换信号，$\delta(\cdot)$ 是狄拉克函数，$t_k$ 是脉冲时刻，其满足 
-$ 0\leq t_0<t_1<t_2<\cdots<t_k<\cdots$， 且 $\lim_{k \rightarrow+\infty}t_k=+\infty$。
-
-定义 $z_i(t)=x_i(t)-x_0(t)$，$i\in I[1,N]$ 为第 $i$ 个跟随者和领导者之间的状态误差，在控制器  (\ref{4-3-2}) 作用下，误差系统满足 
-\begin{align}\label{4-3-3}
-\left\{
-\begin{aligned}  
-&\dot{z}_i(t)=Az_i(t)+Bf(z_i(t-\tau(t)),\ t\neq t_k,\  t\geq t_0,\\
-&\Delta z_i(t_k)={\rm sat}\Big[F\Big(\sum\limits_{j\in \mathcal{N}_i} a^{\sigma(t_k)}_{ij}(z_j(t^-_k)-z_i(t^-_k)) -b^{\sigma(t_k)}z_i(t^-_k)\Big)\Big],\ k\in \mathbb{Z}_+,
-\end{aligned}
-\right.
-\end{align}
-其中 $\sigma(t_k)\in \mathfrak{H}$，$f(z_i(t-\tau(t)))=f(x_i(t-\tau(t)))-f(x_0(t-\tau(t)))$，$\Delta z_i(t_k)=z_i(t_k)-z_i(t^-_k)$，$ z_i(t^-_k)=\lim_{t\rightarrow t^-_k}z_i(t_k)$，且  $z_i(t_k)=z_i(t^+_k)=\lim_{t\rightarrow t^+_k}z_i(t_k)$。
-
-令 $z(t)=(z^T_1(t),z^T_2(t),\dots,z^T_N(t))^T$，$ f(z(t-\tau(t)))=(f^T(z_1(t-\tau(t))), f^T(z_2(t-\tau(t))),\ldots,f^T(z_N(t-\tau(t))))^T$， 那么误差系统 (\ref{4-3-3}) 可以写成下列紧凑的形式：
-\begin{flalign*} 
-\left\{
-\begin{aligned} 
-&\dot{z}(t)= (I_N\otimes A) z(t)+ (I_N\otimes B)  f( z(t-\tau(t))),\ t\neq t_k,\ t\geq t_0, \\ 
-&\Delta z(t_k)=-{\rm sat}[(\mathcal{H}^{\sigma(t_k)} \otimes F) z(t^-_k)],\
-\sigma(t_k)\in \mathfrak{H},\  k\in \mathbb{Z}_+.
-\end{aligned}\right.        
-\end{flalign*} 
-             
-\begin{remark}
-所设计的控制器 (\ref{4-3-2}) 不仅考虑了执行器饱和的情况，还充分考虑了切换拓扑。在实际运行过程中，多智能体系统的网络拓扑是动态变化的。 相比固定拓扑 \cite{2014Semi2222,2017Leader327,2017Adaptive4654}，具有切换拓扑的多智能体系统可以更准确地反映由外部环境变化和智能体移动等引起的智能体之间连接的变化。
-\end{remark}
-\begin{definition}
-    令 $\mathscr{F}_0$ 表示一类脉冲序列 $\{t_k,\ k\in\mathbb{Z}_+\}$， 满足 $0\leq t_0<t_1<t_2<\cdots<t_k<\cdots$ 且 $ \lim_{k \rightarrow+\infty}t_k=+\infty$。 $\mathscr{F}_{[\vartheta_0,\vartheta_1]}\subseteq \mathscr{F}_0$ 表示一类脉冲序列，满足 
-    $\vartheta_0\leq t_{k+1}-t_k\leq\vartheta_1$。
-\end{definition}
-\begin{definition}
-    如果对每个跟随者 $i$，$i\in I[1,N]$， 存在分布式饱和脉冲控制协议 (\ref{4-3-2})，对于任意吸引域内给定的初始条件，都有 
-    \begin{align*}
-    \lim_{t\rightarrow \infty}|x_i-x_0|=0,\ i\in I[1,N], \end{align*}  
-    则称非线性时滞多智能体系统 (\ref{4-3-1}) 关于脉冲序列  $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$ 可以实现局部领导者--跟随一致性。
-\end{definition} 
-\begin{assumption}\label{a4-3-1}
-    非线性函数 $f(\cdot)$ 满足 Lipschitz 条件，即存在对角矩阵 $L_f\in\mathbb{R}^{n\times n}$，对于任意的 $ y_1$、$y_2\in \mathbb{R}^n$，都有
-    \begin{align*}
-    |f(y_1)-f(y_2)|\leq| L_f(y_1-y_2)|. 
-    \end{align*}
-\end{assumption}
-\begin{assumption}\label{a4-3-2}
-    每个拓扑结构 $\bar{\mathcal{G}}^{\sigma(t_k)}$，$ \sigma(t_k)\in \mathfrak{H}$，$ k\in\mathbb{Z}_+$ 包含节点 $x_0$ 作为根节点的有向生成树。 
-\end{assumption}
-
-应用引理  \ref{l4-2-1}，存在矩阵  $H\in\mathbb{R}^{\bar{n}\times n}$，如果 $|(\mathcal{H}^{\sigma(t_k)}\otimes  H)z(t^-_k)|_{\infty} \leq 1$，则有
-\begin{flalign*}
-{\rm sat}[(\mathcal{H}^{\sigma(t_k)} \otimes F) z(t^-_k)] 
-= \sum\limits_{l=1}^{2^n}c _{l}(t_k) 
-\big[\mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}^-_{l}H)\big]z(t^-_k),\ \sigma(t_k)\in \mathfrak{H},
-\end{flalign*}
-其中 $c_{l}(t_k)$ 是一组非负标量函数且满足 $\sum\limits_{l=1}^{2^n}c_{l}(t_k)=1$，$l\in I[1,2^n]$，$k\in\mathbb{Z}_+$。
-
-
-那么误差系统 (\ref{4-3-3}) 可以进一步写成
-\begin{align}\label{4-3-4}\left\{
-\begin{aligned}  
-&\dot{z}(t)=(I_N\otimes A) z(t)+ (I_N\otimes B)  f( z(t-\tau(t))),\ t\neq t_k,\ t\geq t_0,\\ 
-&\Delta z(t_k)=-\sum\limits_{l=1}^{2^n}c     _{l}(t_k)\left[\mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}^-_{l}H)\right] z(t^-_k),\    \sigma(t_k)\in \mathfrak{H},\ k\in \mathbb{Z}_+,
-\end{aligned}\right.
-\end{align}
-其初值条件为 
-\begin{align*}z_{t_0} =\phi (\theta),\ \theta\in[-\tau,0],
-\end{align*}
-其中 $\phi\in\mathcal{PC}([-\tau,0],\mathbb{R}^{Nn})$  是向量值初始函数，其范数为
-$\|\phi\|_{\tau}= \sup_{\theta\in[-\tau,0]}|\phi(\theta) |$。
-
-令 $(\mathcal{H}^{\sigma(t_k)}\otimes H)_\varsigma$ 是矩阵 $(\mathcal{H}^{\sigma(t_k)}\otimes H)$ 的第 $\varsigma$ 行， $\varsigma\in I[1,N\bar{n}]$，定义如下对称多面体： 
-\begin{align*}
-\mathscr{L}(H)=\bigcap_{\sigma(t_k)\in \mathfrak{H}} \mathscr{L}(H)_{[\sigma(t_k)]},\ k\in \mathbb{Z}_+,
-\end{align*}
-其中
-$\mathscr{L}(H)_{[\sigma(t_k)]}=\{z(t)\in \mathbb{R}^{Nn}:\ |(\mathcal{H}^{\sigma(t_k)}\otimes H)_\varsigma z(t)| \leq 1,\ \varsigma\in I[1,N\bar{n}]\} 
-$。
-
-\begin{lemma}\label{l4-3-1} 考虑下列饱和脉冲泛函微分方程： 
-    \begin{align}\label{4-3-5}\left\{
-    \begin{aligned} 
-   & \dot{\chi}(t)= \mathcal{F}(t, \chi(\cdot)) ,\ t\neq t_k,\ t\geq t_0,\\ 
-    &\Delta \chi(t_k)= {\rm sat}[\mathcal{J}_k(t_k, \chi(t^-_k))],\ k\in \mathbb{Z}_+,\\
-    &\chi(\theta)=\psi(\theta),\ \theta\in[-\tau,t_0],
-    \end{aligned}\right.
-    \end{align}    
-    则系统 (\ref{4-3-5}) 的解关于脉冲序列  $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$，$\vartheta_1 <  \frac{\ln q}{p}$，是局部指数稳定的，
-    如果对任意吸引域内的初值，存在函数 $V(t, \chi)\in v_0$，常数 $p> 0$，$q>1$，$v_1>0$，$v_2>0$，$m>0$ 和 $\gamma>0$， 使得
-    \begin{itemize}
-        \item[$(i)$] $v_1|\chi|^m \leq V(t, \chi) \leq v_2|\chi|^m$，对所有的 $(t, \chi)\in[t_0,+\infty)\times \mathbb{R}^n$ 都成立；
-        \item[$(ii)$] 对于任意的  $\psi\in\mathcal{PC}([-\tau, t_0],\mathbb{R}^n)$，如果 $e^{\gamma \theta}V(t + \theta,\psi(\theta))\leq q V (t,\psi(0))$，$ \theta\in[-\tau, 0]$，$t \neq t_k$，那么 $D^+V(t,\psi(0))\leq p V( t,\psi(0))$；
-        \item[$(iii)$] 对于所有的 $(t_k ,\psi)\in \mathbb{R}_+\times \mathcal{PC}([-\tau, 0],\mathbb{R}^n)$，有
-        $$V(t_k ,\psi(0) + {\rm sat}(\mathcal{J}_k (t_k ,\psi)))\leq\frac{1}{q} V(t_k^- ,\psi(0)).$$   
-    \end{itemize}
-\end{lemma} 
-\begin{remark}
-值得注意的是引理 \ref{l4-3-1} 中的条件 $(i)$ 是文献 \cite{zhang2017sampled2199} 中引理 2.1 的条件  $(i)$ 的特殊形式，这是推导出指数稳定性的关键步骤； 条件 $(ii)$ 充分诠释了 Lyapunov-Razumikhin 方法的思想，条件 $(ii)$ 中的 $e^{\gamma\theta}$ 项包含时滞的信息，可以是有限时滞也可以是无穷时滞； 与文献 \cite{zhang2017sampled2199} 中引理不同的是，条件 $(iii)$  包含饱和脉冲控制项 ${\rm sat}(\mathcal{J}_k (t_k ,\psi))$，它为系统带来了局部特征。 在这种情况下，系统的初值不能拓展到整个状态空间，而只能包含在吸引域中。 虽然存在 差异，但引理 \ref{l4-3-1} 的证明方法与 \cite{zhang2017sampled2199} 中的引理  2.1 类似，这里省略。
-\end{remark}
-\subsection{主要结果}\label{cc}
-\subsubsection{依赖脉冲时刻的复合型 Lyapunov 函数}
-为了进一步降低保守性，受文献 \cite{2017Stability129} 启发， 本小节构造一种新颖的依赖于脉冲时刻的复合型 Lyapunov 函数。首先，将每个脉冲区间  $[t_{k-1},t_k)$， $k\in\mathbb{Z}_+$ 平均分成   $\mathcal{J}_0$ 个子区间，其长度为     $t_{k,m}-t_{k,m-1}=(t_k-t_{k-1})/\mathcal{J}_0$，$m\in I[1,\mathcal{J}_0]$，其中 $t_{k0}=t_{k-1}$，$ t_{k\mathcal{J}_0}=t_{k}$。 其次，介绍下列的分段函数 (有/无时滞)：
-\begin{flalign*}
-\varGamma_{10}(t)=&\left\{ 
-\begin{aligned}
-&\frac{t-t_{k,m-1}}{t_{k,m}-t_{k,m-1}},\ t\in[t_{k,m-1},t_{k,m}),\\
-&1,\ t\in[t_0-\tau,t_0),
-\end{aligned}\right.~
-\varGamma_{20}(t)=\left\{ 
-\begin{aligned}
-&\varGamma_{10}(t-\tau(t)),\ t-\tau(t)\in [t_0,+\infty),\\
-&1,\ t-\tau(t)\in [t_0-\tau,t_0),
-\end{aligned}\right.\\
-\varGamma_{30}(t)=& \left\{ \begin{aligned}
-&\frac{\alpha(t)-\tilde{\eta}_{m-1}}{\tilde{\eta}_{m}-\tilde{\eta}_{m-1}},\ \eta_{m}\neq 1,\\
-&\tilde{\eta}_{m-1},\ \eta_{m}=1,
-\end{aligned}\right.~
-\varGamma_{40}(t)=\left\{ 
-\begin{aligned}
-&\frac{\beta_k-1/\vartheta_1 }{1/\vartheta_0 -1/\vartheta_1},\  \vartheta_0<\vartheta_1,\\
-&1/\vartheta_0,\ \vartheta_0=\vartheta_1,
-\end{aligned}\right.\\ \varGamma_{j1}(t)=&1-\varGamma_{j0}(t),\ j\in I[1,4],
-\end{flalign*}
-其中 $\alpha(t)= \tilde{\eta}_{m-1}\eta^{\varGamma_{10}(t)}_m$，$ \tilde{\eta}_{m}=\prod\limits_{i=1}^{m}\eta_i$，$ \tilde{\eta}_{0}=1$，$\eta_m\in \mathbb{R}_+,\ m\in I[1,\mathcal{J}_0]$，$\beta_k=
-1/(t_k-t_{k-1})$，$k\in\mathbb{Z}_+$。\\
-基于此，构造下列依赖于脉冲时刻的复合型 Lyapunov 函数： 
-\begin{align} \label{4-3-6}
-V(t,z(t))=\sum\limits_{i=1}^{N} \alpha(t)z^T_i(t)P(t)z_i(t),\ t\in [t_{k,m-1},t_{k,m}),\  m\in I[1,\mathcal{J}_0],\ k\in\mathbb{Z}_+, 
-\end{align} 
-其中 $P(t)=\sum\limits_{r=0}^{1}\varGamma_{1r}P_{m-r},\ P_{j}>0$，$j\in I[0,\mathcal{J}_0]$。 
-
- 
-定义 $V(t,z(t))$ 的一个水平集： $$ \mathscr{E} ( P(t),1)=\{z(t)\in \mathbb{R}^{Nn}:\  V(t,z(t))\leq 1\}.$$
-
-\begin{remark} 
-为了降低保守性，设计了非二次的时变 Lyapunov 函数 (\ref{4-3-6})，显然它依赖于脉冲时刻且包含由几个正定矩阵 $P_0$，$P_1$，$\cdots$，$P_{\mathcal{J}_0}$ 组成的凸包，这导致更多的决策变量可以被引入到随后建立的优化问题，使所得的结果保守性更小。 相比二次 Lyapunov 函数  \cite{2013Analysis871,2014Global499,2017Global1270,2020Performance734,2013Adaptive1545,2018Event4391,2020Consensus194,2020Adaptive3013960}，基于依赖于脉冲时刻的复合型 Lyapunov 函数来估计吸引域可以缩短与真实吸引域的差距，更易获得最大的吸引域估计。
-\end{remark}
-
-\subsubsection{切换拓扑下局部领导者--跟随一致性} 
-\begin{theorem}\label{t4-3-1} 
-    在假设 \ref{a4-3-1} 和假设 \ref{a4-3-2} 成立的条件下，具有切换拓扑的非线性时滞多智能体系统 (\ref{4-3-1}) 关于脉冲序列 $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$ 可以实现局部领导者--跟随一致性，如果存在 $n\times n$ 矩阵组 $P_{j}>0$，$j\in I[0,\mathcal{J}_0]$， 和正标量 $p$，$q>1$，$\gamma$，$ \mu_{1rgs\hslash}$， $\mu_{2\hslash}$，这里 $r$、$g$、$s$、$\hslash\in I[0,1]$ 使得下列的不等式成立： 
-    \begin{align}\label{4-3-7} 
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes H)_\varsigma\\
-    \star&-\check{\eta}_{ms}I_N\otimes P_{m-r}  \\
-    \end{array}
-    \right]\leq 0,\ \varsigma\in I[1,N\bar{n} ], 
-    \end{align} 
-    \begin{align} \label{4-3-8} 
-    &\left[ \begin{array}{cc}
-    -\frac{\tilde{\eta}_{J_0}}{q}I_N\otimes P_{\mathcal{J}_0}& \varPsi_{l}\\
-    \star&-I_N\otimes P_0
-    \end{array}
-    \right]\leq0,\ l\in I[1,2^n],
-    \end{align}
-    \begin{align}\label{4-3-9} 
-    \varOmega_{rgs\hslash}= \left[ \begin{array}{ccc}
-    \varOmega_{11rs\hslash} &0& \check{\eta}_{ms}P_{m-r}B \\
-    \star&\varOmega_{22rgs\hslash} &0 \\
-    \star&\star&-\mu_{1rgs\hslash                            }I_n  
-    \end{array}
-    \right]< 0,
-    \end{align} 
-    \begin{align}\label{4-3-10} 
-    \vartheta_1<\frac{\ln q}{p},
-    \end{align} 
-    其中 $ \varPsi_{l}= [I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]^T(I_N\otimes P_0)$，$    
-    \varOmega_{11rs\hslash}= 
-     \check{\eta}_{ms}[\frac{\mathcal{J}_0 \ln \eta_m}{\vartheta_{\hslash}} P_{m-r}+P_{m-r}A+A^TP_{m-r}+\frac{\mathcal{J}_0}{\vartheta_{\hslash}} (P_m-P_{m-1})-p P_{m-r}]
-    +\mu_{2\hslash} qP_{m-r}$，$  
-    \varOmega_{22rgs\hslash}= \mu_{1rgs\hslash}L^T_f L_f-\mu_{2\hslash}
-    e^{-\gamma\tau}\varpi(\eta_{ms})P_{m-g},\ 
-    \check{\eta}_{ms}=\tilde{\eta}_{m-1}\eta^{1-s}_{m}$，$ m\in I[1,\mathcal{J}_0]$，$
-    \varpi(\eta_{ms})= \left\{ \begin{aligned}
-     &1/\eta^{1-s}_{m},\ \eta_{m}\in[1,+\infty),\\ 
-     &\eta^{1-s}_{m},\ \eta_{m}\in(0,1).\end{aligned}\right.
-$ 并且， 水平集 $ \mathscr{E} ( P(t),1)$ 包含在误差系统 (\ref{4-3-4}) 的吸引域内。
-\end{theorem}
-
-\begin{proof}
-    假设 $z(t):=z(t,t_0,\phi)$ 是系统 (\ref{4-3-4})  过点 $(t_0,\phi)$ 的解。 通过计算， $\alpha(t)$ 可以重新表示为 $\alpha(t)=\sum\limits_{s=0}^{1}\varGamma_{3 s}(t)\check{\eta}_{ms}$，$m\in I[1,\mathcal{J}_0]$， 则条件 (\ref{4-3-7}) 等价于
-    \begin{align*} 
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes H)_\varsigma\vspace{0.2cm}\\
-    \star&- \alpha(t)I_N\otimes  P(t)   \\
-    \end{array}
-    \right]\leq 0,\ \varsigma\in I[1,N\bar{n} ],
-    \end{align*} 
-    这意味着 
-    $\mathscr{E} ( P(t),q)\subseteq \mathscr{L}(H)$。  现在宣称，对任意的初值 $\phi\in \mathscr{E}( P(t),1)$ 都有 
-    \begin{align}\label{4-3-11} z(t)\in \mathscr{E}(P(t),q),\ t\geq t_0.
-    \end{align} 
-    如若不然，则存在 $\check{t}>t_0$， 有 $z(\check{t})\in \mathscr{E}^c( P(t),q)$。  为了方便起见，令 $V(t):= V(t,z(t))$。  因为 $q>1,$ 所以 $ V(t_0)<q<V(\check{t}) $。定义 $\hat{t}=\sup\{t\in(t_0,\check{t})|z(t)\in \mathscr{E}( P(t),q)\}$， 有 $V(\hat{t})=q$ 且
-    \begin{align}\label{4-3-12}
-    V(\hat{t})<V(t)\leq V(\check{t}),\ \forall t\in(\hat{t},\check{t}].
-    \end{align}
-    
-    当 $ t=t_k$，$k\in\mathbb{Z}_+ $ 时，基于 $P(t)$ 和 $\alpha(t)$ 的定义，则有 
-    $P(t_k)=P_0$，$P(t^-_k)=P_{\mathcal{J}_0}$，$ \alpha(t_k)=1$， 且 $\alpha(t^-_k)=\tilde{\eta}_{J_0}$。 由 (\ref{4-3-8}) 和 引理 \ref{l1-3-6} 可得  
-    \begin{align*} 
-    &\left[ \begin{array}{cc}
-    -\frac{\tilde{\eta}_{J_0}}{q}I_N\otimes P_{\mathcal{J}_0}& \varPsi_{l}\vspace{0.2cm}\\
-    \star&-I_N\otimes P_0
-    \end{array}
-    \right]\leq0 \\
-    \Leftrightarrow& \left[ \begin{array}{cc}
-    I_n\otimes I_N& [I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)]^T\vspace{0.2cm}\\
-    \star&I_n\otimes I_N
-    \end{array}\right]\left[ \begin{array}{cc}
-    -\frac{\tilde{\eta}_{J_0}}{q}I_N\otimes P_{\mathcal{J}_0}& \varPsi_{l}\vspace{0.2cm}\\
-    \star&-I_N\otimes P_0
-    \end{array}
-    \right]\\
-    &\times\left[ \begin{array}{cc}
-    I_n\otimes I_N& 0\vspace{0.2cm}\\
-    I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)&I_n\otimes I_N
-    \end{array}\right]\leq0\\ 
-    \Leftrightarrow& \left[ \begin{array}{cc}
-    \acute{\varPsi}_{l}& 0\vspace{0.2cm}\\
-    \star&-I_N\otimes P_0
-    \end{array}\right]\leq0\\ 
-    \Leftrightarrow& 
-    \ \acute{\varPsi}_{l}
-    \leq 0, 
-    \end{align*}
-    其中 $\acute{\varPsi}_{l}= -\frac{\tilde{\eta}_{J_0}}{q}(I_N\otimes P_{\mathcal{J}_0})+[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]^T(I_N\otimes P_0)[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]$， 这意味着
-    \begin{align}\label{4-3-13}
-    \begin{split}
-    V(t_k)
-    =&\alpha(t_k)z^T(t_k)(I_N\otimes P(t_k))z(t_k)\\
-    =&z^T(t^-_k)\sum\limits_{l=1}^{2^n}c_{l}(t_k)\Big\{\big[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]^T ( I_N\otimes P_0)\\
-    &\times\big[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]\Big\}z(t^-_k)\\
-    \leq&\frac{\tilde{\eta}_{J_0}}{q}z^T(t^-_k) (I_N\otimes P_{\mathcal{J}_0})z(t^-_k)\\
-    =&\frac{1}{q} V(t^-_k),
-    \end{split}
-    \end{align}
-    结合 $\hat{t}$ 的定义和 $q>1$，可以验证  $\hat{t}$ 是非脉冲时刻。\\
-   另一方面，取 
-    $P(t-\tau(t))=\sum\limits_{g=0}^{1}\varGamma_{2 g}(t) P_{m-g}$，$\beta_k = \sum\limits_{\hslash=0}^{1}\frac{\varGamma_{4 \hslash}(t) }{ \vartheta_\hslash}$，$\mu_1(t)= \sum\limits_{r,g,s,\hslash=0}^{1}\varGamma_{1 r}(t)\varGamma_{2g}(t)\\\varGamma_{3s}(t)\varGamma_{4\hslash}(t)\mu_{1rgs\hslash}$，$  \mu_2(t)=\sum\limits_{\hslash=0}^{1} \varGamma_{4\hslash}(t) \mu_{2\hslash}$，$\varOmega (t)=\sum\limits_{r,g,s,\hslash=0}^{1}\varGamma_{1 r}(t)\varGamma_{2g}(t)\varGamma_{3s}(t)\varGamma_{4\hslash}(t) \varOmega_{rgs\hslash}$，那么 (\ref{4-3-9}) 等价于
-    \begin{align}\label{4-3-14} 
-    \varOmega (t)= \left[ \begin{array}{ccc}
-    \varOmega_{11}(t) &0&  \alpha(t)P(t)B \vspace{0.2cm}\\
-    \star&\varOmega_{22}(t) &0 \vspace{0.2cm}\\
-    \star&\star& -\mu_1(t)I_n\\
-    \end{array}
-    \right]< 0,
-    \end{align}
-    其中
-    $
-    \varOmega_{11}(t)= \alpha(t)[\mathcal{J}_0\beta_{k}\ln \eta_mP(t)+P(t)A+A^TP(t) +\mathcal{J}_0\beta_{k}(P_m-P_{m-1})-p P(t)]
-    +\mu_2(t)qP(t)$，$
-    \varOmega_{22}(t)= \mu_1(t)L^T_f L_f-\mu_2(t)
-    e^{-\gamma\tau}\varpi(\eta_{ms}) P(t-\tau(t))  
-    $。
-    
-    考虑依赖于脉冲时刻的复合型 Lyapunov 函数 (\ref{4-3-6})，计算 $V(t)$ 沿着系统 (\ref{4-3-4}) 的轨迹关于 $t\in[t_{k,m-1},t_{k,m})$，$k\in\mathbb{Z}_+$，$m\in I[1,\mathcal{J}_0]$ 的右上 Dini 导数，可得 
-    \begin{flalign}\label{4-3-15}
-    \begin{split}
-    D^+V(t)=&\alpha(t)\sum\limits_{i=1}^N [z^T_i(t)(\mathcal{J}_0\beta_{k}\ln \eta_mP(t)+P(t) A+A^TP(t)\\
-    &+\mathcal{J}_0\beta_{k}(P_m-P_{m-1}))z_i(t) +2 z^T_i(t)P(t)Bf(z_i(t-\tau(t)))].
-    \end{split}
-    \end{flalign} 
-    根据假设 \ref{a4-3-1}，有
-    \begin{align*}
-    f^T(z_i(t-\tau(t))) f(z_i(t-\tau(t)))
-    \leq \ z^T_i(t-\tau(t)) L^T_fL_f z_i(t-\tau(t)), 
-    \end{align*}
-    这意味着
-    \begin{align}\label{4-3-16} 
-    \mu_1(t)\sum\limits_{i=1}^N \big[ z^T_i(t-\tau(t))  L^T_fL_f z_i(t-\tau(t)) - f^T(z_i(t-\tau(t)))f(z_i(t-\tau(t)))\big]\geq 0.
-    \end{align}
-    考虑到引理 \ref{l4-3-1} 的条件 $(ii)$，当  
-    $
-    e^{\gamma s}V(t+s,\phi(s))\leq q V (t,\phi(0))
-    $ 时，
- 下式成立：
-    \begin{align}\label{4-3-17} 
-    \mu_2(t)\sum\limits_{i=1}^N \big[qz^T_i(t)P(t)z_i(t )
-    -e^{-\gamma\tau}\varpi(\eta_{ms} )  z^T_i(t-\tau(t))P(t-\tau(t))z_i(t-\tau(t))\big]\geq 0.
-    \end{align} 
-    将 (\ref{4-3-16}) 和 (\ref{4-3-17}) 代入到 (\ref{4-3-15}) 中，可得 
-    \begin{align*}  
-    D^+V(t)-p V(t) \leq\sum\limits_{i=1}^N   \zeta^T_{i}(t)\varOmega (t)\zeta_{i}(t), 
-    \end{align*} 
-    其中 $\zeta_{i}=[z^T_i(t), z^T_i(t-\tau(t)),  f^T(z_i(t-\tau(t)))]^T$。那么，由  (\ref{4-3-14}) 可得 
-    \begin{align}\label{4-3-18} 
-    D^+V(t)\leq p V(t).
-    \end{align} 
-    显然，(\ref{4-3-6})、(\ref{4-3-10})、(\ref{4-3-13}) 和 (\ref{4-3-18}) 满足引理 \ref{4-3-1} 所有的条件，因此 
-    \begin{align*}
-    V(t)\leq  q  V(t_0) e^{-\gamma(t-t_0)},  
-    \end{align*}
-    这意味着对任意的 $\phi\in \mathscr{E}( P(t),1)$，存在 $\check{t}>\hat{t}$， 使得 
-   $
-    V(\check{t})\leq q= V(\hat{t})  
- $，
-    这与 (\ref{4-3-12}) 矛盾，所以 (\ref{4-3-11}) 成立得证。 由此可得
-    \begin{align*}
-    |z(t)|\leq\sqrt{\frac{q\lambda_1 }{\lambda_0\bar{\varpi} } }\|\phi\|_{\tau}e^{-\frac{\gamma}{2} (t-t_0)}\rightarrow 0,\ t \rightarrow +\infty,
-    \end{align*}
-    其中 $\bar{\varpi}= \min\{\lambda_{\min}( \varpi(\eta_{ms}))$，$m\in I[0,\mathcal{J}_0]$，$s\in I[0,1]\}$，$\lambda_0=\min\{\lambda_{\min}(P_m)$，$m\in I[0,\mathcal{J}_0]\}$， $\lambda_1=\max\{\lambda_{\max}(P_m)$，$m\in I[0,\mathcal{J}_0]\}$。  
-   则具有切换拓扑的非线性时滞多智能体系统 (\ref{4-3-1}) 关于脉冲序列 $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$ 可以实现局部领导者--跟随一致性。并且， 水平集 $ \mathscr{E} ( P(t),1)$ 包含在误差系统 (\ref{4-3-4}) 的吸引域内。证毕。 
-\end{proof}
- 
-特别的，当 $\mathscr{D}^-_{l}=D^-_l$，$l\in I[1,2^n]$。 基于引理 \ref{l4-2-2}，存在矩阵 $\tilde{H}\in\mathbb{R}^{n\times n}$，如果 $|(\mathcal{H}^{\sigma(t_k)}\otimes  \tilde{H})z(t^-_k)|_{\infty} \leq 1$，那么
-\begin{flalign}\label{4-3-19} 
-{\rm sat}[(\mathcal{H}^{\sigma(t_k)} \otimes F) z(t^-_k)]
-= \sum\limits_{l=1}^{2^n}c _{l}(t_k) 
-\big[\mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+D^-_{l}\tilde{H})\big]z(t^-_k),\ \sigma(t_k)\in \mathfrak{H}. 
-\end{flalign} 
-
-基于定理 \ref{t4-3-1} 和 (\ref{4-3-19})，有以下推论。 
-\begin{corollary}\label{c4-3-1}
-    在定理 \ref{t4-3-1} 相同的条件下， 具有切换拓扑的非线性时滞多智能体系统 (\ref{4-3-1}) 关于脉冲序列 $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$ 可以实现局部领导者--跟随一致性，如果 (\ref{4-3-9})、(\ref{4-3-10}) 和下列的不等式成立
-    \begin{align}\label{4-3-20} 
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes \tilde{H})_\varsigma\\
-    \star&-I_N\otimes\check{\eta}_{ms} P_{m-r}   \\
-    \end{array}
-    \right]\leq 0,\ \varsigma\in I[1,Nn ],
-    \end{align} 
-    \begin{align} \label{4-3-21} 
-    &\left[ \begin{array}{cc}
-    -\frac{\tilde{\eta}_{J_0}}{q}I_N\otimes P_{\mathcal{J}_0}& \tilde{\Psi}_l\\
-    \star&-I_N\otimes P_0
-    \end{array}
-    \right]\leq0,\ l\in I[1,2^n],
-    \end{align}
-    其中
-    $
-    \tilde{\Psi}_l=[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+D_{l}^-\tilde{H})\big]^T(I_N\otimes P_0) 
-    $。并且， 水平集 $ \mathscr{E} ( P(t),1)$ 包含在误差系统 (\ref{4-3-4}) 的吸引域内。
-\end{corollary}  
-
-如果令 $\mathcal{J}_0=1$ 或者 $P_0=P_1=\cdots=P_{\mathcal{J}_0},$ 则依赖于脉冲时刻的复合型 Lyapunov 函数 (\ref{4-3-6}) 将退化为一般的二次 Lyapunov 函数 
-$
-V(t)=\sum\limits_{i=1}^{N}  z^T_i(t)P z_i(t)$，其中 $ P\in\mathbb{R}^{n\times n}>0 
-$， 那么定理 \ref{t4-3-1} 将退化为以下结果。
-\begin{theorem}\label{t4-3-2}
-    在假设 \ref{a4-3-1} 和 \ref{a4-3-2} 成立的条件下, 具有切换拓扑的非线性时滞多智能体系统 (\ref{4-3-1}) 关于脉冲序列 $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$ 可以实现局部领导者--跟随一致性，如果存在 $n\times n$ 矩阵 $P>0$， 和正标量 $p$，$q>1$，$\gamma$，$\mu_1$，$\mu_2$ 使得 (\ref{4-3-10}) 和下列的不等式成立 
-    \begin{align}\label{4-3-22} 
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes H)_\varsigma\\
-    \star&-I_N\otimes P  \\
-    \end{array}
-    \right]\leq  0,\ \varsigma\in I[1,N\bar{n} ],
-    \end{align} 
-    \begin{align} \label{4-3-23} 
-    &\left[ \begin{array}{cc}
-    -\frac{1}{q}I_N\otimes P& \varXi_{l}\\
-    \star&-I_N\otimes P
-    \end{array}
-    \right]\leq0,\ l\in I[1,2^n],
-    \end{align}
-    \begin{align}\label{4-3-24} 
-    \left[ \begin{array}{ccc}
-    O_{11} &0&  P B  \\
-    \star&O_{22 } &0 \\
-    \star&\star&-\mu_{1 }I_n \\
-    \end{array}
-    \right]< 0,
-    \end{align}   
-    其中
-   $
-    \varXi_{l}=  [I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]^T(I_N\otimes P)$，$  
-    O_{11 }= 
-     P A+A^TP +(\mu_{2 } q-p)P$，$ 
-    O_{22 }=  \mu_{1 }L^T_f L_f-\mu_{2 }
-    e^{-\gamma\tau} P       
-    $。并且，
-   水平集 $ \mathscr{E} ( P,1)$ 包含在误差系统 (\ref{4-3-4}) 的吸引域内。
-\end{theorem} 
-
-基于定理 \ref{t4-3-2}，如果 $\mathscr{D}^-_l=D^-_l$，$l\in I[1,2^n]$，即 (\ref{4-3-19}) 成立，有以下结果。 
-\begin{corollary}\label{c4-3-2}
-    在定理 \ref{t4-3-2} 相同的条件下，具有切换拓扑的非线性时滞多智能体系统 (\ref{4-3-1}) 关于脉冲序列 $\mathscr{F}_{[\vartheta_0,\vartheta_1]}$ 可以实现局部领导者--跟随一致性，如果 (\ref{4-3-10})、(\ref{4-3-24}) 和下列不等式成立 
-    \begin{align}\label{4-3-25} 
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes \tilde{H})_\varsigma \\
-    \star&-I_N\otimes P  \\
-    \end{array}
-    \right]\leq 0,\ \varsigma\in I[1,Nn ],
-    \end{align} 
-    \begin{align} \label{4-3-26} 
-    &\left[ \begin{array}{cc}
-    -\frac{1}{q}I_N\otimes P& \tilde{\varXi}_{l} \\
-    \star&-I_N\otimes P
-    \end{array}
-    \right]\leq0,\ l\in I[1,2^n],
-    \end{align}
-    其中 
-    $
-    \tilde{\varXi}_{l}=[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+D_{l}^-\tilde{H})\big]^T(I_N\otimes P)  
-    $。并且，
-    水平集 $ \mathscr{E} ( P,1)$ 包含在误差系统 (\ref{4-3-4}) 的吸引域内。
-\end{corollary} 
-\subsection{优化问题}
- 本小节选取形状参考集 $\mathscr{X}_R=co\{\chi_1,\chi_2,\cdots,\chi_\iota\}$，$\chi_i\in\mathbb{R }^{Nn}$，$i\in I[1,\iota]$ 来估计椭球 $\mathscr{E}( P(t),1) (\text{或}\ \mathscr{E}( P ,1))$ 的大小。为了估计出最大的吸引域，构造如下以局部一致性判据为约束的优化问题。\\ 
-\textbf{\textit{ 定理 \ref{t4-3-1} 中最大的吸引域估计  }}
-\begin{align}\label{4-3-27}
-&\quad\max\quad  \delta\\
-&{\rm s.t.} 
-\begin{cases}  
-\quad\delta \mathscr{X}_R\subseteq \mathscr{E}( P(t),1), \\
-\quad(\ref{4-3-7}), \\
-\quad(\ref{4-3-8}), \\
-\quad(\ref{4-3-9}), \\
-\quad(\ref{4-3-10}).\nonumber
-\end{cases}
-\end{align}
-注意到上述优化问题中包含集包含约束条件  $\delta \mathscr{X}_R\subseteq \mathscr{E}( P(t),1)$，为计算方便，可转化为如下可数值计算的矩阵不等式条件： 
-\begin{align} \label{4-3-28}
-\quad\delta^2\chi^T_\iota(I_N\otimes \check{\eta}_{ms} P_{m-r}) \chi_\iota\leq 1,\ \iota\in I[1,\kappa].\end{align}
-由 引理 \ref{l1-3-6} 可知， (\ref{4-3-28}) 等价于  
-\begin{align*}
-\left[ \begin{array}{cc}-\frac{1}{\delta^2} &\check{\eta}_{ms}  \chi^T_\iota  \vspace{0.2cm}\\
-\star &-\check{\eta}_{ms} (I_N\otimes P_{m-r})^{-1}\\ 
-\end{array}\right]\leq0,\ \iota\in I[1,\kappa].
-\end{align*}
-此外，将 (\ref{4-3-7}) 式左右两边同时乘以矩阵 ${\rm diag}\{1,(I_N\otimes P_{m-r})^{-1}\}$，可得
-\begin{align*} 
-\left[ \begin{array}{cc}
--\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes H)_\varsigma (I_N\otimes P_{m-r})^{-1}\vspace{0.2cm}\\
-\star&-\check{\eta}_{ms}(I_N\otimes P_{m-r} )^{-1} \\
-\end{array}
-\right]< 0,\ \varsigma\in I[1,N\bar{n}].
-\end{align*}
-另外，将 (\ref{4-3-8}) 式左右两边同时乘以矩阵 ${\rm diag}\{(I_N\otimes P_{\mathcal{J}_0})^{-1},(I_N\otimes P_0)^{-1}\}$，可得
-\begin{align*}  
-&\left[ \begin{array}{cc}
--\frac{\tilde{\eta}_{J_0}}{q}(I_N\otimes P_{\mathcal{J}_0})^{-1}& \grave{\Psi}_{l}\vspace{0.2cm}\\
-\star&-(I_N\otimes P_0)^{-1}
-\end{array}
-\right]\leq0,
-\end{align*}
-其中
-$\grave{\Psi}_{l}=  (I_N\otimes P_{\mathcal{J}_0})^{-1}[I_{Nn}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}F+\mathscr{D}_{l}^-H)\big]^T$。
-
-为了计算方便，令 $P_{m-1}=\varepsilon_{m}P_m$，再由 引理 \ref{l1-3-6} ， (\ref{4-3-9}) 等价于
-\begin{align}\label{4-3-29} 
-\acute{\varOmega}_{rg\hslash s}= \left[ \begin{array}{cccc }
-\acute{\varOmega}_{11rs\hslash} &0& \acute{\varOmega}_{13rs}& 0\vspace{0.2cm}\\
-\star&\acute{\varOmega}_{22gs\hslash} &0& \acute{\varOmega}_{24rgs\hslash} \vspace{0.2cm}\\
-\star&\star&\acute{\varOmega}_{33rgs\hslash}&0 \vspace{0.2cm}\\
-\star&\star&\star&  \acute{\varOmega}_{44rgs\hslash} \\
-\end{array}
-\right]< 0,
-\end{align}  
-其中
-$
-\acute{\varOmega}_{11rs\hslash}= 
- \check{\eta}_{ms}[\frac{\mathcal{J}_0 \ln \eta_m}{\vartheta_{\hslash}} P_{m-r}+P_{m-r}A+A^TP_{m-r} 
-+\frac{\mathcal{J}_0\mathfrak{M}_{mr}}{\vartheta_{\hslash}}P_{m-r}-p P_{m-r}]
-+\mu_{2\hslash} qP_{m-r}$，$ 
-\acute{\varOmega}_{13rs}=  \check{\eta}_{ms}P_{m-r}B$，$ 
-\acute{\varOmega}_{22 gs\hslash }= -\mu_{2\hslash}
-e^{-\gamma\tau}\varpi(\eta_{ms})P_{m-g}$，$  
-\acute{\varOmega}_{24rgs\hslash}=  \mu_{1rgs\hslash}L^T_f$，$ 
-\acute{\varOmega}_{33rgs\hslash}=  \varOmega_{44rgs\hslash}= -\mu_{1rgs\hslash}I_n$，$
-\mathfrak{M}_{mr} = \left\{ \begin{aligned}
-&1/\varepsilon_{m}-1,\ r=1,\\
-&1-\varepsilon_{m},\ r=0.\end{aligned}\right.
-$
-
-此外，将 (\ref{4-3-29}) 式左右两边乘以 ${\rm diag}\{P_{mr}^{-1}, P_{mg}^{-1}, I_n,I_n\}$，可得 
-\begin{align*} 
-\grave{\varOmega}_{rg\hslash s}= \left[ \begin{array}{cccc }
-\grave{\varOmega}_{11rs\hslash} &0& \grave{\varOmega}_{13s}& 0\\
-\star&\grave{\varOmega}_{22gs\hslash} &0 &\grave{\varOmega}_{24rgs\hslash} \\
-\star&\star&\grave{\varOmega}_{33rgs\hslash}&0  \\
-\star&\star&  \star&\grave{\varOmega}_{44rgs\hslash} \\
-\end{array}
-\right]< 0,
-\end{align*} 
-其中
-$
-\grave{\varOmega}_{11rs\hslash}= 
- \check{\eta}_{ms}[\frac{\mathcal{J}_0 \ln \eta_m}{\vartheta_{\hslash}} P^{-1}_{m-r}+AP^{-1}_{m-r}+P^{-1}_{m-r}A^T 
-+\frac{\mathcal{J}_0\mathfrak{M}_{mr}}{\vartheta_{\hslash}}P^{-1}_{m-r}-pP^{-1}_{m-r}]
-+\mu_{2\hslash} qP^{-1}_{m-r}$，$
-\grave{\varOmega}_{13s}=  \check{\eta}_{ms} B$，$ 
-\grave{\varOmega}_{22 gs\hslash }= -\mu_{2\hslash}
-e^{-\gamma\tau}\varpi(\eta_{ms})P^{-1}_{m-g}$，$ 
-\varOmega_{24rgs\hslash}=  \mu_{1rs\hslash}P^{-1}_{m-g}L^T_f$，$
-\grave{\varOmega}_{33rgs\hslash}=  \grave{\varOmega}_{44rgs\hslash}= -\mu_{1rgs\hslash}I_n 
-$。
-
-不难发现约束条件 (\ref{4-3-8}) 中存在两个未知矩阵 $P_0$ 和 $F$ 的乘积的形式。因此，优化问题 (\ref{4-3-27}) 是约束条件为 BMIs 形式的优化问题。所以，需要一些操作将优化问题 (\ref{4-3-27}) 转化为基于 LMIs 约束条件的优化问题。 
-
-
-令 $\varrho=\frac{1}{\delta^2}$，$Q_j=P^{-1}_j$，$M_j=FQ_j$，$U_j=HQ_j$，$j\in I[0,\mathcal{J }_0]$， 那么优化问题 (\ref{4-3-27}) 可以等价于下列 LMIs 形式的优化问题：
-
- \begin{subequations}  $\textbf{Pr1:}\quad \quad \quad \min\quad  \varrho_{_{\text{定理}~\ref{t4-3-1}}} $  
-    \begin{numcases}{\rm s.t.}     
-    \left[ \begin{array}{cc}-\varrho & \check{\eta}_{ms} \chi^T_\iota  \\
-    \star &- \check{\eta}_{ms}  I_N\otimes  Q_{m-r}\\ 
-    \end{array}\right]\leq0,\  \iota\in I[1,\kappa],\label{4-3-30a}\\
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes U_{m-r})_\varsigma \\
-    \star&-\check{\eta}_{ms} I_N\otimes  Q_{m-r} \\
-    \end{array}
-    \right]\leq  0,\ \varsigma\in I[1,N\bar{n}],\nonumber \\
-    \left[ \begin{array}{cc}
-    -\frac{\tilde{\eta}_{J_0}}{q}I_N\otimes Q_{\mathcal{J}_0} & \varPi_{l}\\
-    \star&-I_N\otimes Q_0
-    \end{array}
-    \right]\leq0,\ l\in I[1,2^n],\nonumber \\
-    \left[ \begin{array}{cccc}
-    \varLambda_{11rs\hslash} &0& \varLambda_{13s}& 0\\
-    \star&\varLambda_{22gs \hslash} &0& \varLambda_{24rgs\hslash} \\
-    \star&\star&\varLambda_{33rgs\hslash}&0 \\ 
-    \star&\star&  \star&\varLambda_{44rgs\hslash} \\
-    \end{array}
-    \right]< 0,\label{4-3-30d}\\
-    \quad(\ref{4-3-10}),\nonumber
-    \end{numcases}   
-\end{subequations} 
-其中
-$
-\varPi_{l}= \big[I_N\otimes Q_{\mathcal{J}_0}- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}M_{\mathcal{J}_0}+\mathscr{D}_{l}^-U_{\mathcal{J}_0})\big]^T$，$  
-\varLambda_{11rs\hslash}=  
-\check{\eta}_{ms}[\frac{\mathcal{J}_0 \ln \eta_m}{\vartheta_{\hslash}} Q_{m-r}+AQ_{m-r}+Q_{m-r}A^T 
-+\frac{\mathcal{J}_0\mathfrak{M}_{mr}}{\vartheta_{\hslash}}Q_{m-r}-pQ_{m-r}]
-+\mu_{2\hslash} qQ_{m-r}$，$ 
-\varLambda_{13s}= \check{\eta}_{ms} B$，$ 
-\varLambda_{22 gs \hslash }= -\mu_{2\hslash}
-e^{-\gamma\tau}\varpi(\eta_{ms})Q_{m-g}$，$
-\varLambda_{24rgs\hslash}=  \mu_{1rs\hslash}Q_{m-g}L^T_f$，$
-\varLambda_{33rgs\hslash}= \varLambda_{44rgs\hslash}= -\mu_{1rgs\hslash}I_n
- $。
- 
-\noindent \textbf{\textit{推论 \ref{c4-3-1}  中的最大吸引域估计}}  
-
- $\textbf{Pr2:}\quad \quad \quad \min\quad  \varrho_{_{\text{推论}~\ref{c4-3-1}}}$
-\begin{numcases}{\rm s.t.} 
-\quad(\ref{4-3-30a})\nonumber\\
-\left[ \begin{array}{cc}
--\frac{1}{q}&  (\mathcal{H}^{\sigma(t_k)}\otimes \tilde{U}_{m-r})_\varsigma \\
-\star&- \check{\eta}_{ms}  I_N\otimes  Q_{m-r} \\
-\end{array}
-\right]\leq  0,\ \varsigma\in I[1,Nn],\nonumber\\
-\left[ \begin{array}{cc}
--\frac{\tilde{\eta}_{J_0}}{q}I_N\otimes Q_{\mathcal{J}_0} & \tilde{\varPi}_{l}\\
-\star&-I_N\otimes Q_0
-\end{array}
-\right]\leq0,\ l\in I[1,2^n],\nonumber\\
-\quad(\ref{4-3-30d}),\nonumber\\
-\quad(\ref{4-3-10}),\nonumber
-\end{numcases}  
-其中
-$\tilde{U}_{j}=\tilde{H}Q_{j}$，$I[0,\mathcal{J}_0]$，$ \tilde{\varPi}_{l}= \big[I_N\otimes Q_{\mathcal{J}_0} - \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}M_{\mathcal{J}_0}+D_{l}^-\tilde{U}_{\mathcal{J}_0})\big]^T$。 
- 
-\noindent\textbf{\textit{定理 \ref{t4-3-2} 中的最大吸引域估计 }}
-
- \begin{subequations} $\textbf{Pr3:}\quad \quad \quad \min\quad  \varrho_{_{\text{定理}~\ref{t4-3-2}}} $  
-    \begin{numcases}{\rm s.t.}    
-    \left[ \begin{array}{cc}-\varrho & \chi^T_\iota  \\
-    \star &- I_N\otimes Q    \\ 
-    \end{array}\right]\leq0,\ \iota\in I[1,\kappa],\label{4-3-31a}\\
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}&   (\mathcal{H}^{\sigma(t_k)} \otimes U )_\varsigma \\
-    \star&- I_N\otimes Q   \\
-    \end{array}
-    \right]\leq 0,\ \varsigma\in I[1,N\bar{n}],\nonumber\\
-    \left[ \begin{array}{cc}
-    -\frac{1}{q}I_N\otimes Q  & \varGamma_{l}\\
-    \star&- I_N\otimes Q  
-    \end{array}
-    \right]\leq0,\ l\in I[1,2^n],\nonumber\\
-    \left[ \begin{array}{cccc}
-    \varSigma_{11} &0& B&0 \\
-    \star& -\mu_2e^{-\gamma \tau}Q &0&\mu_1QL^{T}_f \\
-    \star&\star& -\mu_1 I_n&0\\
-    \star&\star&\star& -\mu_1 I_n
-    \end{array}
-    \right]< 0,\label{4-3-31d}\\
-    \quad(\ref{4-3-10}),\nonumber
-    \end{numcases} 
-\end{subequations} 
-其中 $ Q=P^{-1}$，$M=FQ$，$U=HQ$，$
-\varGamma_{l}= \big[I_N\otimes Q- \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}M+\mathscr{D}_{l}^-U)\big]^T$，$ 
-\varSigma_{11}=AQ+QA^T +(\mu_2 q-p)Q 
-$。\\ 
-  
-\noindent\textbf{\textit{ 推论 \ref{c4-3-2} 中最大吸引域估计}} 
-
-$\textbf{Pr4:}\quad \quad \quad \min\quad  \varrho_{_{\text{推论}~\ref{c4-3-2}}}$
-\begin{numcases}{\rm s.t.} 
-\quad(\ref{4-3-31a}),\nonumber\\
-\left[ \begin{array}{cc}
--\frac{1}{q}&   (\mathcal{H}^{\sigma(t_k)} \otimes \tilde{U })_\varsigma \\
-\star&-(I_N\otimes Q )  \\
-\end{array}
-\right]\leq  0,\ \varsigma\in I[1,Nn],\nonumber\\
-\left[ \begin{array}{cc}
--\frac{1}{q}I_N\otimes Q  & \tilde{\varGamma}_{l}\\
-\star&-I_N\otimes Q  
-\end{array}
-\right]\leq0,\ l\in I[1,2^n],\nonumber\\
-\quad(\ref{4-3-31d}),\nonumber\\
-\quad(\ref{4-3-10}),\nonumber
-\end{numcases} 
-其中
-$\tilde{U}=\tilde{H}Q$，$
-\tilde{\varGamma}_{l}= \big[I_N\otimes Q - \mathcal{H}^{\sigma(t_k)} \otimes (D_{l}M+D_{l}^-\tilde{U})\big]^T
-$。 
-\begin{remark}
-通过 Schur 引理和矩阵的合同变换，将基于 BMIs 的约束条件转化为基于 LMIs 的约束条件，通过 Matlab 中的 Yalmip 工具箱可以轻松求解优化问题 \textbf{Pr1}--\textbf{4}。其中 \textbf{Pr1} 包含最多的决策变量，这导致保守性最小并估计出最大的吸引域。在求解过程中，计算复杂度越高，保守性越低，因此应在结果的保守性和计算复杂度之间做好权衡。当非线性时滞多智能体系统 (\ref{4-3-1}) 具有低维状态和控制输入时，\textbf{Pr1} 可以估计所有优化问题中的最大吸引域。然而，如果非线性时滞多智能体系统 (\ref{4-3-1}) 具有高维状态和控制输入，则应选择 \textbf{Pr4} 来估计吸引域，以避免计算量过大。 
-\end{remark}
-\subsection{数值实例} 
-为了证明所提出结果的有效性和优越性，考虑了由一个领导者和四个跟随者组成的二维非线性时滞多智能体系统 (\ref{4-3-1})，其系统参数为 
-\begin{align*} 
-A=\left[ \begin{array}{cc}
-0& 2\vspace{0.2cm}\\
--3&0.4 
-\end{array}
-\right],~~
-B=\left[ \begin{array}{cc}
-1.4&3\vspace{0.2cm}\\
-0&-0.7
-\end{array}\right],
-\end{align*}
-$f(x_i(t-\tau(t)))=\tanh(x_i(t-\tau(t)) )$，$i=I [0,4]$，$\tau(t)=0.8\sin(t)$，切换拓扑如图 \ref{f4-8} 所示。容易计算出 $L_f=0.5I_2$ 且 $\tau=0.8$，显然，假设 \ref{a4-3-1} 和 \ref{a4-3-2} 成立。一方面，当没有任何控制输入时，非线性时滞多智能体不能实现局部的领导者--跟随一致性，即 当 $u_i(t)=0$，$i=\in I [1,4]$ 时，误差系统 (\ref{4-3-4}) 是不稳定的，如图 \ref{f4-9} 所示。
-\begin{figure}[!tp]
-    \centering
-    \includegraphics[scale=0.8]{./ch4/fig4-8.pdf}
-    \caption{ 非线性时滞多智能体系统 (\ref{4-3-1}) 的切换拓扑   }
-    \label{f4-8}
-\end{figure}   
-\begin{figure}[!bp]
-    \centering
-    \includegraphics[scale=0.5]{./ch4/fig4-9-1.pdf}
-    \includegraphics[scale=0.5]{./ch4/fig4-9-2.pdf}  
-    \caption{无脉冲控制的误差系统 (\ref{4-3-4}) 的状态轨迹 }
-    \label{f4-9}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=0.26]{./ch4/fig4_4.pdf}
+\caption{变体（4-6）与本章所提出框架的消融实验性能比较。} \label{fig4_5}
+\end{center}
 \end{figure}
 
-另一方面，取 $\vartheta_0=0.01$，$ 
-\vartheta_1=0.03$，$\eta_1=0.89$，$
-\eta_2=0.56$，$\mu_{1000}=0.9$，$
-\mu_{1001}=1.11$，$  
-\mu_{1010}=1.25$，$
-\mu_{1011}=1.32$，$ 
-\mu_{1100}=1.52$，$ 
-\mu_{1101}=1.46$，$ 
-\mu_{1110}=1.76$，$ 
-\mu_{1111}=1.89$，$ 
-\mu_{20}=0.35$，$ 
-\mu_{21}=0.45$，$\gamma=0.5$，$
-q=1.1$，$ 
-p=2.8$，$\varepsilon_1=5/4$ 和 $
-\varepsilon_2=3/2$。 因为 $\frac{\ln q}{p}=0.034> \vartheta_1=0.03$，所以条件 (\ref{4-3-10}) 是成立的。选取形状参考 $\mathscr{X}_R=\{\chi_1\}$，其中 $\chi_1=[0,1,0,1,0,1,0,1]^T$， 利用 Yalmip 求解优化问题 \textbf{Pr1}，得到
-\begin{align*} 
-\delta^{\text{定理}\ref{t4-3-1}}_{\max}&=0.2565\\
-P^{\text{定理}\ref{t4-3-1}}_0 &=\left[ \begin{array}{cc}
-1.8754&0\vspace{0.2cm}\\
-0&1.8754
-\end{array}
-\right],~~
-P^{\text{定理}\ref{t4-3-1}}_1=\left[ \begin{array}{cc}
-1.8899&0.0002\vspace{0.2cm}\\
-0.0002& 1.8901
-\end{array}\right],\\
-P^{\text{定理}\ref{t4-3-1}}_2&=\left[ \begin{array}{cc}
-2.2067& 0.0011\vspace{0.2cm}\\
-0.0011& 2.2009
-\end{array}\right],~~
-F^{\text{定理}\ref{t4-3-1}} =\left[ \begin{array}{cc}
-0.3060& 0.0001\vspace{0.2cm}\\
-0.0001&0.3049
-\end{array}\right],\\
-H^{\text{定理}\ref{t4-3-1}}&=\left[ \begin{array}{cc}
-0.2779& 0.0001\vspace{0.2cm}\\
-0   &  0\vspace{0.2cm}\\
-0.2779 &   0.0001\vspace{0.2cm}\\
-0.0001 &   0.2915
-\end{array}\right].
-\end{align*}
-因此，在具有脉冲序列 $\mathscr{F}_{[0.01,0.03]}$ 的分布式饱和脉冲控制 (\ref{4-3-2}) 下，初值满足 $\phi\in\mathscr{E}( P(t),1)$ 的非线性时滞多智能体系统 (\ref{4-3-1}) 可以实现局部领导者--跟随一致性，即误差系统 (\ref{4-3-4}) 是局部指数稳定的，如图 \ref{f4-10} 所示。 并且， 水平集  $\mathscr{E}( P(t),1)$ 是所要估计的吸引域。不同于经典的收缩不变集方法，误差系统 (\ref{4-3-4}) 的从集合 $\mathscr{E}( P(t),1)$ 内出发的状态轨迹 可以暂时离开集合 $\mathscr{E}( P(t) ,1)$ 但永远不会离开集合 $\mathscr{E}( P(t),1.1)$，也就是说集合  $\mathscr{E}( P(t) ,1)$ 将不再是不变集。 在其他条件相同的情况下，如果初值 $\phi\in\mathscr{E}( P(t),1.1)\backslash\mathscr{E}( P(t),1)$， 非线性时滞多智能体系统 (\ref{4-3-1}) 在具有脉冲序列 $\mathscr{F}_{[0.01,0.03]}$ 的分布式饱和脉冲控制 (\ref{4-3-2}) 下无法实现局部领导者--跟随一致性，即误差系统 (\ref{4-3-4}) 是不稳定的，如图 \ref{f4-11} 所示，这意味着集合 $\mathscr{E}( P(t),1.1)$ 也不是不变集。
+此外，在低频部分的基于混合注意力的预测模型中，混合注意力层由两部分组成：自我注意力层和时间注意力层。在这里，我们将进行进一步的实验和分析，以验证这两个部分的有效性。
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{./ch4/fig4-10-1.pdf}
-    \includegraphics[scale=0.5]{./ch4/fig4-10-2.pdf} 
-    \caption{具有脉冲序列 $\mathscr{F}_{[0.01,0.03]}$ 的分布式饱和脉冲控制 (\ref{4-3-2}) 下始于集合 $\phi\in \mathscr{E}( P(t),1)$ 的误差系统 (\ref{4-3-4}) 的状态轨迹}
-    \label{f4-10}
-\end{figure} 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5  ]{./ch4/fig4-11-1.pdf}
-    \includegraphics[scale=0.5 ]{./ch4/fig4-11-2.pdf} 
-    \caption{具有脉冲序列 $\mathscr{F}_{[0.01,0.03]}$ 的分布式饱和脉冲控制 (\ref{4-3-2}) 下始于集合 $\phi\in \mathscr{E}( P(t),1.1) \backslash\mathscr{E}( P(t),1)$ 的误差系统 (\ref{4-3-4}) 的状态轨迹 }
-    \label{f4-11}
-\end{figure}  
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{./ch4/fig4-12-1.pdf}
-    \includegraphics[scale=0.5]{./ch4/fig4-12-2.pdf} 
-    \caption{具有脉冲序列 $\mathscr{F}_{[0.06,0.07]}$ 的分布式饱和脉冲控制 (\ref{4-3-2}) 下始于集合 $\phi\in \mathscr{E}( P(t),1)$ 的误差系统 (\ref{4-3-4}) 的状态轨迹}
-    \label{f4-12}
-\end{figure} 
-另一方面，当初值 $\phi\in \mathscr{E}( P(t),1)$ 但 $\vartheta_1=0.075>\frac{\ln q}{p}=0.034$， 即定理 \ref{t4-3-1} 中的条件 (\ref{4-3-10}) 不满足，非线性时滞多智能体系统 (\ref{4-3-1}) 无法实现局部领导者--跟随一致性，即误差系统 (\ref{4-3-4}) 是不稳定的，如图 \ref{f4-12} 所示。
+自我注意层旨在增强模型捕捉长距离依赖关系的能力。如上文不同滑动窗口大小的实验结果所示，带有注意力机制的模型可以获得每个隐藏状态之间的全局相关性。注意分值的计算是自注意机制的核心步骤，为了进一步验证自注意层的有效性，我们对查询向量 $q$ 和关键向量 $k$ 之间的注意分值的不同计算方法的模型性能进行了研究。表\ref{table7}总结了不同技术水平的注意力向量的实验结果，包括余弦相似度（cosine similarity）\cite{AGraves2014}、MLP\cite{DBahdanau2014}、矩阵串联（matrix concatenation）和带权重的点积（dot product with weights），本文提出的模型采用了带权重的点积（dot product）。表\ref{table7}显示，本文采用的注意力向量以较少的计算量获得了最低的平均 MAE 和 RMSE。
 
-为了比较采用不同的饱和脉冲约束处理方法和选择不同类型的 Lyapunov 函数估计出的吸引域大小，选择相同的参数   $\eta_1=
-\eta_2=1$，$\mu_{1rs\hslash}= 1$，$\mu_{2\hslash}= 0.5$，这里 $r$、$s$、$\hslash\in I[0,1]$，$q=1.04$，$
-p=2.8$，$\vartheta_1=0.01$，$
-\vartheta_1=0.013$， 并分别求解优化问题 \textbf{Pr1}--\textbf{4}，可行解如下： 
-\begin{align*} 
-\delta^{Theorem \ref{t4-3-1}}_{\max}&=0.3096,\\ 
-P^{Theorem \ref{t4-3-1}}_0&=\left[ \begin{array}{cc}
-0.7479&  0.0000\\
-0.0000&0.7478
-\end{array}
-\right],~
-P^{Theorem \ref{t4-3-1}}_1=\left[ \begin{array}{cc}
-0.7573& 0.0000\\
-0.0000& 0.7573
-\end{array}\right],\\  
-P^{Theorem \ref{t4-3-1}}_2&=\left[ \begin{array}{cc}
-0.7788 &0.0011\\
-0.0011& 0.7787
-\end{array}\right],\\
-\delta^{Corollary \ref{c4-3-1}}_{\max}&=0.2987,\\ 
-P^{Corollary \ref{c4-3-1}}_0&=\left[ \begin{array}{cc}
-0.7934& 0.0000\\
-0.0000& 0.7997
-\end{array}
-\right],~
-P^{Corollary \ref{c4-3-1}}_1=\left[ \begin{array}{cc}
-0.8139&0.0011\\
-0.0011 &0.8109
-\end{array}\right],\\ 
-P^{Corollary \ref{c4-3-1}}_2&=\left[ \begin{array}{cc}
-0.8491& 0.0000\\
-0.0000& 0.8479
-\end{array}\right],\\
-\delta^{Theorem \ref{t4-3-2}}_{\max}&=0.1758,\\  
-P^{Theorem \ref{t4-3-2}}&=\left[ \begin{array}{cc}
-1.2049&-0.0236\\
--0.0236&0.9471
-\end{array}\right],\\ \delta^{Corollary \ref{c4-3-2}}_{\max}&=0.1413,\\  
-P^{Corollary \ref{c4-3-2}}&=\left[ \begin{array}{cc}
-1.2610&-0.0217\\
--0.0217&1.0468
-\end{array}\right]. 
-\end{align*}
-图 \ref{f4-13} 描绘了相应的水平集，从外往里依次对应着基于依赖于脉冲时刻的复合型 Lyapunov 函数的定理 \ref{t4-3-1}、推论 \ref{c4-3-1} 和基于二次 Lyapunov 函数的定理 \ref{t4-3-2}、推论 \ref{c4-3-2}。显然，定理 \ref{t4-3-1} 得到了最大的吸引域估计。不难发现，当选择相同类型的 Lyapunov 函数时， 采用最新的凸包表示法处理饱和脉冲项可以比传统凸包表示法 \cite{2014Global499,2017Global1270, 2018StabilityLi,2020Performance734,2013Adaptive1545,2018Event4391,2020Consensus194,2020Adaptive3013960,2019dynamic1699,li2020impulsive,shen2019estimation,HE2021126452,ouyang2020impulsive} 获得更大的吸引域估计。另一方面，无论选择哪种凸包表示法， 利用依赖于脉冲时刻的复合型 Lyapunov 函数估计出的吸引域都大于利用二次 Lyapunov 函数估计出吸引域，这表明在估计吸引域方面，依赖于脉冲时刻的复合型 Lyapunov 函数一定优于二次 Lyapunov 函数 \cite{2013Analysis871,2014Global499,2017Global1270,2020Performance734,2013Adaptive1545,2018Event4391,2020Consensus194,2020Adaptive3013960}。  
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75 ]{./ch4/fig4-13.pdf}
-    \caption{ 基于不同方法的吸引域估计}
-    \label{f4-13}
-\end{figure} 
+最后，为了更好地理解时态注意层的有效性，我们在 STR1 路面数据集的实验中通过可视化图形显示对时态注意权重向量进行了分析。时间注意力向量的热图如图\ref{fig4_6}所示，热图中的每个网格代表注意力值，颜色越深，表示注意力值越高。注意力向量为 $\alpha \in \mathbb{R}^{l}$，其中 $l$ 等于前 LSTM 层生成的隐藏状态的维度，例如本实验中为 $l=24$。注意向量的值是每一行元素的相关性度量。参数越接近 0，相应位置特征对预测的贡献就越小。以在 STR1 数据上训练的时间模式注意力值为例，我们选取三个最高值，并追溯到隐藏状态 $h_{t} \in \mathbb{R}^{l}$ 在时间步长 $t$ 的相应位置上，滑动窗口大小为 5。这三个值对应的隐藏状态行元素分别为$[$ 0.1129, -0.4297, -0.1249, 0.2026, 0.04882$]$、$[$0.1125, -0.4264, -0.1050, 0.2278, 0.0524$]$和$[$0.1180, -0.4804, -0.1140, 0.2154, 0.0553$]$。显然，这三个行元素的分布是相似的。也就是说，这些位置上隐藏状态的行元素在与下一个隐藏状态 $h_{t}$ 连接时会做出更多贡献。
+
+\begin{table}[h]
+\centering
+\caption{\label{table7}采用不同注意力权重计算方法的自我注意力层的性能}
+\scalebox{0.92}{
+\begin{tabular}{c c c c}
+ \hline
+  注意力机制 &  对应公式 & MAE & RMSE \\
+ \hline
+ dot product& $\alpha = exp(\frac{q \cdot k^{T}}{\sqrt{d_{k}}}) \// \sum^{T}_{\tau = 0} exp(\frac{Q_{\tau} \cdot K_{t}^{T}}{\sqrt{d_{k}}})$ & \textbf{0.55} & \textbf{0.81} \\
+ \hline
+  cosine similarity & $\alpha = \frac{q \cdot k^{T}}{\left \|q\right\| \cdot \left \|k\right\|}$ & 0.64 & 1.23 \\
+ \hline
+  concatenation & $\alpha = W[q;k]$ & 0.73 & 1.47 \\
+ \hline
+  MLP & $\alpha= \delta(W_{q}\cdot q + W_{k}\cdot k)$ & 0.57 & 0.85 \\
+ \hline
+ \end{tabular}}
+\end{table}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.25]{./ch4/fig4_6.pdf}
+\caption{时间注意力向量 $\alpha \in \mathbb{R}^{24 \times l}$ 和 5 个滑动窗口中的隐藏状态 $h \in \mathbb{R}^{5 \times 24}$ 可视化。前3个注意力值分别为 0.6396、0.6809 和 0.6421。} \label{fig4_6}
+\end{center}
+\end{figure}
+
+
 \section{小结}
 
 本章分析了分布式饱和脉冲控制下时滞复杂网络的局部动力学行为。首先，利用反证法、脉冲系统的比较原理和平均脉冲区间的方法研究了分布式饱和脉冲控制下具有耦合时滞的鲁里叶网络的局部指数同步问题，并给出了不依赖于时滞的基于 BMIs 的充分性判据。为了降低保守性，选取最新的具有更多松弛变量的改进凸包表示法来处理分布式饱和的脉冲项，并且开发了一种与收缩不变集完全不同的估计吸引域的方法。其次，通过构造依赖于脉冲时刻的复合型 Lyapunov 函数进一步降低保守性，讨论了分布式饱和脉冲控制下具有切换拓扑的非线性时滞多智能体系统的局部一致性，并建立了相应的局部一致性判据。为了估计出最大的吸引域，通过适当的矩阵变换，建立了基于 LMIs 的优化问题，并通过 Matlab 软件中的 Yalmip 工具箱求解相应的最大吸引域的数值解。  

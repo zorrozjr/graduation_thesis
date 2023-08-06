@@ -54,7 +54,7 @@ H_{\alpha}(X) = \dfrac{1}{1 - \alpha} \log_2 \left(\sum_{x \in \mathcal{X}} p(x)
 
 综上，本章引入了两种分数阶累积剩余时间序列度量，分别称为r\'{e}nyi cumulative residual kullback-leibluer ($\rm{RCRKL}$)和r\'{e}nyi cumulative residual transfer entropy ($\rm{RCRTE}$)。这两种度量方法都基于累积残差熵和r/'{e}nyi熵，其中$\rm{RCRKL}$主要用于比较时间序列之间的相似性，而$\rm{RCRTE}$则用于分析时间序列数据中的信息流和变量之间的因果关系。同时，我们证明了 $\rm{RCRKL}$ 作为距离度量的一些性质，并研究了 $\rm{RCRTE}$ 的零点和边界。为了验证本章所提出度量的有效性，我们分别在仿真数据和真实数据上进行了数值验证。在仿真数据的验证部分，我们研究了参数变换对两种度量的影响。在真实数据验证部分，我们采用了来自RIOHTrack的路面车辙数据，基于RCRKL作为距离度量，设计了一种新型的聚类算法，对不同路面的车辙进行聚类，并基于RCRTE对每个簇里的车辙进行因果关系检测。结果显示，基于RCRKL的聚类算法具有良好的聚类性能，而RCRTE也能有效检测出显著的因果关系。
 
-\section{R\'{e}nyi cumulative residual kullback-leibluer divergence及其性质}
+\section{R\'{e}nyi 累积剩余KL散度及其性质}
 
 \textbf{定义 1.} 给定两个随机变量 $X$ 和 $Y$。R\'{e}nyi cumulative residual kullback-leibluer divergence（$\rm{RCRKL}$）的定义是：
 \begin{align}
@@ -216,7 +216,7 @@ RCRKL(X,Y) +RCRKL(Y,Z) \ge  RCRKL(X, Z).
 \end{align*}
 证明完毕。\\
 
-\section{R\'{e}nyi cumulative residual transfer entropy及其性质}
+\section{R\'{e}nyi累积剩余传递熵及其性质}
 首先，我们先介绍累积残余传递熵（Cumulative Residual Transfer Entropy，$\rm{CRTE}$）的定义，$\rm{CRTE}$ 是传递熵（Transfer Entropy,$\rm{TE}$）的扩展，它将累积剩余熵（cumulative residual entropy，$\rm{CRE}$）的概念纳入到两个离散马尔可夫过程之间的信息传递或因果关系的计算中。$\rm{CRTE}$量化了在考虑了两个过程的历史依赖性的影响之后，根据另一个过程的过去历史预测一个过程的未来状态的累积剩余熵。
 \textbf{定义 2.} 给定两个随机变量$X$和$Y$，从$Y$到$X$的$\rm{CRTE}$被表示为：
 \begin{align}\label{CRTE}
@@ -516,7 +516,7 @@ D_{RCRKL}(X,Y) = \frac{RCRKL(X,Y)+RCRKL(Y,X)}{2}.
 \caption{基于经验设计的 RIOHTrack 路面结构分类。}
 \begin{tabular}{lll}
  \hline
- groups &  category & pavement\\
+ 簇编号 &  路面类别 & 路面编号\\
   \hline
   1 &  semi-rigid base structure & STR1-STR3, STR6-STR9\\
   \hline
@@ -532,7 +532,7 @@ D_{RCRKL}(X,Y) = \frac{RCRKL(X,Y)+RCRKL(Y,X)}{2}.
 \label{table1}
 \end{table}
 
-此外，为了验证基于 $\rm{RCRKL}$ 的聚类算法的性能，本节还对基于不同距离度量的聚类算法进行了比较。我们将重点限制在应用于时间序列的方法上，即皮尔逊相关（PC）\cite{30}、动态时间扭曲（DTW）\cite{31}和马哈拉诺比斯距离（MD）\cite{32}。性能评估指标是一些内在的衡量标准： 剪影系数（SC）、戴维斯-博尔丁指数（DB）和邓恩指数（ARI）。SC 计算的是所有时间序列点的平均剪影系数，其中点的剪影系数被定义为与自身聚类中点的平均距离和与最近相邻聚类中点的平均距离之差。SC 越高，表示聚类越清晰。DB 指数评估聚类之间的紧凑性和分离度。它被定义为每个聚类与其最相似聚类之间的平均相似度。DB 指数越低，表示聚类越清晰、分离度越高。DI 衡量聚类的紧凑程度（聚类内距离）和聚类间的分离程度（聚类间距离）。DI 值越高，表示聚类质量越好。本次验证中使用的所有距离指标均为 $\rm{RCRKL}$。
+此外，为了验证基于 $\rm{RCRKL}$ 的聚类算法的性能，本节还对基于不同距离度量的聚类算法进行了比较。我们将重点限制在应用于时间序列的方法上，即皮尔逊相关性（Pearson Correlation，PC）\cite{30}、动态时间扭曲（Dynamic Time Warping，DTW）\cite{31}和马哈拉诺比斯距离（Mahalanobis Distance，MD）\cite{32}。性能评估指标是一些内在的衡量标准： 剪影系数（Silhouette Coefficient，SC）、戴维斯-博尔丁指数（Davis Boulding Index，DBI）和邓恩指数（Dunn Index，DI）。SC 计算的是所有时间序列点的平均剪影系数，其中点的剪影系数被定义为与自身聚类中点的平均距离和与最近相邻聚类中点的平均距离之差。SC 越高，表示聚类越清晰。DB 指数评估聚类之间的紧凑性和分离度。它被定义为每个聚类与其最相似聚类之间的平均相似度。DBI 指数越低，表示聚类越清晰、分离度越高。DI 衡量聚类的紧凑程度（聚类内距离）和聚类间的分离程度（聚类间距离）。DI 值越高，表示聚类质量越好。本次验证中使用的所有距离指标均为 $\rm{RCRKL}$。
 
 总体而言，基于 $\rm{RCRKL}$ 的聚类算法的性能优于其他方法。特别是在 SC 测量中，本文提出的聚类算法表现较好，SC($\rm{RCRKL}$) = 0.43，表明聚类结果合理，聚类之间的分离度适中。在 DB 的测量中，只有 DB($\rm{RCRKL}$)=0.37 和 DB($\rm{DTW}$)=0.27 小于 0.5。结果表明，聚类结果相对较好，聚类分离度较高。最后，基于 $\rm{RCRKL}$ 的聚类算法的 DI 值为 0.5，这表明聚类结果具有良好的分离性。
 
@@ -542,7 +542,7 @@ D_{RCRKL}(X,Y) = \frac{RCRKL(X,Y)+RCRKL(Y,X)}{2}.
 \caption{基于不同距离度量的 AP 算法的平均内在测量值比较。}
 \begin{tabular}{llll}
  \hline
- distance metric &  SC & DB & DI\\
+ 距离度量 &  SC & DBI & DI\\
   \hline
   PC &  -0.03 & 1.12 &0.18\\
   \hline
