@@ -1,0 +1,113 @@
+\newpage
+\setcounter{page}{1}
+
+\pagestyle{plain}
+\begin{center}
+ {\heiti\zihao{3} 基于脉冲控制的时滞复杂网络的动力学分析}
+ \end{center}　
+
+ \begin{center}
+ {\heiti\zihao{3}  摘~~~~要}
+ \end{center}　
+
+\renewcommand{\theequation}{\arabic{equation}}
+\setcounter{equation}{0}
+
+\vskip 4pt
+
+复杂网络是具有大量节点和多种连接拓扑的网络模型，广泛存在于现实生活中，例如社交网络、万维网、电网以及交通网络等。在信息资源和能量有限的情况下，复杂网络内部节点在执行信息交互以及反馈控制过程中，不可避免地会产生时滞。通常，时滞的存在会导致复杂网络产生振荡、发散和不稳定等不良性能，
+因此，时滞复杂网络一直以来都是一个重要的研究模型。在复杂网络的动态发展过程中，系统的高度复杂性与时滞的相互影响可以产生丰富多样的动力学行为。因此，时滞复杂网络的动力学行为 (如同步、一致性等) 分析具有重要的理论价值和实际意义。本文主要讨论在不同类型脉冲控制下时滞复杂网络动力学特性，主要创新工作如下：
+
+\vskip 4pt
+1、分别研究了在混杂脉冲控制下耦合多稳态时滞忆阻神经网络的动态多同步和静态多同步问题。其中，混杂脉冲控制包括时滞脉冲控制和连续时间状态反馈控制。首先，基于状态空间划分方法和激励函数的几何特性，给出了系统具有多个局部指数稳定的周期轨道或平衡点的充分条件。其次， 利用新型的 Halanay 微分不等式和脉冲控制理论，分别建立了基于线性矩阵不等式 (LMIs) 的动态多同步和静态多同步的充分性判据。结果表明，在具有可允许的时变时滞上界和合适的脉冲间隔的混杂脉冲控制下，动态多同步和静态多同步都可以被实现。 
+
+\vskip 4pt
+2、研究了事件触发脉冲控制下具有耦合时滞的复杂网络同步问题。首先，设计了一种新型的基于二次 Lyapunov 函数的事件触发时滞脉冲控制机制，此机制将时滞脉冲控制考虑到事件触发机制中。通过构造合适的辅助函数，并利用递推法、脉冲控制理论和 Lyapunov–Razumikhin 技术，研究了在事件触发时滞脉冲控制下具有耦合常时滞的复杂网络全局指数同步问题，并建立了基于 LMIs 的保守性更小的同步判据。其次，进一步将牵制控制考虑到事件触发脉冲控制机制中，设计出事件触发牵制脉冲控制，探讨了具有耦合比例时滞的基因振荡器网络集群同步问题，并建立起相应的集群同步准则。值得注意的是触发时刻即为脉冲时刻，其由所设计的事件触发牵制脉冲控制机制产生。同时，每个集群中只有一小部分节点依据所设计的算法在触发时刻被施加脉冲控制，进一步节约了网络资源。 
+
+
+\vskip 4pt
+3、研究了分布式饱和脉冲控制下时滞复杂网络的局部动力学行为。首先，利用反证法、脉冲系统的比较原理和平均脉冲区间的方法研究了分布式饱和脉冲控制下具有耦合时滞的鲁里叶网络的局部指数同步问题，并给出了不依赖于时滞的基于双线性矩阵不等式 (BMIs) 的充分性判据。为了降低保守性，选取最新的具有更多松弛变量的改进凸包表示法来处理分布式饱和脉冲项，并且开发了一种新的估计吸引域方法，该方法与传统的借助于收缩不变集来估计吸引域的方法完全不同。其次，通过构造依赖于脉冲时刻的复合型 Lyapunov 函数进一步降低保守性，讨论了分布式饱和脉冲控制下具有切换拓扑的非线性时滞多智能体系统的局部一致性，并建立起一致性准则。为了估计出最大的吸引域，通过适当的矩阵变换，建立起基于 LMIs 的优化问题，并通过 Matlab 软件中的 Yalmip 工具箱求解相应的最大吸引域的数值解。 
+
+\vskip 4pt
+{\heiti  关键词：} 时滞复杂网络；同步；一致性；混杂脉冲控制；事件触发脉冲控制；分布式饱和脉冲控制。
+
+%\newpage % 增加一个空白页
+%\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
+
+\newpage
+\setcounter{page}{3}
+\begin{center}
+ {\LARGE\bf Dynamic Analysis of Time-delay Complex Network Based on Impulse Control}
+ \end{center}　
+\begin{center}
+{\LARGE\bf Abstract}
+\end{center}
+\setcounter{equation}{0}
+
+Complex networks is a network model with a large number of nodes and a variety of connection topologies, which widely exists in real life, such as social networks, World Wide Web, power grids, transportation networks, and so on. In the case of limited information resources and energy,  time delay is inevitable in the process of information interaction and feedback control of nodes in complex networks. Usually,  the existence of time delay can cause  poor performance of complex networks, such as oscillation, divergence and instability. 
+Therefore, the time-delay complex networks has always been an important research model. In the dynamic development of complex networks, the interaction between the high complexity of the system and  time delay can produce various dynamic behaviors. Therefore, it has great theoretical value and practical significance  to analyze the dynamic behaviors  of time-delay complex networks, such as synchronization, consensus and so on. This thesis mainly discusses the dynamic characteristics of time-delay complex networks under different types of impulsive control, the main innovations are as follows:
+ 
+1. The problems of dynamic multisynchronization (DMS) and static multisynchronization (SMS) of coupled multistable  time-delay memristive neural networks under hybrid impulsive control are investigated separately. Among them, the hybrid impulsive control includes delayed impulsive control and continuous-time state feedback control. Firstly, based on the state space partition method and the geometrical properties of the activation function,  several sufficient conditions are given   such that system has multiple local  exponential  stable periodic orbits or equilibrium points.  Secondly, by employing a new Halanay differential inequality and the impulsive control theory, some DMS and SMS sufficient conditions based on linear matrix inequalities (LMIs) are established, respectively. It is shown that  DMS and SMS can be realized under hybrid impulsive control with  allowable upper bound of  time-varying delay and suitable impulsive interval.  
+ 
+2. The synchronization problem of complex networks with coupling time delay under event-triggered impulsive control (ETIC) is studied. Firstly, a novel event-triggered delayed impulsive control  (ETDIC) mechanism combining delayed impulsive control with the event-triggering mechanism is designed based on the quadratic Lyapunov function. By constructing a suitable auxiliary function and using recurrence method, impulsive control theory and Lyapunov–Razumikhin technique, the global exponential synchronization problem of complex networks with coupling constant delay under ETDIC  is studied, and some  synchronization criteria with less conservatism are established in terms of LMIs. Secondly, the  pinning control is further considered in the ETIC mechanism, and the event-triggered pinning impulsive control (ETPIC) is designed. Based on this, the cluster synchronization of genetic oscillator networks with coupling proportional delay is discussed 
+and the corresponding cluster synchronization criteria are established. Note that the triggering instant is the impulsive instant, which is generated by  the designed ETPIC mechanism. Meanwhile, only a fraction of nodes of each cluster are controlled at each triggering instant according to the designed algorithm,  which further saves network resources.  
+ 
+3. The dynamic behavior of time-delay complex networks under distributed saturated impulsive control (DSIC) is  researched. Firstly, by utilizing proof by contradiction,  comparison principle of impulsive system, and average impulsive interval method, the local exponential synchronization  problem of Lur'e networks with coupling time-varying delay under the  DSIC is studied, and some delay-independent sufficient criteria are presented in the form of bilinear matrix inequalities (BMIs). To reduce conservatism, a new improved convex hull representation with more slack variables be chosen to deal with the DSIC terms, and a new method is developed to estimate the domain of attraction,  which is quite distinct from the traditional method of estimating the domain of attraction by means of contractive invariant set. Secondly, a novel composite impulsive-instant-dependent Lyapunov function is constructed to further reduce conservatism. And then, the local consensus problem of nonlinear time-delay multi-agent systems with switching topologies via DSIC is discussed and the some local consensus criteria are derived. In order to estimate the maximum domain of attraction, some LMIs-based optimization problems  are formulated through appropriate matrix transformation, and the corresponding numerical solutions of the maximum domain of attraction are solved through the Yalmip toolbox in Matlab  software. 
+
+\vspace*{6mm}{\bf Keywords:} 
+Time-delay complex networks; synchronization; consensus; hybrid impulsive control; event-triggered impulsive control; distributed saturated impulsive control. 
+
+\newpage
+\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
+
+\newpage
+\thispagestyle{empty}
+\newpage
+\vskip 3mm
+%\pagestyle{myheadings}
+%\markboth{{\underline{\centerline{} }}}
+%{{\underline{\centerline{} }}}
+%\chapter*{符~号}
+
+\begin{center}
+	{\LARGE\bf 符~号~说~明}
+\end{center}
+\begin{eqnarray*}
+&\mathbb{N}   &~~\mbox{自然数域；}\\    
+&\mathbb{Z}_+   &~~\mbox{正整数域；}\\
+&\mathbb{R}   &~~\mbox{实数域；}\\
+&\mathbb{R}_+   &~~\mbox{正实数域；}\\
+&\mathbb{R}^n &~~n~\mbox{维的~Euclidean~空间；}\\
+&\mathbb{R}^{m\times n} &~~\mathbb{R}~\mbox{上的}~m\times n~\mbox{维矩阵；}\\
+&\mathbf{c}_n &~~\mbox{所有元素均为数字}~c~\mbox{的}~n~\mbox{维列向量；} \\
+& |x|_\infty &~~\mbox{向量}~x
+\in\mathbb{R}^n~\mbox{的}~\infty~\mbox{范数，}~|x|=\max_{1\leq i\leq n}|x_i|\mbox{；}\\
+&|x| &~~\mbox{向量}~x
+\in\mathbb{R}^n~\mbox{的~Euclidean~范数，}|x|=\sqrt{\sum_{i=1}^nx^2_i}\mbox{；}\\
+& P>0~(P\geq 0) &~~\mbox{矩阵}~P~\mbox{是正定 (半正定) 矩阵；}\\
+& P<0~(P\leq 0) &~~\mbox{矩阵}~P~\mbox{是负定 (半负定) 矩阵；}\\
+&\lambda_{\max}(P)~(\lambda_{\min}(P)) &~~\mbox{矩阵}~P~\mbox{的最大 (小) 特征值；}\\
+&a\vee b~(a \wedge b)  &~~a~\mbox{和}~b~\mbox{的最大 (小) 值；}\\
+&P^T &~~\mbox{矩阵}~P~\mbox{的转置；}\\
+&P^{-1} &~~\mbox{矩阵}~P~\mbox{的逆矩阵；}\\
+&\mathbb{O}_{m\times n} &~~m\times n~\mbox{维零矩阵；}\\
+&I_{n} &~~n~\mbox{阶单位矩阵；}\\ 
+&{\rm diag}(p_1,p_2,\cdots,p_n) &~~\mbox{对角线元素为}~p_1,p_2,\cdots,p_n\mbox{， 非对角线元素为零的}~n\times n~\mbox{矩阵}\mbox{；}\\
+&\mathcal{C}(D,F) &~~\mbox{定义域为}~D\mbox{， 值域为}~F~\mbox{的连续函数全体；} \\
+&\mathcal{C}^1(D,F) &~~\mbox{定义域为}~D\mbox{， 值域为}~F~\mbox{的连续可微函数全体；} \\
+&\mathcal{PC}(D,F) &~~\mbox{定义域为}~D\mbox{， 值域为}~F\mbox{，}\mbox{除在有限个点}~t~\mbox{之外，在其它任何时}\\
+&&~~\mbox{刻都是连续的函数}~\psi~ \mbox{全体，其中}~\psi (t^+)~\mbox{和}~\psi(t^-)~ \mbox{都存在，并且}\\&&~~\psi (t^+)=\psi (t)\mbox{；}\\
+&v_0&~~\mbox{表示一个函数类，其中函数}~V(t,x)\in \mathcal{PC}(-\tau,+\infty)~\mbox{是正定的，}\\&&~~ \mbox{且关于}~x~\mbox{是局部}~Lipschitz~\mbox{的，其中}~\tau~\mbox{为正常数；}\\
+&I[m,n] &~~\mbox{整数集}~\{m,m+1,\cdots,n\}\mbox{；}\\
+&:= &~~\mbox{定义符号；}\\
+&\lfloor\cdot\rfloor &~~\mbox{下取整函数；}\\
+&co(\cdot) &~~\mbox{一组向量组成的凸包；}\\
+& \mathcal{E}^c &~~\mbox{集合}~\mathcal{E}~\mbox{的补集；}\\
+& D^+  &~~\mbox{右上}~Dini~\mbox{导数；} \\
+&\otimes &~~\mbox{Kronecker~积；}\\
+&\star &~~\mbox{对称矩阵中的对称块。}\\
+\end{eqnarray*}
+%注：矩阵的维数，在没有特别说明的情况下，满足代数运算。
+
+%\newpage % 增加一个空白页
+%\thispagestyle{empty}~~~~~~~~~~~~~~~~~~~\vspace{3 mm}
